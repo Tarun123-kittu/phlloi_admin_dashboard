@@ -1,0 +1,40 @@
+"use client";
+import React from "react";
+import ChartThree from "../Charts/ChartThree";
+import ChartTwo from "../Charts/ChartTwo";
+import ChatCard from "../Chat/ChatCard";
+import TableOne from "../Tables/TableOne";
+import MapOne from "../Maps/MapOne";
+import DataStatsOne from "@/components/DataStats/DataStatsOne";
+import ChartOne from "@/components/Charts/ChartOne";
+import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux";
+
+const ECommerce: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
+  const data = useSelector((state: RootState) => state.EXAMPLE);
+  console.log(data,"this is redirecting from the redux toolkit")
+  if(!localStorage.getItem('phloii_token')){
+    router.push("/")
+  }
+  return (
+    <>
+      <DataStatsOne />
+
+      <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-9 2xl:gap-7.5">
+        <ChartOne />
+        <ChartTwo />
+        <ChartThree />
+        <MapOne />
+        <div className="col-span-12 xl:col-span-8">
+          <TableOne />
+        </div>
+        <ChatCard />
+      </div>
+    </>
+  );
+};
+
+export default ECommerce;

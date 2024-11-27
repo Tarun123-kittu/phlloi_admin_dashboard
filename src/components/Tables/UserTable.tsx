@@ -39,8 +39,9 @@ const TableThree = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [page, setPage] = useState<number>(1)
   const [verified, setVerified] = useState<boolean>()
-  const [username, setUsername] = useState<string>()
-  const [gender, setGender] = useState<string>()
+  const [username, setUsername] = useState<string>("")
+  const [gender, setGender] = useState<string>("")
+  const [isSearched,setIsSearched] = useState<boolean>(false)
   const router = useRouter()
   useEffect(() => {
     dispatch(UsersList({ page }))
@@ -55,10 +56,21 @@ const TableThree = () => {
     return date.toLocaleDateString('en-GB');
   };
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSearched(true)
+    dispatch(UsersList({ page, verified, gender, username }))
+  }
+  const clearResult = (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSearched(false)
+    dispatch(UsersList({ page }))
+  }
+
 
   return (
     <>
-      <UserFilter setVerified={setVerified} setUsername={setUsername} setGender={setGender} verified={verified} username={username} gender={gender} />
+      <UserFilter setVerified={setVerified} setUsername={setUsername} setGender={setGender} verified={verified} username={username} gender={gender} handleSearch={handleSearch} clearResult={clearResult} isSearched={isSearched}/>
 
       <div className="rounded-[10px] border border-stroke bg-white p-4 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card sm:p-7.5">
         <div className="max-w-full overflow-x-auto">
@@ -77,13 +89,13 @@ const TableThree = () => {
                 <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white text-sm">
                   Gender
                 </th>
-                <th className="px-4 py-4 text-right font-medium text-dark dark:text-white xl:pr-7.5 text-sm">
+                <th className="px-4 py-4  font-medium text-dark dark:text-white xl:pr-7.5 text-sm">
                   Online Status
                 </th>
-                <th className="px-4 py-4 text-right font-medium text-dark dark:text-white xl:pr-7.5 text-sm">
+                <th className="px-4 py-4  font-medium text-dark dark:text-white xl:pr-7.5 text-sm">
                   Verified Profile
                 </th>
-                <th className="px-4 py-4 text-right font-medium text-dark dark:text-white xl:pr-7.5 text-sm">
+                <th className="px-4 py-4  font-medium text-dark dark:text-white xl:pr-7.5 text-sm">
                   Action
                 </th>
               </tr>

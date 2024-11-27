@@ -57,5 +57,9 @@
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/Tarun123-kittu/phlloi_admin_dashboard.git",
+  "author": "harmeetkaursohi95@gmail.com <harmeetkaursohi95@gmail.com>",
+  "license": "MIT"
 }

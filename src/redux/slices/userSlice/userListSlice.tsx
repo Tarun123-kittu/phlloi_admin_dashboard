@@ -6,7 +6,7 @@ export interface Pagination {
 }
 
 export interface UserData {
-  _id : string;
+  _id: string;
   username: string;
   email: string;
   dob: number;
@@ -37,14 +37,23 @@ const initialState: UserState = {
 
 export const UsersList = createAsyncThunk(
   "UsersList",
-  async ({ page }: { page: number }, thunkAPI) => {
+  async ({ page, verified, username, gender }: { page: number, verified?: boolean, username?: string, gender?: string }, thunkAPI) => {
     try {
       const myHeaders = new Headers();
       myHeaders.append("Authorization", "Bearer " + localStorage.getItem('phloii_token'));
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}get_all_users?page=${page}`, {
+
+      const queryParams: any = { page: page.toString() };
+
+      if (verified !== undefined) queryParams.verified = verified.toString();
+      if (gender) queryParams.gender = gender;
+      if (username) queryParams.username = username;
+
+      const queryString = new URLSearchParams(queryParams).toString();
+
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}get_all_users?${queryString}`, {
         method: "GET",
         headers: myHeaders,
-        redirect: "follow"
+        redirect: "follow",
       });
 
       if (!response.ok) {
@@ -66,11 +75,13 @@ export const UsersList = createAsyncThunk(
   }
 );
 
+
+
 const userSlice = createSlice({
   name: "userSlice",
   initialState,
   reducers: {
-    clear_all_user_state : () => initialState
+    clear_all_user_state: () => initialState
   },
   extraReducers: (builder) => {
     builder
@@ -88,5 +99,5 @@ const userSlice = createSlice({
       });
   },
 });
-export const {clear_all_user_state} = userSlice.actions
+export const { clear_all_user_state } = userSlice.actions
 export default userSlice.reducer;

@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { EditorState, convertToRaw } from "draft-js";
+import {
+  EditorState,
+  convertToRaw,
+  convertFromRaw,
+  ContentState,
+} from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 interface Pages {
   title: string;
-  content: string;
+  content: string; 
   slug: string;
 }
 
@@ -17,15 +22,19 @@ const Editor: any = dynamic(
 const RichTextExample = ({
   setTextList,
   index,
+  textList,
 }: {
-  setTextList: (updater: (prev: Pages[]) => Pages[]) => void; 
+  setTextList: (updater: (prev: Pages[]) => Pages[]) => void;
   index: number;
+  textList: Pages[];
 }) => {
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
 
   const onEditorStateChange = (newEditorState: EditorState): void => {
     setEditorState(newEditorState);
-    const content = JSON.stringify(convertToRaw(newEditorState.getCurrentContent()));
+    const content = JSON.stringify(
+      convertToRaw(newEditorState.getCurrentContent())
+    );
     setTextList((prev) =>
       prev.map((item, idx) =>
         idx === index
@@ -37,6 +46,19 @@ const RichTextExample = ({
       )
     );
   };
+
+  useEffect(() => {
+    const content = textList[index]?.content;
+    if (content && content !== JSON.stringify(convertToRaw(editorState.getCurrentContent()))) {
+      try {
+        const parsedContent = JSON.parse(content);
+        const contentState = convertFromRaw(parsedContent);
+        setEditorState(EditorState.createWithContent(contentState));
+      } catch (error) {
+        console.error("Failed to load content:", error);
+      }
+    }
+  }, [textList, index, editorState]);
 
   return (
     <div className="border border-lg">

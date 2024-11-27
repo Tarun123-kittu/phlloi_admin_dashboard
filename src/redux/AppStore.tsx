@@ -8,6 +8,12 @@ import resetPasswordState from "./slices/authSlice/resetPasswordSlice"
 import userVerificationListSlice from "./slices/userVerificationSlice/getAllVerificationRequests"
 import userDetailSlice from "./slices/userSlice/getUserDetails"
 import VerifyUserState from "./slices/userVerificationSlice/verifyUser"
+import addSectionAPI from "./slices/pagesSlice/addSectionSlice"
+import getAllSectionsAPI from "./slices/pagesSlice/getAllSectionsSlice"
+import getSectionByIdAPI from "./slices/pagesSlice/getSectionByIdSlice"
+import deletePageAPI from "./slices/pagesSlice/deletePageSlice"
+import deleteSectionAPI from "./slices/pagesSlice/deleteSectionSlice"
+import updatePageAPI from "./slices/pagesSlice/updatePageSlice"
 
 export const store = configureStore({
   reducer: {
@@ -19,7 +25,13 @@ export const store = configureStore({
     RESET_PASSWORD: resetPasswordState,
     VERIFICATION_LIST: userVerificationListSlice,
     USER_DATAILS: userDetailSlice,
-    VERIFY_USER: VerifyUserState
+    VERIFY_USER: VerifyUserState,
+    ADD_SECTION: addSectionAPI,
+    ALL_SECTIONS: getAllSectionsAPI,
+    SECTION_DETAILS: getSectionByIdAPI,
+    DELETE_PAGE : deletePageAPI,
+    DELETE_SECTION : deleteSectionAPI,
+    UPDATE_PAGE : updatePageAPI
   },
 });
 

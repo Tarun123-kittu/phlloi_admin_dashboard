@@ -17,7 +17,6 @@ const ResetPassword = ({ email }: { email: string }) => {
     const decodedEmail = decodeURIComponent(email);
 
     const reset_password_state = useSelector((state: RootState) => state.RESET_PASSWORD);
-    console.log(reset_password_state, 'this is the reset password state');
 
     useEffect(() => {
         if (reset_password_state?.isSuccess) {

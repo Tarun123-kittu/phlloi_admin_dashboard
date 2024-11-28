@@ -59,6 +59,11 @@
     @apply text-body-sm font-medium;
 }
 
+.fixed.inset-0.z-10.flex.items-center.justify-center.shadow-lg {
+    background: #00000047;
+    z-index: 999;
+}
+
 .apexcharts-xcrosshairs {
     @apply !fill-stroke dark:!fill-dark-3;
 }

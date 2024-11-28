@@ -4,8 +4,8 @@ import RoomsCard from "./RoomsCard"
 const Rooms = () => {
   return (
     <div>
-        <div>
-            <h1>Rooms List</h1>
+        <div className='mb-2'>
+            <h1 className='font-bold text-2xl'>Rooms List</h1>
         </div>
         <RoomsCard />
     </div>

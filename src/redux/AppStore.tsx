@@ -20,6 +20,10 @@ import roomSlice from "./slices/settinsSlice/roomSlice/getAllRoomsSlice"
 import getRoomByIdAPI from "./slices/settinsSlice/roomSlice/getRoomBydId"
 import updateRoomAPI from "./slices/settinsSlice/roomSlice/updateRoomSlice"
 import AddRoomAPI from "./slices/settinsSlice/roomSlice/addRoomSlice"
+import getAllDashboardRooms from "./slices/dashboardSlice/getAllRooms"
+import activeInactiveUsersSlice from "./slices/dashboardSlice/getActiveInactiveUserSlice"
+import monthlyJoinedUsersSlice from "./slices/dashboardSlice/secretDatingChartSlice"
+import monthlyJoinedSlice from "./slices/dashboardSlice/getUserMonthlyCount"
 
 export const store = configureStore({
   reducer: {
@@ -43,7 +47,11 @@ export const store = configureStore({
     ALL_ROOMS: roomSlice,
     ROOM_DETAILs : getRoomByIdAPI,
     UPDATE_ROOM:updateRoomAPI,
-    ADD_ROOM :AddRoomAPI
+    ADD_ROOM :AddRoomAPI,
+    DASHBOARD_ROOMS:getAllDashboardRooms,
+    ACTIVE_INACTIVE_USERS : activeInactiveUsersSlice,
+    SECRET_DATING_USER : monthlyJoinedUsersSlice,
+    MONTHLY_JOINED_USER:monthlyJoinedSlice
   },
 });
 

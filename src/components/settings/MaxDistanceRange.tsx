@@ -1,18 +1,20 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { get_maximum_distance, clear_max_distance_state } from '@/redux/slices/settinsSlice/distanceSlice/getMaximumDistance';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux';
-import { update_max_distance,clearUpdateState } from '@/redux/slices/settinsSlice/distanceSlice/updateMaxDistance';
+import { update_max_distance, clearUpdateState } from '@/redux/slices/settinsSlice/distanceSlice/updateMaxDistance';
 import toast from 'react-hot-toast';
 import Loader from '../loader/Loader';
 
 const MaxDistanceRange = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [maxDistance, setMaxDistance] = useState<number>(300);
-  const [rangeValue, setRangeValue] = useState<number>(0); 
-  
+  const [rangeValue, setRangeValue] = useState<number>(0);
+
+  const debounceTimeout = useRef<NodeJS.Timeout | null>(null); 
+
   useEffect(() => {
     dispatch(get_maximum_distance());
   }, [dispatch]);
@@ -22,18 +24,24 @@ const MaxDistanceRange = () => {
 
   useEffect(() => {
     if (maxDistanceData?.isSuccess) {
-        dispatch(clearUpdateState())
-        dispatch(clear_max_distance_state())
+      dispatch(clearUpdateState());
+      dispatch(clear_max_distance_state());
       const max = maxDistanceData?.data?.maximum_distance || 0;
-      setRangeValue(max); 
+      setRangeValue(max);
     }
   }, [maxDistanceData]);
 
   const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRangeValue(Number(e.target.value));
-    setTimeout(() => {
-        dispatch(update_max_distance({maximum_distance : rangeValue}))
-    },2000)
+    const newRangeValue = Number(e.target.value);
+    setRangeValue(newRangeValue);
+
+    if (debounceTimeout.current) {
+      clearTimeout(debounceTimeout.current);
+    }
+
+    debounceTimeout.current = setTimeout(() => {
+      dispatch(update_max_distance({ maximum_distance: newRangeValue }));
+    }, 300);
   };
 
   const rangeBackground = {
@@ -44,11 +52,11 @@ const MaxDistanceRange = () => {
   };
 
   useEffect(() => {
-    if(updateMaxDistance?.isSuccess){
-        dispatch(clearUpdateState())
-        dispatch(get_maximum_distance());
+    if (updateMaxDistance?.isSuccess) {
+      dispatch(clearUpdateState());
+      dispatch(get_maximum_distance());
     }
-  },[updateMaxDistance])
+  }, [updateMaxDistance]);
 
   return (
     <div>
@@ -58,15 +66,19 @@ const MaxDistanceRange = () => {
       >
         Maximum Distance Range
       </label>
-      {maxDistanceData?.isLoading ||  updateMaxDistance?.isLoading ? <h1 className='font-bold text-center'>Please wait...</h1> : <input
-        id="max-distance-range"
-        type="range"
-        value={rangeValue}
-        max={maxDistance}
-        onChange={handleRangeChange}
-        className="w-full h-2 rounded-lg appearance-none cursor-pointer"
-        style={rangeBackground} 
-      />}
+      {maxDistanceData?.isLoading || updateMaxDistance?.isLoading ? (
+        <h1 className="font-bold text-center">Please wait...</h1>
+      ) : (
+        <input
+          id="max-distance-range"
+          type="range"
+          value={rangeValue}
+          max={maxDistance}
+          onChange={handleRangeChange}
+          className="w-full h-2 rounded-lg appearance-none cursor-pointer"
+          style={rangeBackground}
+        />
+      )}
       <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
         Selected Distance: {rangeValue} / {maxDistance} km
       </p>

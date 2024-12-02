@@ -1,124 +1,77 @@
-import { BRAND } from "@/types/brand";
-import Image from "next/image";
+'use client'
 
-const brandData: BRAND[] = [
-  {
-    logo: "/images/brand/brand-01.svg",
-    name: "Google",
-    visitors: 3.5,
-    revenues: "5,768",
-    sales: 590,
-    conversion: 4.8,
-  },
-  {
-    logo: "/images/brand/brand-02.svg",
-    name: "X.com",
-    visitors: 2.2,
-    revenues: "4,635",
-    sales: 467,
-    conversion: 4.3,
-  },
-  {
-    logo: "/images/brand/brand-03.svg",
-    name: "Github",
-    visitors: 2.1,
-    revenues: "4,290",
-    sales: 420,
-    conversion: 3.7,
-  },
-  {
-    logo: "/images/brand/brand-04.svg",
-    name: "Vimeo",
-    visitors: 1.5,
-    revenues: "3,580",
-    sales: 389,
-    conversion: 2.5,
-  },
-  {
-    logo: "/images/brand/brand-05.svg",
-    name: "Facebook",
-    visitors: 1.2,
-    revenues: "2,740",
-    sales: 230,
-    conversion: 1.9,
-  },
-];
+import React, { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux";
+import { get_all_dashboard_rooms } from "@/redux/slices/dashboardSlice/getAllRooms";
 
 const TableOne = () => {
-  return (
+  const dispatch = useDispatch<AppDispatch>();
+  const room_state_data = useSelector((state:RootState) => state.DASHBOARD_ROOMS)
+
+  useEffect(() => {
+    dispatch(get_all_dashboard_rooms());
+  },[dispatch])
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      dispatch(get_all_dashboard_rooms());
+    }, 30000);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [dispatch]);
+
+  return room_state_data?.isError ? <h4>Please wait currently facing some issue</h4>  : (
     <div className="rounded-[10px] bg-white px-7.5 pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card">
       <h4 className="mb-5.5 text-body-2xlg font-bold text-dark dark:text-white">
-        Top Channels
+        Rooms List
       </h4>
 
       <div className="flex flex-col">
-        <div className="grid grid-cols-3 sm:grid-cols-5">
+        <div className="grid grid-cols-3 sm:grid-cols-3">
           <div className="px-2 pb-3.5">
             <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Source
+              Room Image
             </h5>
           </div>
           <div className="px-2 pb-3.5 text-center">
             <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Visitors
+              Name
             </h5>
           </div>
           <div className="px-2 pb-3.5 text-center">
             <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Revenues
-            </h5>
-          </div>
-          <div className="hidden px-2 pb-3.5 text-center sm:block">
-            <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Sales
-            </h5>
-          </div>
-          <div className="hidden px-2 pb-3.5 text-center sm:block">
-            <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Conversion
+              User Joined
             </h5>
           </div>
         </div>
 
-        {brandData.map((brand, key) => (
+        {room_state_data?.data?.map((room, key) => (
           <div
-            className={`grid grid-cols-3 sm:grid-cols-5 ${
-              key === brandData.length - 1
+            className={`grid grid-cols-3 sm:grid-cols-3 ${key === room_state_data?.data?.length - 1
                 ? ""
                 : "border-b border-stroke dark:border-dark-3"
-            }`}
+              }`}
             key={key}
           >
-            <div className="flex items-center gap-3.5 px-2 py-4">
+            <div className="flex items-center justify-between gap-5 px-2 py-4">
               <div className="flex-shrink-0">
-                <Image src={brand.logo} alt="Brand" width={48} height={48} />
+                <img src={room.image} className="rounded-2xl" alt="Brand" width={48} height={48} />
               </div>
-              <p className="hidden font-medium text-dark dark:text-white sm:block">
-                {brand.name}
-              </p>
+              {/* <p className="hidden font-medium text-dark dark:text-white sm:block">
+                {room.room}
+              </p> */}
             </div>
 
             <div className="flex items-center justify-center px-2 py-4">
               <p className="font-medium text-dark dark:text-white">
-                {brand.visitors}K
+                {room.room}
               </p>
             </div>
-
             <div className="flex items-center justify-center px-2 py-4">
-              <p className="font-medium text-green-light-1">
-                ${brand.revenues}
-              </p>
-            </div>
-
-            <div className="hidden items-center justify-center px-2 py-4 sm:flex">
               <p className="font-medium text-dark dark:text-white">
-                {brand.sales}
-              </p>
-            </div>
-
-            <div className="hidden items-center justify-center px-2 py-4 sm:flex">
-              <p className="font-medium text-dark dark:text-white">
-                {brand.conversion}%
+                {room.joined_user_count}
               </p>
             </div>
           </div>

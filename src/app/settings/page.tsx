@@ -2,6 +2,7 @@ import React from 'react'
 import Settings from "../../components/settings/Settings"
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
 import { Metadata } from "next";
+import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 
 export const metadata: Metadata = {
     title: "Settings",
@@ -12,7 +13,10 @@ const page = () => {
     return (
         <div>
             <DefaultLayout>
-                <Settings />
+                <div className="mx-auto w-full">
+                    <Breadcrumb pageName="Settings" />
+                    <Settings />
+                </div>
             </DefaultLayout>
         </div>
     )

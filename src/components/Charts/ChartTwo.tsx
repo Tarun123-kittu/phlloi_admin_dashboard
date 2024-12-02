@@ -1,17 +1,47 @@
+'use client'
+
 import { ApexOptions } from "apexcharts";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import DefaultSelectOption from "@/components/SelectOption/DefaultSelectOption";
+import { useSelector, useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "@/redux";
+import { secret_dating_monthly_joined } from "@/redux/slices/dashboardSlice/secretDatingChartSlice";
+
+
 
 const ChartTwo: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const currentYear = new Date().getFullYear()
+  const [count, setCounts] = useState<number[]>([]);
+  const [months, setMonths] = useState<string[]>([]);
+
+  const secret_dating_data = useSelector<RootState>((state) => state.SECRET_DATING_USER);
+
+  useEffect(() => {
+    dispatch(secret_dating_monthly_joined({ year: currentYear }));
+  }, [dispatch]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      dispatch(secret_dating_monthly_joined({ year: currentYear }));
+    }, 500000);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (secret_dating_data?.isSuccess) {
+      setCounts(secret_dating_data?.data?.userCounts || []);
+      setMonths(secret_dating_data?.data?.months || []);
+    }
+  }, [secret_dating_data]);
+
   const series = [
     {
-      name: "Sales",
-      data: [44, 55, 41, 67, 22, 43, 65],
-    },
-    {
-      name: "Revenue",
-      data: [13, 23, 20, 8, 13, 27, 15],
+      name: "secret dating",
+      data: count,
     },
   ];
 
@@ -71,7 +101,7 @@ const ChartTwo: React.FC = () => {
     },
 
     xaxis: {
-      categories: ["M", "T", "W", "T", "F", "S", "S"],
+      categories: months,
     },
     legend: {
       position: "top",
@@ -93,12 +123,12 @@ const ChartTwo: React.FC = () => {
     },
   };
 
-  return (
+  return secret_dating_data?.isError ? <h1>Something Went Wrong</h1> : (
     <div className="col-span-12 rounded-[10px] bg-white px-7.5 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-5">
       <div className="mb-4 justify-between gap-4 sm:flex">
         <div>
           <h4 className="text-body-2xlg font-bold text-dark dark:text-white">
-            Profit this week
+            Secret Dating User
           </h4>
         </div>
         <div>

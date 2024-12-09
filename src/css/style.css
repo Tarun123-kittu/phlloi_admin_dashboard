@@ -39,6 +39,14 @@
     @apply opacity-100;
 }
 
+.flex.items-center.gap-2\.5 {
+    display: none;
+}
+
+.relative.z-20.inline-flex.cursor-pointer.appearance-none.rounded-\[5px\].border.border-stroke.bg-white.text-sm.font-medium.outline-none.dark\:border-dark-3.dark\:bg-dark-2 {
+    display: none;
+}
+
 .tableCheckbox:checked ~ div {
     @apply border-primary bg-primary;
 }

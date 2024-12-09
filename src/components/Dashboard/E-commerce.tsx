@@ -14,8 +14,6 @@ import { AppDispatch, RootState } from "@/redux";
 const ECommerce: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
-  const data = useSelector((state: RootState) => state.EXAMPLE);
-  console.log(data,"this is redirecting from the redux toolkit")
   if(!localStorage.getItem('phloii_token')){
     router.push("/")
   }

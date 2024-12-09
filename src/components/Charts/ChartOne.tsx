@@ -1,18 +1,46 @@
+'use client'
+
 import { ApexOptions } from "apexcharts";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import DefaultSelectOption from "@/components/SelectOption/DefaultSelectOption";
+import { useSelector, useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "@/redux";
+import { user_monthly_joined } from "@/redux/slices/dashboardSlice/getUserMonthlyCount";
 
 const ChartOne: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const currentYear = new Date().getFullYear()
+  const [count, setCounts] = useState<number[]>([]);
+  const [months, setMonths] = useState<string[]>([]);
+
+  const user_monthly_data = useSelector<RootState>((state) => state.MONTHLY_JOINED_USER);
+
+  useEffect(() => {
+    dispatch(user_monthly_joined({ year: currentYear }));
+  }, [dispatch]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      dispatch(user_monthly_joined({ year: currentYear }));
+    }, 1000000);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (user_monthly_data?.isSuccess) {
+      setCounts(user_monthly_data?.data?.userCounts || []);
+      setMonths(user_monthly_data?.data?.months || []);
+    }
+  }, [user_monthly_data]);
   const series = [
     {
-      name: "Received Amount",
-      data: [0, 20, 35, 45, 35, 55, 65, 50, 65, 75, 60, 75],
+      name: "users",
+      data: count,
     },
-    {
-      name: "Due Amount",
-      data: [15, 9, 17, 32, 25, 68, 80, 68, 84, 94, 74, 62],
-    },
+
   ];
 
   const options: ApexOptions = {
@@ -97,20 +125,7 @@ const ChartOne: React.FC = () => {
     },
     xaxis: {
       type: "category",
-      categories: [
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-      ],
+      categories: months,
       axisBorder: {
         show: false,
       },
@@ -127,12 +142,15 @@ const ChartOne: React.FC = () => {
     },
   };
 
-  return (
+  const total = count?.reduce((sum, item) => sum + item, 0);
+  console.log(total, "this is the totla")
+
+  return user_monthly_data?.isError ? <h1>Something Went Wrong</h1> : (
     <div className="col-span-12 rounded-[10px] bg-white px-7.5 pb-6 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-7">
       <div className="mb-3.5 flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h4 className="text-body-2xlg font-bold text-dark dark:text-white">
-            Payments Overview
+            Monthly Joined User
           </h4>
         </div>
         <div className="flex items-center gap-2.5">
@@ -153,20 +171,15 @@ const ChartOne: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 text-center xsm:flex-row xsm:gap-0">
-        <div className="border-stroke dark:border-dark-3 xsm:w-1/2 xsm:border-r">
-          <p className="font-medium">Received Amount</p>
+      <div className="text-center">
+        <div className="  xsm:w-1/2  mx-auto">
+          <p className="font-medium">Total Users</p>
           <h4 className="mt-1 text-xl font-bold text-dark dark:text-white">
-            $45,070.00
-          </h4>
-        </div>
-        <div className="xsm:w-1/2">
-          <p className="font-medium">Due Amount</p>
-          <h4 className="mt-1 text-xl font-bold text-dark dark:text-white">
-            $32,400.00
+            <span>{total}</span>
           </h4>
         </div>
       </div>
+
     </div>
   );
 };

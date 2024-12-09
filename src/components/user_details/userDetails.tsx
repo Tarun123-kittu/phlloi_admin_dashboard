@@ -11,6 +11,7 @@ import { toast } from "react-hot-toast";
 import Loader from "../loader/Loader"
 import { VerificationListAPI, clear_varification_list_state } from "../../redux/slices/userVerificationSlice/getAllVerificationRequests"
 import { UsersList, clear_all_user_state } from "../../redux/slices/userSlice/userListSlice"
+import "./styling.css";
 
 
 const UserDetails = ({ id }: { id: string }) => {
@@ -54,7 +55,7 @@ const UserDetails = ({ id }: { id: string }) => {
 
     return (
         <div>
-            <ol className="flex items-center w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:bg-gray-800 dark:border-gray-700 sm:text-base sm:p-4 sm:space-x-4 rtl:space-x-reverse">
+            <ol className="flex items-center  w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:bg-gray-800 dark:border-gray-700 sm:text-base sm:p-4 sm:space-x-4 rtl:space-x-reverse">
 
                 <li
                     onClick={() => setCurrentStep(1)}
@@ -83,13 +84,43 @@ const UserDetails = ({ id }: { id: string }) => {
                         2
                     </span>
                     Account <span className="hidden sm:inline-flex sm:ms-2">Info</span>
-
                 </li>
-                <div className="flex items-center mt-4">
-                    <input onClick={() => handleChangeVerifyStatus(user_details?.users?.verified_profile, user_details?.users?._id)} checked={user_details?.users?.verified_profile} id="default-radio-2" type="radio" value="" name="default-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800  dark:bg-gray-700 dark:border-gray-600" />
-                    <label htmlFor="default-radio-2" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Verified</label>
+
+                <div className="Verif-text flex items-end">
+                    {user_details?.users?.verified_profile ? (
+                        <div className="flex items-center text-green-500">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                className="bi bi-check-circle me-2"
+                                viewBox="0 0 16 16"
+                            >
+                                <path d="M12.93 3.93a1 1 0 0 1 0 1.41l-6 6a1 1 0 0 1-1.41 0l-3-3a1 1 0 1 1 1.41-1.41L6 8.59l5.59-5.59a1 1 0 0 1 1.41 0z" />
+                            </svg>
+                            Verified
+                        </div>
+                    ) : (
+                        <div className="flex items-center">
+                            <input
+                                onClick={() => handleChangeVerifyStatus(user_details?.users?.verified_profile, user_details?.users?._id)}
+                                checked={user_details?.users?.verified_profile}
+                                id="default-radio-2"
+                                type="radio"
+                                value=""
+                                name="default-radio"
+                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+                            />
+                            <label htmlFor="default-radio-2" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                Verify
+                            </label>
+                        </div>
+                    )}
                 </div>
+
             </ol>
+
 
             {/* Conditionally Render Content Based on Current Step */}
             {user_details?.isLoading ? <Loader /> : user_details?.users && <div className="mt-4">

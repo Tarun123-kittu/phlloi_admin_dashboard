@@ -7,6 +7,7 @@ import { AppDispatch, RootState } from '@/redux';
 import { update_max_distance, clearUpdateState } from '@/redux/slices/settinsSlice/distanceSlice/updateMaxDistance';
 import toast from 'react-hot-toast';
 import Loader from '../loader/Loader';
+import './MaxDistance.css';
 
 const MaxDistanceRange = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -45,11 +46,14 @@ const MaxDistanceRange = () => {
   };
 
   const rangeBackground = {
-    background: `linear-gradient(to right, #4caf50 ${Math.min(
-      (rangeValue / maxDistance) * 100,
-      100
-    )}%, #d3d3d3 ${Math.min((rangeValue / maxDistance) * 100, 100)}%)`,
+    background: `linear-gradient(
+      to right,
+      #FBB90D ${Math.min((rangeValue / maxDistance) * 50, 50)}%, 
+      #22EBFF ${Math.min((rangeValue / maxDistance) * 100, 100)}%, 
+      #d3d3d3 ${Math.min((rangeValue / maxDistance) * 100, 100)}%
+    )`,
   };
+  
 
   useEffect(() => {
     if (updateMaxDistance?.isSuccess) {
@@ -58,13 +62,18 @@ const MaxDistanceRange = () => {
     }
   }, [updateMaxDistance]);
 
+
+
   return (
     <div>
       <label
         htmlFor="max-distance-range"
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        className=" flex justify-between block mb-2 text-sm font-medium text-gray-900 dark:text-white"
       >
-        Maximum Distance Range
+       <p> Maximum Distance Range</p>
+        <p className=" text-sm text-gray-700 dark:text-gray-300">
+        Selected Distance: {rangeValue} / {maxDistance} km
+      </p>
       </label>
       {maxDistanceData?.isLoading || updateMaxDistance?.isLoading ? (
         <h1 className="font-bold text-center">Please wait...</h1>
@@ -79,9 +88,6 @@ const MaxDistanceRange = () => {
           style={rangeBackground}
         />
       )}
-      <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-        Selected Distance: {rangeValue} / {maxDistance} km
-      </p>
     </div>
   );
 };

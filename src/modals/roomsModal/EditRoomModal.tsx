@@ -76,63 +76,75 @@ const EditRoomModal: React.FC<EditRoomProps> = ({setIsOpen,isOpen,id}) => {
 
 
   return isOpen && (
-    <div className="fixed inset-0 z-10 flex items-center justify-center shadow-lg">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-lg">
+    <div   className="fixed inset-0 z-10 flex items-center justify-center shadow-lg" style={{ backgroundColor: '#000000c4' }}>
+      <div className="p-6 rounded-lg shadow-xl w-full max-w-lg dark:bg-gray-dark">
         {/* Modal Content */}
-        <div className="p-6">
+        <div className="">
           {/* Image Preview */}
-          <div className="flex justify-center mb-4">
+          <div className="w-full pb-4">
             <img
               src={image}
               alt="Preview"
-              className="w-[40px] h-[40px] rounded-full object-cover border-2 border-gray-300"
+              className="w-full h-[300px] object-cover"
             />
           </div>
+
 
           {/* Image Input */}
-          <div className="mb-4">
-            <label
-              htmlFor="image-input"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Upload Image
-            </label>
-            <input
-              id="image-input"
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="mt-2 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            />
-          </div>
+         {/* Image Upload Input */}
+{/* Image Upload Input */}
+<div className="mb-3">
+  <label
+    htmlFor="image-input"
+    className="block text-sm text-gray-700 dark:text-gray-300 mb-1"
+  >
+    Upload Image
+  </label>
+  <input
+    id="image-input"
+    type="file"
+    accept="image/*"
+    onChange={handleImageChange}
+    className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
+    style={{ borderRadius: '10px' }}
+ />
+</div>
 
-          {/* Text Input */}
-          <div className="mb-4">
-            <label
-              htmlFor="text-input"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Room Name
-            </label>
-            <input
-              id="text-input"
-              type="text"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              placeholder="Enter text"
-              className="mt-2 text-black block w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            />
-          </div>
+{/* Room Name Input */}
+<div className="mb-6">
+  <label
+    htmlFor="text-input"
+    className="block text-sm text-gray-700 dark:text-gray-300 mb-1"
+  >
+    Room Name
+  </label>
+  <input
+  id="text-input"
+  type="text"
+  value={text}
+  onChange={(e) => setText(e.target.value)}
+  placeholder="Enter room name"
+  className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
+  style={{ borderRadius: '10px' }}
+/>
+
+</div>
+
+
+
         </div>
 
         {/* Submit and Cancel Buttons */}
-        <div className="px-4 py-3 sm:flex sm:flex-row-reverse">
-          {!is_room_updated?.isLoading ? <button
-            onClick={handleSubmit}
-            className="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
-          >
-            Submit
-          </button>
+        <div className=" sm:flex sm:flex-row-reverse sm:gap-4 ">
+          {!is_room_updated?.isLoading ? 
+          
+        
+          <button
+          onClick={() => setIsModalOpen(false)}
+          className="mt-3 w-full inline-flex justify-center rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+        >
+          Cancel
+      </button>
           :
           <button disabled type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center">
             <svg aria-hidden="true" role="status" className="inline w-4 h-4 me-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -141,11 +153,11 @@ const EditRoomModal: React.FC<EditRoomProps> = ({setIsOpen,isOpen,id}) => {
             </svg>
             Loading...
             </button>}
-          <button
-            onClick={() => setIsModalOpen(false)}
-            className="mt-3 w-full inline-flex justify-center rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+            <button
+            onClick={handleSubmit}
+            className="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
           >
-            Cancel
+            Submit
           </button>
         </div>
       </div>

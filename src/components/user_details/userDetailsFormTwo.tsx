@@ -37,7 +37,7 @@ const UserDetailsFormTwo = ({ userData }: { userData: UserProfile }) => {
             <form className="font-sans">
                 <h2 className="text-xl font-semibold mb-6">User Details</h2>
 
-                <div className="grid sm:grid-cols-2 gap-6">
+                <div className="grid sm:grid-cols-2 gap-x-6 gap-y-4">
                     {/* First Column */}
                     <FormField
                         label="Relationship Type"
@@ -68,6 +68,7 @@ const UserDetailsFormTwo = ({ userData }: { userData: UserProfile }) => {
                     {userData?.user_characterstics?.step_11?.map((data, index) => (
                         <FormField
                             key={`step11-${index}`}
+                            
                             label={data?.questionText || `Characteristic ${index + 1}`}
                             id={`step11-${index}`}
                             value={

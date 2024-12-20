@@ -15,7 +15,7 @@ const FormField = ({
     placeholder?: string;
 }) => (
     <div className="relative mb-2">
-        <label htmlFor={id} className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
+        <label htmlFor={id} className="block text-sm text-white dark:text-gray-300 mb-1">
             {label}
         </label>
         <input
@@ -23,7 +23,7 @@ const FormField = ({
             type={type}
             value={value || ""}
             placeholder={placeholder || ""}
-            className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
+            className="px-4 py-3 bg-black dark:bg-gray-700 text-white dark:text-white w-full text-sm  dark:border-gray-600 focus:border-[#007bff] outline-none"
             style={{ borderRadius: '10px' }}
             readOnly
         />
@@ -33,9 +33,9 @@ const FormField = ({
 
 const UserDetailsFormTwo = ({ userData }: { userData: UserProfile }) => {
     return (
-        <div className="bg-white dark:bg-gray-800 text-black dark:text-white p-6 rounded-lg shadow-lg mx-auto">
+        <div className="bg-cardBg dark:bg-gray-800 text-black dark:text-white p-6 rounded-lg shadow-lg mx-auto">
             <form className="font-poppins">
-                <h2 className="text-xl font-semibold mb-6">User Details</h2>
+                <h2 className="text-xl text-white font-semibold mb-6">User Details</h2>
 
                 <div className="grid sm:grid-cols-2 gap-x-6 gap-y-4">
                     {/* First Column */}

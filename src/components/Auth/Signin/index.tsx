@@ -6,12 +6,11 @@ import SigninWithPassword from "../SigninWithPassword";
 export default function Signin() {
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <div className="w-full px-4">
-        <div className="my-6 flex items-center justify-center">
-          <span className="block h-px w-full bg-stroke dark:bg-dark-3"></span>
-          <span className="block h-px w-full bg-stroke dark:bg-dark-3"></span>
+      <div className="w-full flex">
+        <div className="h-screen		 w-2/4	relative after:content-[''] after:absolute after:inset-0 after:bg-[#0000004d] after:backdrop-blur-sm after:filter after:blur-md">
+          <img src="/images/login_image.png" className="h-full w-full object-cover" alt="login" />
         </div>
-        <div>
+        <div className="w-2/4	h-screen	bg-black">
           <SigninWithPassword />
         </div>
       </div>

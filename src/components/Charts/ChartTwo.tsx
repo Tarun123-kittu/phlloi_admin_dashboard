@@ -127,7 +127,7 @@ const ChartTwo: React.FC = () => {
     <div className="col-span-12 rounded-[10px] bg-cardBg px-7.5 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-5">
       <div className="mb-4 justify-between gap-4 sm:flex">
         <div>
-          <h4 className="text-body-2xlg font-bold text-white dark:text-white">
+          <h4 className="text-body-2xlg font-medium text-white dark:text-white">
             Secret Dating User
           </h4>
         </div>

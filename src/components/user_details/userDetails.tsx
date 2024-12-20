@@ -55,13 +55,13 @@ const UserDetails = ({ id }: { id: string }) => {
 
     return (
         <div>
-            <ol className="flex items-center  w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:bg-gray-800 dark:border-gray-700 sm:text-base sm:p-4 sm:space-x-4 rtl:space-x-reverse">
+            <ol className="flex items-center  w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-cardBg  rounded-lg shadow-sm dark:text-gray-400 dark:bg-gray-800 dark:border-gray-700 sm:text-base sm:p-4 sm:space-x-4 rtl:space-x-reverse">
 
                 <li
                     onClick={() => setCurrentStep(1)}
-                    className={`flex items-center cursor-pointer ${currentStep === 1 ? 'text-blue-600 dark:text-blue-400' : 'text-gray-500 dark:text-gray-300'}`}
+                    className={`flex items-center cursor-pointer ${currentStep === 1 ? 'text-hBgColor dark:text-blue-400' : 'text-gray-500 dark:text-gray-300'}`}
                 >
-                    <span className={`flex items-center justify-center w-5 h-5 me-2 text-xs border rounded-full shrink-0 ${currentStep === 1 ? 'bg-blue-600 dark:bg-blue-400' : 'bg-gray-200 dark:bg-gray-600'}`}>
+                    <span className={`flex items-center justify-center w-5 h-5 me-2 text-xs border rounded-full shrink-0 ${currentStep === 1 ? 'bg-hBgColor text-black dark:bg-blue-400' : 'bg-gray-200 dark:bg-gray-600'}`}>
                         1
                     </span>
                     Personal <span className="hidden sm:inline-flex sm:ms-2">Info</span>
@@ -78,9 +78,9 @@ const UserDetails = ({ id }: { id: string }) => {
 
                 <li
                     onClick={() => setCurrentStep(2)}
-                    className={`flex items-center cursor-pointer ${currentStep === 2 ? 'text-blue-600 dark:text-blue-400' : 'text-gray-500 dark:text-gray-300'}`}
+                    className={`flex items-center cursor-pointer ${currentStep === 2 ? 'text-hBgColor dark:text-blue-400' : 'text-gray-500 dark:text-gray-300'}`}
                 >
-                    <span className={`flex items-center justify-center w-5 h-5 me-2 text-xs border rounded-full shrink-0 ${currentStep === 2 ? 'bg-blue-600 dark:bg-blue-400' : 'bg-gray-200 dark:bg-gray-600'}`}>
+                    <span className={`flex items-center justify-center w-5 h-5 me-2 text-xs border rounded-full shrink-0 ${currentStep === 2 ? 'bg-hBgColor text-black dark:bg-blue-400' : 'bg-gray-200 dark:bg-gray-600'}`}>
                         2
                     </span>
                     Account <span className="hidden sm:inline-flex sm:ms-2">Info</span>
@@ -112,7 +112,7 @@ const UserDetails = ({ id }: { id: string }) => {
                                 name="default-radio"
                                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
                             />
-                            <label htmlFor="default-radio-2" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                            <label htmlFor="default-radio-2" className="ms-2 text-sm font-medium text-white dark:text-gray-300">
                                 Verify
                             </label>
                         </div>

@@ -12,7 +12,7 @@ const Header = (props: {
   const pathname = usePathname();
   console.log(pathname,"this is the pathname")
   return (
-    <header className="sticky top-0 z-999 flex w-full border-b border-stroke bg-white dark:border-stroke-dark dark:bg-gray-dark">
+    <header className="sticky top-0 z-999 flex w-full  bg-cardBg dark:border-stroke-dark dark:bg-gray-dark">
       <div className="flex flex-grow items-center justify-between px-4 py-5 shadow-2 md:px-5 2xl:px-10">
         <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
           <button
@@ -69,7 +69,7 @@ const Header = (props: {
 
         <div className="hidden xl:block">
           <div>
-            <h1 className="mb-0.5 text-heading-5 font-bold text-dark dark:text-white">
+            <h1 className="mb-0.5 text-heading-5 font-medium text-white dark:text-white">
               {pathname === "/dashboard" ? "Dashboard" : pathname === "/users" ? "Users" : pathname === "/verification-request" ? "Verification Requests" : ""}
             </h1>
           </div>

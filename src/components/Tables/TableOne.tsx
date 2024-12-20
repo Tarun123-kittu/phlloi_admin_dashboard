@@ -24,7 +24,7 @@ const TableOne = () => {
 
   return room_state_data?.isError ? <h4>Please wait currently facing some issue</h4>  : (
     <div className="rounded-[10px] bg-cardBg px-7.5 pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card">
-      <h4 className="mb-5.5 text-body-2xlg font-bold text-white dark:text-white">
+      <h4 className="mb-5.5 text-body-2xlg font-medium text-white dark:text-white">
         Rooms List
       </h4>
 

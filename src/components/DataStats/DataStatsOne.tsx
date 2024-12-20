@@ -136,7 +136,7 @@ const DataStatsOne: React.FC<dataStats> = () => {
 
             <div className="mt-6 flex items-end justify-between">
               <div>
-                <h4 className="mb-1.5 text-heading-6 font-bold text-white">
+                <h4 className="mb-1.5 text-heading-6 font-semibold text-white">
                   {item.value}
                 </h4>
                 <span className="text-body-sm font-medium">{item.title}</span>

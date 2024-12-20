@@ -57,7 +57,7 @@ const Pagination = ({ currentPage, totalPages, setPage }: { currentPage: number,
                 <li>
                     <button
                         onClick={() => onPageChange(currentPage - 1)}
-                        className={`relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 ${currentPage === 1 ? 'cursor-not-allowed opacity-50' : ''
+                        className={`relative block rounded bg-transparent px-3 py-1.5 text-sm text-white transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 ${currentPage === 1 ? 'cursor-not-allowed opacity-50' : ''
                             }`}
                         disabled={currentPage === 1}
                     >
@@ -69,13 +69,13 @@ const Pagination = ({ currentPage, totalPages, setPage }: { currentPage: number,
                 {generatePageNumbers().map((page, index) => (
                     <li key={index}>
                         {page === '...' ? (
-                            <span className="relative block px-3 py-1.5 text-sm text-neutral-600">...</span>
+                            <span className="relative block px-3 py-1.5 text-sm text-white">...</span>
                         ) : (
                             <button
                                 onClick={() => onPageChange(page)}
                                 className={`relative block rounded px-3 py-1.5 text-sm ${currentPage === page
-                                    ? 'bg-blue-500 text-white' // Active page styling
-                                    : 'text-neutral-600 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700'
+                                    ? 'bg-hBgColor text-black' // Active page styling
+                                    : 'text-white hover:bg-hBgColor hover:text-black dark:text-white dark:hover:bg-neutral-700'
                                     } transition-all duration-300`}
                             >
                                 {page}
@@ -88,7 +88,7 @@ const Pagination = ({ currentPage, totalPages, setPage }: { currentPage: number,
                 <li>
                     <button
                         onClick={() => onPageChange(currentPage + 1)}
-                        className={`relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 ${currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
+                        className={`relative block rounded bg-transparent px-3 py-1.5 text-sm text-white transition-all duration-300 hover:bg-hBgColor hover:text-black dark:text-white dark:hover:bg-neutral-700 ${currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
                             }`}
                         disabled={currentPage === totalPages}
                     >

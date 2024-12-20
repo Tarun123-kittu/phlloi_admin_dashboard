@@ -50,9 +50,13 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
             dispatch(get_selected_hotel_details(hotelId));
         }
         if (is_hotel_verified?.isError) {
-            toast.error(is_hotel_verified?.error?.message)
-            toggleDropdown()
-            dispatch(clearVerifyHotelState())
+            if (typeof is_hotel_verified?.error === "object" && is_hotel_verified?.error !== null) {
+                toast.error(is_hotel_verified?.error?.message);
+            } else {
+                toast.error(is_hotel_verified?.error);  
+            }
+            toggleDropdown();
+            dispatch(clearVerifyHotelState());
         }
     }, [is_hotel_verified])
     return (

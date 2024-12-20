@@ -14,7 +14,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
     const dispatch = useDispatch<AppDispatch>();
     const [data, setData] = useState<any>();
     const [images, setImages] = useState()
-    const [index, setIndex] = useState(null)
+    const [index, setIndex] = useState<Number>(1)
     const [show_image_preview, setShow_image_preview] = useState(false)
     const [isDropdownVisible, setDropdownVisible] = useState(false);
 

@@ -49,7 +49,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
             dispatch(get_selected_hotel_details(hotelId));
         }
         if (is_hotel_verified?.isError) {
-            toast.error(is_hotel_verified?.error?.message)
+            // toast.error(is_hotel_verified?.error?.message)
             toggleDropdown()
             dispatch(clearVerifyHotelState())
         }

@@ -89,7 +89,7 @@ const CreatePagesModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, isOpe
             dispatch(get_all_sections())
         }
         if (is_page_saved?.isError) {
-            toast.error(is_page_saved?.error?.message)
+            toast.error("Error occured while creating new page")
             dispatch(clear_add_section_state())
         }
 

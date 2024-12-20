@@ -14,7 +14,6 @@ interface Props {
 }
 
 const UserFilter: React.FC<Props> = ({ setVerified, setUsername, setGender, verified, username, gender, handleSearch, clearResult, isSearched }) => {
-    console.log(verified, "this is the veridied profile")
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenGender, setIsOpenGender] = useState(false);
 

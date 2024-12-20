@@ -38,7 +38,7 @@ export interface UserState {
 const TableThree = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [page, setPage] = useState<number>(1)
-  const [verified, setVerified] = useState<boolean>()
+  const [verified, setVerified] = useState<boolean>(false)
   const [username, setUsername] = useState<string>("")
   const [gender, setGender] = useState<string>("")
   const [isSearched,setIsSearched] = useState<boolean>(false)
@@ -56,13 +56,11 @@ const TableThree = () => {
     return date.toLocaleDateString('en-GB');
   };
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleSearch = () => {
     setIsSearched(true)
     dispatch(UsersList({ page, verified, gender, username }))
   }
-  const clearResult = (e: React.FormEvent) => {
-    e.preventDefault()
+  const clearResult = () => {
     setIsSearched(false)
     dispatch(UsersList({ page }))
   }

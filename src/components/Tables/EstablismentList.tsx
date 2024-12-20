@@ -5,8 +5,8 @@ import Pagination from "../pagination/pagination"
 import Loader from "../loader/Loader"
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux";
-import { VerificationListAPI } from "../../redux/slices/userVerificationSlice/getAllVerificationRequests"
 import { useRouter } from "next/navigation";
+import { get_all_hotel_verification_requests, clear_hotel_varification_details_state } from '@/redux/slices/hotelSlice/getAllHotelVerificationRequests'
 
 export interface Pagination {
     currentPage: number;
@@ -14,7 +14,7 @@ export interface Pagination {
 }
 
 export interface UserData {
-    _id : string;
+    _id: string;
     username: string;
     dob: number;
     gender: string;
@@ -35,18 +35,26 @@ export interface UserState {
 const EstablishmentList = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [page, setPage] = useState<number>(1);
+    const [data, setData] = useState([])
     const router = useRouter()
 
-    const verificationListData = useSelector((state: RootState) => state.VERIFICATION_LIST);
+    const verification_hotel_requests = useSelector((state: RootState) => state.ALL_VARIFICATION_HOTELS);
+    console.log(verification_hotel_requests)
 
     useEffect(() => {
-        dispatch(VerificationListAPI({ page }))
+        dispatch(get_all_hotel_verification_requests())
     }, [page])
 
     const formatDate = (dateString: number) => {
         const date = new Date(dateString);
         return date.toLocaleDateString('en-GB');
     };
+
+    useEffect(() => {
+        if (verification_hotel_requests?.isSuccess) {
+            setData(verification_hotel_requests?.hotels?.requests)
+        }
+    }, [verification_hotel_requests])
     return (
         <div>
             <div className="rounded-[10px] border border-stroke bg-white p-4 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card sm:p-7.5">
@@ -58,51 +66,50 @@ const EstablishmentList = () => {
                                     Establishment Name
                                 </th>
                                 <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white text-sm">
-                                Establishment Type
+                                    Establishment Type
 
                                 </th>
                                 <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white text-sm">
-                                Country
+                                    Country
                                 </th>
                                 <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white text-sm">
-                                State
+                                    State
                                 </th>
                                 <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white text-sm">
-                                Pin/Zip Code
+                                    Pin/Zip Code
 
                                 </th>
                                 <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white text-sm">
-                             Action
+                                    Action
 
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {verificationListData?.isLoading ? <td className="h-40" colSpan={6}><Loader /></td> : verificationListData?.verification_data?.users?.map((data: UserData, index: number) => (
+                            {verification_hotel_requests?.isLoading ? <td className="h-40" colSpan={6}><Loader /></td> : Array?.isArray(data) && data?.map((data: UserData, index: number) => (
                                 <tr key={index}>
                                     <td className="border-[#eee] px-4 py-4 dark:border-dark-3 xl:pl-7.5 border-b">
-                                        <h5 className="text-dark dark:text-white">{data?.username}</h5>
+                                        <h5 className="text-dark dark:text-white">{data?.establishmentName}</h5>
                                     </td>
                                     <td className="border-[#eee] px-4 py-4 dark:border-dark-3 border-b">
-                                        <p className="text-dark dark:text-white">{formatDate(data.dob)}</p>
+                                        <p className="text-dark dark:text-white">{data?.establishmentType}</p>
                                     </td>
                                     <td className="border-[#eee] px-4 py-4 dark:border-dark-3 border-b">
-                                        <p className="text-dark dark:text-white">{data?.gender}</p>
+                                        <p className="text-dark dark:text-white">{data?.address?.country}</p>
                                     </td>
                                     <td className="border-[#eee] px-4 py-4 dark:border-dark-3 border-b">
-                                        <p className="text-dark dark:text-white">{data.online_status ? "True" : "False"}</p>
+                                        <p className="text-dark dark:text-white">{data?.address?.state}</p>
                                     </td>
                                     <td
                                         className={`border-[#eee] px-4 py-4 dark:border-dark-3 border-b`}
-                                         title="View Details"
-                                         onClick={() => router.push(`/user_details/${data?._id}`)}
+                                        title="View Details"
                                     >
-                                       <p className="text-dark dark:text-white">{data?.gender}</p>
+                                        <p className="text-dark dark:text-white">{data?.address?.pinCode}</p>
                                     </td>
                                     <td
                                         className={`border-[#eee] px-4 py-4 dark:border-dark-3 border-b`}
-                                         title="View Details"
-                                         onClick={() => router.push(`/user_details/${data?._id}`)}
+                                        title="View Details"
+                                        onClick={() => router.push(`/establishment-view/${data?._id}`)}
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6 cursor-pointer">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
@@ -114,10 +121,10 @@ const EstablishmentList = () => {
                             ))}
                         </tbody>
                     </table>
-                    {verificationListData?.verification_data?.pagination?.currentPage !== undefined && verificationListData?.verification_data?.pagination?.totalPages > 1 && (
+                    {verification_hotel_requests?.hotels?.currentPage !== undefined && verification_hotel_requests?.hotels?.totalPages > 1 && (
                         <Pagination
-                            totalPages={verificationListData?.verification_data?.pagination?.totalPages || 0}
-                            currentPage={verificationListData?.verification_data?.pagination?.currentPage || 0}
+                            totalPages={verification_hotel_requests?.hotels?.totalPages || 0}
+                            currentPage={verification_hotel_requests?.hotels?.currentPage || 0}
                             setPage={setPage}
                         />
                     )}

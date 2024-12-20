@@ -28,7 +28,7 @@ interface UserCharacteristics {
     step_13: UserCharacteristicsStep[];
 }
 
- export interface UserProfile {
+export interface UserProfile {
     _id: string;
     verified_profile: boolean;
     show_me_to_verified_profiles: boolean;
@@ -54,7 +54,7 @@ export interface UserState {
     error: string | null;
     isSuccess: boolean;
     isError: boolean;
-    users: UserProfile 
+    users: UserProfile
 }
 
 const initialState: UserState = {

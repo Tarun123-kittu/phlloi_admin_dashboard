@@ -24,6 +24,9 @@ import getAllDashboardRooms from "./slices/dashboardSlice/getAllRooms"
 import activeInactiveUsersSlice from "./slices/dashboardSlice/getActiveInactiveUserSlice"
 import monthlyJoinedUsersSlice from "./slices/dashboardSlice/secretDatingChartSlice"
 import monthlyJoinedSlice from "./slices/dashboardSlice/getUserMonthlyCount"
+import hotelSlice from "./slices/hotelSlice/getAllHotelVerificationRequests"
+import getSelectedHotelDetailsSlice from "./slices/hotelSlice/getSelectedHotelDetails"
+import verifyHotelState from "./slices/hotelSlice/verifyHotel"
 
 export const store = configureStore({
   reducer: {
@@ -39,19 +42,22 @@ export const store = configureStore({
     ADD_SECTION: addSectionAPI,
     ALL_SECTIONS: getAllSectionsAPI,
     SECTION_DETAILS: getSectionByIdAPI,
-    DELETE_PAGE : deletePageAPI,
-    DELETE_SECTION : deleteSectionAPI,
-    UPDATE_PAGE : updatePageAPI,
-    MAXIMUN_DISTANCE : getMaximumDistanceAPI,
+    DELETE_PAGE: deletePageAPI,
+    DELETE_SECTION: deleteSectionAPI,
+    UPDATE_PAGE: updatePageAPI,
+    MAXIMUN_DISTANCE: getMaximumDistanceAPI,
     UPDATE_MAX_DISTANCE: updateMaxDistanceSlice,
     ALL_ROOMS: roomSlice,
-    ROOM_DETAILs : getRoomByIdAPI,
-    UPDATE_ROOM:updateRoomAPI,
-    ADD_ROOM :AddRoomAPI,
-    DASHBOARD_ROOMS:getAllDashboardRooms,
-    ACTIVE_INACTIVE_USERS : activeInactiveUsersSlice,
-    SECRET_DATING_USER : monthlyJoinedUsersSlice,
-    MONTHLY_JOINED_USER:monthlyJoinedSlice
+    ROOM_DETAILs: getRoomByIdAPI,
+    UPDATE_ROOM: updateRoomAPI,
+    ADD_ROOM: AddRoomAPI,
+    DASHBOARD_ROOMS: getAllDashboardRooms,
+    ACTIVE_INACTIVE_USERS: activeInactiveUsersSlice,
+    SECRET_DATING_USER: monthlyJoinedUsersSlice,
+    MONTHLY_JOINED_USER: monthlyJoinedSlice,
+    ALL_VARIFICATION_HOTELS: hotelSlice,
+    SELECTED_HOTEL_DETAILS: getSelectedHotelDetailsSlice,
+    VERIFY_HOTEl: verifyHotelState
   },
 });
 

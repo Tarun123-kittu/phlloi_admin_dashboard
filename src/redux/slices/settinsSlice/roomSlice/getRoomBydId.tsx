@@ -12,7 +12,7 @@ interface RoomTypes {
   isSuccess: boolean;
   isError: boolean;
   error: string | null;
-  data: RoomState;
+  data: any;
 }
 
 const initialState: RoomTypes = {

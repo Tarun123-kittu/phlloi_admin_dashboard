@@ -45,7 +45,7 @@ const EditRoomModal: React.FC<EditRoomProps> = ({setIsOpen,isOpen,id}) => {
       },[is_room_updated])
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+    const file:any = e.target.files?.[0];
     setSaveImage(file)
     if (file) {
       const reader = new FileReader();

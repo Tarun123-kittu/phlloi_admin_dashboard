@@ -16,7 +16,10 @@ const ChartTwo: React.FC = () => {
   const [count, setCounts] = useState<number[]>([]);
   const [months, setMonths] = useState<string[]>([]);
 
-  const secret_dating_data = useSelector<RootState>((state) => state.SECRET_DATING_USER);
+
+  const secret_dating_data = useSelector(
+      (state: RootState) => state.SECRET_DATING_USER
+    );
 
   useEffect(() => {
     dispatch(secret_dating_monthly_joined({ year: currentYear }));

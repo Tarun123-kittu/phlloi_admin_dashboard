@@ -24,7 +24,7 @@ const AllRooms = () => {
     <div className="grid grid-cols-3 gap-4">
     {Array.isArray(all_rooms_state?.data) && all_rooms_state?.data?.map((room,i) => {
       return (
-        <div className='border rounded-lg mt-4'>
+        <div key={i} className='border rounded-lg mt-4'>
         <RoomsCard image={room?.image} joined_user={room?.joined_user_count} room={room?.room} id={room?._id}/>
         </div>
       )

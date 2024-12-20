@@ -27,6 +27,8 @@ interface PagesArray {
     slug: string;
 }
 
+
+
 const EditPagesModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, isOpen, sectionId }) => {
     const dispatch = useDispatch<AppDispatch>();
     const closeModal = () => setIsOpen(false);
@@ -109,10 +111,11 @@ const EditPagesModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, isOpen,
     useEffect(() => {
         if (section_details?.isSuccess) {
             setSectionName(section_details?.data?.section ?? "")
-            setTextList(section_details?.data?.pages)
+            const value:any = section_details?.data?.pages
+            setTextList(value)
         }
         if (section_details?.isError) {
-            toast.error(section_details?.error?.message)
+            // toast.error()
             dispatch(clear_add_section_state())
         }
     }, [section_details])
@@ -223,7 +226,7 @@ if(update_section_data?.isSuccess){
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         />
                                     </div>
-                                    <EditTextEditor setTextList={setTextList} index={index} textList={textList} />
+                                    {/* <EditTextEditor setTextList={setTextList} index={index} textList={textList} /> */}
                                 </div>
                             ))}
 

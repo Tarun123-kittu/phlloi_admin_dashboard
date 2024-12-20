@@ -10,9 +10,10 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 interface Pages {
   title: string;
-  content: string; 
+  content: string;
   slug: string;
 }
+
 
 const Editor: any = dynamic(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
@@ -39,9 +40,9 @@ const RichTextExample = ({
       prev.map((item, idx) =>
         idx === index
           ? {
-              ...item,
-              content,
-            }
+            ...item,
+            content,
+          }
           : item
       )
     );

@@ -48,14 +48,14 @@ interface HotelState {
     isLoading: boolean;
     isError: boolean;
     isSuccess: boolean;
-    error: { message: string } | null;
+    error: { message: string } | null; // Error is now either an object with a message or null
     selectedHotel: HotelDetails | null;
 }
 
 const initialState: HotelState = {
     isLoading: false,
     isError: false,
-    isSuccess : false,
+    isSuccess: false,
     error: null,
     selectedHotel: null,
 };
@@ -106,13 +106,20 @@ const getSelectedHotelDetailsSlice = createSlice({
             })
             .addCase(get_selected_hotel_details.fulfilled, (state, action: PayloadAction<HotelDetails>) => {
                 state.isLoading = false;
-                state.isSuccess = true
+                state.isSuccess = true;
                 state.selectedHotel = action.payload;
             })
-            .addCase(get_selected_hotel_details.rejected, (state, action: PayloadAction<string | undefined>) => {
+            .addCase(get_selected_hotel_details.rejected, (state, action: PayloadAction<string | Error | undefined>) => {
                 state.isLoading = false;
                 state.isError = true;
-                state.error = action.payload || "An error occurred";
+                // Handle the error properly
+                if (typeof action.payload === 'string') {
+                    state.error = { message: action.payload }; // Wrap string errors into an object with message
+                } else if (action.payload instanceof Error) {
+                    state.error = { message: action.payload.message }; // Extract message from Error object
+                } else {
+                    state.error = { message: "An error occurred" }; // Default error message
+                }
             });
     },
 });

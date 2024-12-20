@@ -56,7 +56,7 @@ const initialState: HotelState = {
   isLoading: false,
   isError: false,
   isSuccess: false,
-  error: "",
+  error: null,
   selectedHotel: null,
 };
 

@@ -15,7 +15,10 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
     const [images, setImages] = useState()
     const [index, setIndex] = useState(null)
     const [show_image_preview, setShow_image_preview] = useState(false)
+    // const hotel_details = useSelector((state: RootState) => state.SELECTED_HOTEL_DETAILS);
+    // console.log(hotel_details, "this is the hoyel details")
     const [isDropdownVisible, setDropdownVisible] = useState(false);
+    // const is_hotel_verified = useSelector((state: RootState) => state.VERIFY_HOTEl);
 
     const hotel_details = useSelector(
         (state: RootState) => state.SELECTED_HOTEL_DETAILS

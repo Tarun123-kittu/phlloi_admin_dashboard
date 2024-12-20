@@ -47,6 +47,7 @@ interface HotelDetails {
 interface HotelState {
     isLoading: boolean;
     isError: boolean;
+    isSuccess: boolean;
     error: string | null;
     selectedHotel: HotelDetails | null;
 }

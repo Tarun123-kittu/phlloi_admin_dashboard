@@ -51,7 +51,7 @@ const ChartOne: React.FC = () => {
     },
     colors: ["#5750F1", "#0ABEF9"],
     chart: {
-      fontFamily: "Satoshi, sans-serif",
+      fontFamily: "Poppins, sans-serif",
       height: 310,
       type: "area",
       toolbar: {

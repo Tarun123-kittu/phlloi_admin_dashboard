@@ -34,7 +34,7 @@ const FormField = ({
 const UserDetailsFormTwo = ({ userData }: { userData: UserProfile }) => {
     return (
         <div className="bg-white dark:bg-gray-800 text-black dark:text-white p-6 rounded-lg shadow-lg mx-auto">
-            <form className="font-sans">
+            <form className="font-poppins">
                 <h2 className="text-xl font-semibold mb-6">User Details</h2>
 
                 <div className="grid sm:grid-cols-2 gap-x-6 gap-y-4">

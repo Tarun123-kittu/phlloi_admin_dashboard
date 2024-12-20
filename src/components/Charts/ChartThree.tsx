@@ -39,7 +39,7 @@ const ChartThree: React.FC = () => {
   }, [user_details_success, user_details]);
   const options: ApexOptions = {
     chart: {
-      fontFamily: "Satoshi, sans-serif",
+      fontFamily: "Poppins, sans-serif",
       type: "donut",
     },
     colors: ["#228B22", "#FF6347"],

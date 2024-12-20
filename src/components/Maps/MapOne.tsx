@@ -28,7 +28,7 @@ const MapOne: React.FC = () => {
       },
       regionLabelStyle: {
         initial: {
-          fontFamily: "Satoshi",
+          fontFamily: "Poppins",
           fontWeight: "semibold",
           fill: "#fff",
         },

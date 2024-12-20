@@ -25,58 +25,58 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
           {userData?.images?.length > 0 && (
             <div className="relative ">
               <div className='bg-white dark:bg-gray-700 p-5 mb-6 rounded-lg' >
-              <Carousel showThumbs={false} infiniteLoop autoPlay>
-                {userData.images.map((image, i) => (
-                  <div key={i}>
-                    <img
-                      className="w-full h-[420px] object-cover rounded-lg"
-                      src={image?.url}
-                      alt={`Slide ${i + 1}`}
-                    />
-                  </div>
-                ))}
-              </Carousel>
+                <Carousel {...{ showThumbs: false, infiniteLoop: true }}>
+                  {(userData.images || []).map((image, i) => (
+                    <div key={i}>
+                      <img
+                        className="w-full h-[420px] object-cover rounded-lg"
+                        src={image?.url}
+                        alt={`Slide ${i + 1}`}
+                      />
+                    </div>
+                  ))}
+                </Carousel>
               </div>
               <div className="grid sm:grid-cols-1 gap-4">
-                  {/* Username Field */}
-                    <div className="relative mb-2">
-                        <label htmlFor="username" className="text-sm text-gray-700 dark:text-gray-300">
-                          Username
-                        </label>
-                        <input
-                          id="username"
-                          type="text"
-                          value={userData?.username || ''}
-                          readOnly
-                          style={{ borderRadius: '10px' }}
-                          className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
-                          />
+                {/* Username Field */}
+                <div className="relative mb-2">
+                  <label htmlFor="username" className="text-sm text-gray-700 dark:text-gray-300">
+                    Username
+                  </label>
+                  <input
+                    id="username"
+                    type="text"
+                    value={userData?.username || ''}
+                    readOnly
+                    style={{ borderRadius: '10px' }}
+                    className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
+                  />
 
-                    </div>
+                </div>
 
-                    {/* Mobile Number Field */}
-                    <div className="relative mb-2">
-                        <label htmlFor="mobile" className="text-sm text-gray-700 dark:text-gray-300">
-                          Mobile Number
-                        </label>
-                        <input
-                          id="mobile"
-                          type="text"
-                          value={userData?.mobile_number || ''}
-                          readOnly
-                          style={{ borderRadius: '10px' }}
-                          className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
-                        />
-                    </div>
+                {/* Mobile Number Field */}
+                <div className="relative mb-2">
+                  <label htmlFor="mobile" className="text-sm text-gray-700 dark:text-gray-300">
+                    Mobile Number
+                  </label>
+                  <input
+                    id="mobile"
+                    type="text"
+                    value={userData?.mobile_number || ''}
+                    readOnly
+                    style={{ borderRadius: '10px' }}
+                    className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
+                  />
+                </div>
 
               </div>
             </div>
-            
+
           )}
 
           <div className="grid sm:grid-cols-1 gap-y-4">
-             {/* Email Field */}
-             <div className="relative mb-2">
+            {/* Email Field */}
+            <div className="relative mb-2">
               <label htmlFor="email" className="text-sm text-gray-700 dark:text-gray-300">
                 Email
               </label>
@@ -89,7 +89,7 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
                 className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
               />
             </div>
-           
+
             {/* Date of Birth */}
             <div className=" relative mb-2">
               <label htmlFor="dob" className="text-sm text-gray-700 dark:text-gray-300">

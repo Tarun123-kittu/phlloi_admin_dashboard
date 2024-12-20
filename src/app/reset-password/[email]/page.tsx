@@ -4,7 +4,7 @@ import React from 'react'
 import { useRouter } from "next/navigation";
 import ResetPassword from "../../../components/Auth/reset-password/resetPassword"
 
-const page = ({ params }: { params: { email: string } }) => {
+const Reset_password = ({ params }: { params: { email: string } }) => {
     const router = useRouter();
     if (localStorage.getItem('phloii_token')) {
         router.push("/")
@@ -16,4 +16,4 @@ const page = ({ params }: { params: { email: string } }) => {
     )
 }
 
-export default page
+export default Reset_password

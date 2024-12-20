@@ -61,11 +61,13 @@ const ChartThree: React.FC = () => {
               label: "Users",
               fontSize: "16px",
               fontWeight: "400",
+              color:"#fff"
             },
             value: {
               show: true,
               fontSize: "28px",
               fontWeight: "bold",
+              color:"#ffffff"
             },
           },
         },
@@ -95,10 +97,10 @@ const ChartThree: React.FC = () => {
   };
 
   return user_details_success?.isError ? <h1>Something Went Wrong</h1> : (
-    <div className="col-span-12 rounded-[10px] bg-white px-7.5 pb-7 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-5">
+    <div className="col-span-12 rounded-[10px] bg-cardBg px-7.5 pb-7 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-5">
       <div className="mb-9 justify-between gap-4 sm:flex">
         <div>
-          <h4 className="text-body-2xlg font-bold text-dark dark:text-white">
+          <h4 className="text-body-2xlg font-bold text-white dark:text-white">
            Active/Inactive Users
           </h4>
         </div>
@@ -118,7 +120,7 @@ const ChartThree: React.FC = () => {
           <div className="w-full px-7.5 sm:w-1/2">
             <div className="flex w-full items-center">
               <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-[#228B22]"></span>
-              <p className="flex w-full justify-between text-body-sm font-medium text-dark dark:text-dark-6">
+              <p className="flex w-full justify-between text-body-sm font-medium text-white dark:text-white-6">
                 <span> Active </span>
                 <span>{user_count[0]}</span>
               </p>
@@ -127,7 +129,7 @@ const ChartThree: React.FC = () => {
           <div className="w-full px-7.5 sm:w-1/2">
             <div className="flex w-full items-center">
               <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-[#FF6347]"></span>
-              <p className="flex w-full justify-between text-body-sm font-medium text-dark dark:text-dark-6">
+              <p className="flex w-full justify-between text-body-sm font-medium text-white dark:text-white-6">
                 <span> Inactive </span>
                 <span>{user_count[1]}</span>
               </p>

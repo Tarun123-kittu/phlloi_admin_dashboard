@@ -4,7 +4,7 @@ import React from 'react'
 import { useRouter } from "next/navigation";
 import ForgotPassword from "../../components/Auth/forgot-password/forgotPassword"
 
-const page = () => {
+const Forgot_password = () => {
     const router = useRouter();
     if (localStorage.getItem('phloii_token')) {
         router.push("/")
@@ -16,4 +16,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Forgot_password

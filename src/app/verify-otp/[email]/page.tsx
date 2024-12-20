@@ -4,7 +4,7 @@ import React from 'react'
 import VerifyOtp from "../../../components/Auth/verify-otp/verifyOtp"
 import { useRouter } from "next/navigation";
 
-const page = ({ params }: { params: { email: string } }) => {
+const Verify_otp = ({ params }: { params: { email: string } }) => {
     const router = useRouter();
     if (localStorage.getItem('phloii_token')) {
         router.push("/")
@@ -16,4 +16,4 @@ const page = ({ params }: { params: { email: string } }) => {
     )
 }
 
-export default page
+export default Verify_otp

@@ -125,7 +125,7 @@ const DataStatsOne: React.FC<dataStats> = () => {
         {dataStatsList.map((item, index) => (
           <div
             key={index}
-            className="rounded-[10px] bg-white p-6 shadow-1 dark:bg-gray-dark"
+            className="rounded-[10px] bg-cardBg p-6 shadow-1 dark:bg-gray-dark"
           >
             <div
               className="flex h-14.5 w-14.5 items-center justify-center rounded-full"
@@ -136,7 +136,7 @@ const DataStatsOne: React.FC<dataStats> = () => {
 
             <div className="mt-6 flex items-end justify-between">
               <div>
-                <h4 className="mb-1.5 text-heading-6 font-bold text-dark dark:text-white">
+                <h4 className="mb-1.5 text-heading-6 font-bold text-white">
                   {item.value}
                 </h4>
                 <span className="text-body-sm font-medium">{item.title}</span>

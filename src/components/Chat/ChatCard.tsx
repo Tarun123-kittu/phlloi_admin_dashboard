@@ -53,8 +53,8 @@ const chatData: Chat[] = [
 
 const ChatCard = () => {
   return (
-    <div className="col-span-12 rounded-[10px] bg-white py-6 shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-4">
-      <h4 className="mb-5.5 px-7.5 text-body-2xlg font-bold text-dark dark:text-white">
+    <div className="col-span-12 rounded-[10px] bg-cardBg py-6 shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-4">
+      <h4 className="mb-5.5 px-7.5 text-body-2xlg font-bold text-white dark:text-white">
         Chats
       </h4>
 
@@ -62,7 +62,7 @@ const ChatCard = () => {
         {chatData.map((chat, key) => (
           <Link
             href="/"
-            className="flex items-center gap-4.5 px-7.5 py-3 hover:bg-gray-1 dark:hover:bg-dark-2"
+            className="flex items-center text-white gap-4.5 px-7.5 py-3  dark:hover:bg-dark-2"
             key={key}
           >
             <div className="relative h-14 w-14 rounded-full">
@@ -89,12 +89,12 @@ const ChatCard = () => {
 
             <div className="flex flex-1 items-center justify-between">
               <div>
-                <h5 className="font-medium text-dark dark:text-white">
+                <h5 className="font-medium text-white dark:text-white">
                   {chat.name}
                 </h5>
                 <p>
                   <span
-                    className={`mb-px text-body-sm font-medium ${chat.seen ? "dark:text-dark-3" : "text-dark-3 dark:text-dark-6"}`}
+                    className={`mb-px text-body-sm font-medium ${chat.seen ? "dark:text-dark-3" : "text-white dark:text-dark-6"}`}
                   >
                     {chat.text}
                   </span>

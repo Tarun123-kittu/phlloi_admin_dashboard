@@ -31,8 +31,8 @@ export default function DefaultLayout({
           {/* <!-- ===== Header End ===== --> */}
 
           {/* <!-- ===== Main Content Star ===== --> */}
-          <main>
-            <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+          <main className="bg-black">
+            <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 bg-black">
               {children}
             </div>
           </main>

@@ -30,7 +30,7 @@ const ChartOne: React.FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (user_monthly_data?.isSuccess) {
+    if (user_monthly_data?.isSuccess && user_monthly_data.data) {
       setCounts(user_monthly_data?.data?.userCounts || []);
       setMonths(user_monthly_data?.data?.months || []);
     }

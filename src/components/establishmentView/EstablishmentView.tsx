@@ -11,7 +11,7 @@ import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
 const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
     const dispatch = useDispatch<AppDispatch>();
-    const [data, setData] = useState();
+    const [data, setData] = useState<any>();
     const [images, setImages] = useState()
     const [index, setIndex] = useState(null)
     const [show_image_preview, setShow_image_preview] = useState(false)

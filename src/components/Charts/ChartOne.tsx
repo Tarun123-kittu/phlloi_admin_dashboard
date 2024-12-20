@@ -14,7 +14,9 @@ const ChartOne: React.FC = () => {
   const [count, setCounts] = useState<number[]>([]);
   const [months, setMonths] = useState<string[]>([]);
 
-  const user_monthly_data = useSelector<RootState>((state) => state.MONTHLY_JOINED_USER);
+  const user_monthly_data = useSelector(
+    (state: RootState) => state.MONTHLY_JOINED_USER
+  );
 
   useEffect(() => {
     dispatch(user_monthly_joined({ year: currentYear }));
@@ -31,8 +33,8 @@ const ChartOne: React.FC = () => {
 
   useEffect(() => {
     if (user_monthly_data?.isSuccess && user_monthly_data.data) {
-      setCounts(user_monthly_data?.data?.userCounts || []);
-      setMonths(user_monthly_data?.data?.months || []);
+      setCounts(user_monthly_data.data.userCounts || []);
+      setMonths(user_monthly_data.data.months || []);
     }
   }, [user_monthly_data]);
   const series = [

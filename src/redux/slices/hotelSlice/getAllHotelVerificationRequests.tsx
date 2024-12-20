@@ -1,40 +1,55 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// Define the type for the request details
-interface RequestDetails {
-    // Add the fields that describe a request
-    requestId: string;
-    hotelId: string;
-    status: string;
-    // You can add other fields depending on the structure of a request
-}
-
+// Interface for Address data
 interface AddressType {
     country: string;
+    pinCode: number;
+    state: string;
 }
 
-interface ResponseType {
+// Interface for a single hotel request
+interface HotelRequest {
     _id: string;
-    address: AddressType;
     establishmentName: string;
     establishmentType: string;
-    paymentStatus: string;
-    created_at: string;
-    requests: RequestDetails[]; // Add the requests property here
+    address: AddressType;
+    createdAt: string;
+    paymentStatus?: string; // Optional field, if it exists
 }
 
-interface Response {
-    data: ResponseType;
+// Interface for the paginated API response
+interface PaginatedHotelResponse {
+    currentPage: number;
+    totalPages: number;
+    totalRequests: number;
+    requests: HotelRequest[]; // List of hotel requests
 }
 
+// Interface for the full response data from the API
+interface APIResponse {
+    data: PaginatedHotelResponse;
+    error: string | null; // Error message if any
+}
 
+// Redux state for handling hotel verification
+interface HotelState {
+    isLoading: boolean;
+    isSuccess: boolean;
+    isError: boolean;
+    error: string | null;
+    hotels: PaginatedHotelResponse | null; // The paginated hotel data
+}
+
+// Initial state for the Redux slice
 const initialState: HotelState = {
     isLoading: false,
-    error: null,
     isSuccess: false,
     isError: false,
-    hotels: []
-}
+    error: null,
+    hotels: null,
+};
+
+
 
 export const get_all_hotel_verification_requests = createAsyncThunk("hotel/get_all_hotel_verification_requests", async (_, thunkAPI) => {
     try {

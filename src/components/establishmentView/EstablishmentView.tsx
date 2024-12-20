@@ -9,16 +9,15 @@ import { verify_hotel, clearVerifyHotelState } from "@/redux/slices/hotelSlice/v
 import toast from "react-hot-toast";
 import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
+
+
 const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
     const dispatch = useDispatch<AppDispatch>();
     const [data, setData] = useState<any>();
     const [images, setImages] = useState()
     const [index, setIndex] = useState(null)
     const [show_image_preview, setShow_image_preview] = useState(false)
-    // const hotel_details = useSelector((state: RootState) => state.SELECTED_HOTEL_DETAILS);
-    // console.log(hotel_details, "this is the hoyel details")
     const [isDropdownVisible, setDropdownVisible] = useState(false);
-    // const is_hotel_verified = useSelector((state: RootState) => state.VERIFY_HOTEl);
 
     const hotel_details = useSelector(
         (state: RootState) => state.SELECTED_HOTEL_DETAILS
@@ -50,13 +49,9 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
             dispatch(get_selected_hotel_details(hotelId));
         }
         if (is_hotel_verified?.isError) {
-            if (typeof is_hotel_verified?.error === "object" && is_hotel_verified?.error !== null) {
-                toast.error(is_hotel_verified?.error?.message);
-            } else {
-                toast.error(is_hotel_verified?.error);  
-            }
-            toggleDropdown();
-            dispatch(clearVerifyHotelState());
+            toast.error(is_hotel_verified?.error?.message)
+            toggleDropdown()
+            dispatch(clearVerifyHotelState())
         }
     }, [is_hotel_verified])
     return (

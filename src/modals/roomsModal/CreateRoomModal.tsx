@@ -22,7 +22,7 @@ const CreateRoomModal: React.FC<CreateRoomProps> = ({setIsOpen,isOpen}) => {
   const is_room_created = useSelector((state:RootState) => state.ADD_ROOM)
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+    const file:any = e.target.files?.[0];
     setSaveImage(file)
     if (file) {
       const reader = new FileReader();

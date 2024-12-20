@@ -10,7 +10,6 @@ import toast from "react-hot-toast";
 import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
 
-
 const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
     const dispatch = useDispatch<AppDispatch>();
     const [data, setData] = useState<any>();
@@ -49,7 +48,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
             dispatch(get_selected_hotel_details(hotelId));
         }
         if (is_hotel_verified?.isError) {
-            // toast.error(is_hotel_verified?.error?.message)
+            // toast.error(is_hotel_verified?.error?.message || "An error occurred")
             toggleDropdown()
             dispatch(clearVerifyHotelState())
         }

@@ -1,5 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+// Define the type for the request details
+interface RequestDetails {
+    // Add the fields that describe a request
+    requestId: string;
+    hotelId: string;
+    status: string;
+    // You can add other fields depending on the structure of a request
+}
+
 interface AddressType {
     country: string;
 }
@@ -11,18 +20,13 @@ interface ResponseType {
     establishmentType: string;
     paymentStatus: string;
     created_at: string;
-}
-interface Response {
-    data: ResponseType
+    requests: RequestDetails[]; // Add the requests property here
 }
 
-export interface HotelState {
-    isLoading: boolean;
-    error: string | null;
-    isSuccess: boolean;
-    isError: boolean;
-    hotels: ResponseType[]
+interface Response {
+    data: ResponseType;
 }
+
 
 const initialState: HotelState = {
     isLoading: false,

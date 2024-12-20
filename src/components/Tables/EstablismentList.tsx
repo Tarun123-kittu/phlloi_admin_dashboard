@@ -8,29 +8,7 @@ import { AppDispatch, RootState } from "@/redux";
 import { useRouter } from "next/navigation";
 import { get_all_hotel_verification_requests, clear_hotel_varification_details_state } from '@/redux/slices/hotelSlice/getAllHotelVerificationRequests'
 
-export interface Pagination {
-    currentPage: number;
-    totalPages: number;
-}
 
-export interface UserData {
-    _id: string;
-    username: string;
-    dob: number;
-    gender: string;
-    online_status: boolean;
-}
-
-export interface UserState {
-    isLoading: boolean;
-    error: string | null;
-    isSuccess: boolean;
-    isError: boolean;
-    verification_data: {
-        pagination: Pagination;
-        users: UserData[];
-    } | null;
-}
 
 const EstablishmentList = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -86,7 +64,7 @@ const EstablishmentList = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {verification_hotel_requests?.isLoading ? <td className="h-40" colSpan={6}><Loader /></td> : Array?.isArray(data) && data?.map((data: UserData, index: number) => (
+                            {verification_hotel_requests?.isLoading ? <td className="h-40" colSpan={6}><Loader /></td> : Array?.isArray(data) && data?.map((data: any, index: number) => (
                                 <tr key={index}>
                                     <td className="border-[#eee] px-4 py-4 dark:border-dark-3 xl:pl-7.5 border-b">
                                         <h5 className="text-dark dark:text-white">{data?.establishmentName}</h5>

@@ -5,11 +5,11 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
   return (
-    <div className="bg-white dark:bg-gray-800 text-black dark:text-white p-6  shadow-lg mx-auto  border border-gray-200 rounded-lg dark:border-gray-700">
+    <div className="bg-cardBg dark:bg-gray-800 text-black dark:text-white p-6  shadow-lg mx-auto  rounded-lg dark:border-gray-700">
       <form className="font-[sans-serif] mx-auto w-full ">
         <div className="grid sm:grid-cols-2 gap-8">
           {userData?.profile_verification_image && (
-            <div className="relative bg-white dark:bg-gray-700 p-4 flex justify-center items-center">
+            <div className="relative bg-black dark:bg-gray-700 p-4 fwhiteustify-center items-center">
               <div className="p-4">
                 <img
                   width={400}
@@ -86,13 +86,13 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
                 value={userData?.email || ''}
                 readOnly
                 style={{ borderRadius: '10px' }}
-                className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
+                className="px-4 py-3 bg-black dark:bg-gray-700 text-white dark:text-white w-full text-sm  dark:border-gray-600 focus:border-[#007bff] outline-none"
               />
             </div>
 
             {/* Date of Birth */}
             <div className=" relative mb-2">
-              <label htmlFor="dob" className="text-sm text-gray-700 dark:text-gray-300">
+              <label htmlFor="dob" className="text-sm text-white dark:text-gray-300 pb-2 block">
                 Date of Birth
               </label>
               <input
@@ -101,13 +101,13 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
                 value={userData?.dob || ''}
                 readOnly
                 style={{ borderRadius: '10px' }}
-                className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
+                className="px-4 py-3 bg-black dark:bg-gray-700 text-white dark:text-white w-full text-sm  dark:border-gray-600 focus:border-[#007bff] outline-none"
               />
             </div>
 
             {/* Interested To See */}
             <div className="relative mb-2">
-              <label htmlFor="interested" className="text-sm text-gray-700 dark:text-gray-300">
+              <label htmlFor="interested" className="text-sm text-white dark:text-gray-300 pb-2 block">
                 Interested To See
               </label>
               <input
@@ -116,13 +116,13 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
                 value={userData?.intrested_to_see || ''}
                 readOnly
                 style={{ borderRadius: '10px' }}
-                className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
+                className="px-4 py-3 bg-black dark:bg-gray-700 text-white dark:text-white w-full text-sm  dark:border-gray-600 focus:border-[#007bff] outline-none"
               />
             </div>
 
             {/* Online Status */}
             <div className="relative mb-2">
-              <label htmlFor="onlineStatus" className="text-sm text-gray-700 dark:text-gray-300">
+              <label htmlFor="onlineStatus" className="text-sm text-white dark:text-gray-300 pb-2 block">
                 Online Status
               </label>
               <input
@@ -131,13 +131,13 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
                 value={userData?.online_status ? 'True' : 'False'}
                 readOnly
                 style={{ borderRadius: '10px' }}
-                className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
+                className="px-4 py-3 bg-black dark:bg-gray-700 text-white dark:text-white w-full text-sm  dark:border-gray-600 focus:border-[#007bff] outline-none"
               />
             </div>
 
             {/* Distance Preference */}
             <div className="relative mb-2">
-              <label htmlFor="distance" className="text-sm text-gray-700 dark:text-gray-300">
+              <label htmlFor="distance" className="text-sm text-white dark:text-gray-300 pb-2 block">
                 Distance Preference
               </label>
               <input
@@ -146,13 +146,13 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
                 value={userData?.distance_preference || ''}
                 readOnly
                 style={{ borderRadius: '10px' }}
-                className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
+                className="px-4 py-3 bg-black dark:bg-gray-700 text-white dark:text-white w-full text-sm  dark:border-gray-600 focus:border-[#007bff] outline-none"
               />
             </div>
 
             {/* Subscription Type */}
             <div className="relative mb-2">
-              <label htmlFor="subscription" className="text-sm text-gray-700 dark:text-gray-300">
+              <label htmlFor="subscription" className="text-sm text-white dark:text-gray-300 pb-2 block">
                 Subscription Type
               </label>
               <input
@@ -161,13 +161,13 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
                 value={userData?.subscription_type || ''}
                 readOnly
                 style={{ borderRadius: '10px' }}
-                className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
+                className="px-4 py-3 bg-black dark:bg-gray-700 text-white dark:text-white w-full text-sm  dark:border-gray-600 focus:border-[#007bff] outline-none"
               />
             </div>
 
             {/* Gender */}
             <div className="relative mb-2">
-              <label htmlFor="gender" className="text-sm text-gray-700 dark:text-gray-300">
+              <label htmlFor="gender" className="text-sm text-white dark:text-gray-300 pb-2 block">
                 Gender
               </label>
               <input
@@ -176,7 +176,7 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
                 value={userData?.gender || ''}
                 readOnly
                 style={{ borderRadius: '10px' }}
-                className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
+                className="px-4 py-3 bg-black dark:bg-gray-700 text-white dark:text-white w-full text-sm  dark:border-gray-600 focus:border-[#007bff] outline-none"
               />
             </div>
           </div>

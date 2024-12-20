@@ -68,10 +68,10 @@ const MaxDistanceRange = () => {
     <div>
       <label
         htmlFor="max-distance-range"
-        className=" flex justify-between block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        className=" flex justify-between block mb-2 text-sm font-medium text-white dark:text-white"
       >
        <p> Maximum Distance Range</p>
-        <p className=" text-sm text-gray-700 dark:text-gray-300">
+        <p className=" text-sm text-white dark:text-gray-300">
         Selected Distance: {rangeValue} / {maxDistance} km
       </p>
       </label>

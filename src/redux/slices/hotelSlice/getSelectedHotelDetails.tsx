@@ -99,22 +99,21 @@ const getSelectedHotelDetailsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(get_selected_hotel_details.pending, (state) => {
+    .addCase(get_selected_hotel_details.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
         state.error = null;
-      })
-      .addCase(get_selected_hotel_details.fulfilled, (state, action: PayloadAction<HotelDetails>) => {
+    })
+    .addCase(get_selected_hotel_details.fulfilled, (state, action: PayloadAction<HotelDetails>) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.selectedHotel = action.payload;
-      })
-      .addCase(get_selected_hotel_details.rejected, (state, action: PayloadAction<string | Error | undefined>) => {
+    })
+    .addCase(get_selected_hotel_details.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        // Ensure payload is of type string or Error
-        state.error = action.payload instanceof Error ? action.payload.message : action.payload || "An error occurred";
-      });
+        state.error = action.error.message || "An error occurred";
+    });
   },
 });
 

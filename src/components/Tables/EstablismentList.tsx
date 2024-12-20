@@ -36,12 +36,12 @@ const EstablishmentList = () => {
     }, [verification_hotel_requests]);
     return (
         <div>
-            <div className="rounded-[10px] border border-stroke bg-white p-4 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card sm:p-7.5">
+            <div className="rounded-[10px] border border-stroke bg-cardBg p-2 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">
                 <div className="max-w-full overflow-x-auto">
                     <table className="w-full table-auto">
                         <thead>
-                            <tr className="bg-[#F7F9FC] text-left dark:bg-dark-2">
-                                <th className="min-w-[220px] px-4 py-4 font-medium text-dark dark:text-white xl:pl-7.5 text-sm">
+                            <tr className="text-left">
+                                <th className="min-w-[220px] px-4 py-4 font-medium text-white dark:text-white xl:pl-7.5 text-sm">
                                     Establishment Name
                                 </th>
                                 <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white text-sm">

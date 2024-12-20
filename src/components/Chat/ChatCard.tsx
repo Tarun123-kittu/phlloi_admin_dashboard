@@ -54,7 +54,7 @@ const chatData: Chat[] = [
 const ChatCard = () => {
   return (
     <div className="col-span-12 rounded-[10px] bg-cardBg py-6 shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-4">
-      <h4 className="mb-5.5 px-7.5 text-body-2xlg font-bold text-white dark:text-white">
+      <h4 className="mb-5.5 px-7.5 text-body-2xlg font-medium text-white dark:text-white">
         Chats
       </h4>
 

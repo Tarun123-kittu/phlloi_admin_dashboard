@@ -42,12 +42,23 @@ const UserFilter: React.FC<Props> = ({ setVerified, setUsername, setGender, veri
     return (
         <div>
             <div className="relative mb-4 flex gap-4">
+            <div>
+                    <label htmlFor="first_name" className="block mb-2 text-sm font-normal text-white dark:text-white">Username</label>
+                    <input
+                        type="text"
+                        id="first_name"
+                        value={username}
+                        onChange={handleUsernameChange}
+                        className="bg-cardBg  text-white  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-white"
+                        placeholder="John"
+                    />
+                </div>
                 <div>
-                    <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Verified Profile</label>
+                    <label htmlFor="first_name" className="block mb-2 text-sm font-normal text-white dark:text-white">Verified Profile</label>
                     <button
                         id="dropdownDefaultButton"
                         onClick={toggleDropdown}
-                        className="text-white bg-gray-500 hover:bg-gray-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:text-white dark:bg-gray-700 ddark:bg-gray-800"
+                        className="text-white bg-cardBg hover:bg-gray-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:text-white dark:bg-gray-700 ddark:bg-gray-800"
                         type="button"
                     >
                         {verified === undefined ? "Select Verified Status" : verified ? "True" : "False"}
@@ -71,7 +82,7 @@ const UserFilter: React.FC<Props> = ({ setVerified, setUsername, setGender, veri
 
                     <div
                         id="dropdown"
-                        className={`z-50 ${isOpen ? "block" : "hidden"} absolute ,w-40 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
+                        className={`z-50 ${isOpen ? "block" : "hidden"} absolute ,w-40 bg-cardBg divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
                         style={{ top: '100%' }}
                     >
                         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
@@ -79,7 +90,7 @@ const UserFilter: React.FC<Props> = ({ setVerified, setUsername, setGender, veri
                                 <a
                                     href="#"
                                     onClick={(e) => handleVerifiedChange(e, true)}
-                                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    className="block px-4 py-2 text-white hover:text-black hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                 >
                                     True
                                 </a>
@@ -88,7 +99,7 @@ const UserFilter: React.FC<Props> = ({ setVerified, setUsername, setGender, veri
                                 <a
                                     href="#"
                                     onClick={(e) => handleVerifiedChange(e, false)}
-                                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    className="block px-4 py-2 text-white hover:text-black hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                 >
                                     False
                                 </a>
@@ -97,24 +108,14 @@ const UserFilter: React.FC<Props> = ({ setVerified, setUsername, setGender, veri
                     </div>
                 </div>
 
-                <div>
-                    <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
-                    <input
-                        type="text"
-                        id="first_name"
-                        value={username}
-                        onChange={handleUsernameChange}
-                        className="bg-gray-500 border text-white border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-white"
-                        placeholder="John"
-                    />
-                </div>
+            
 
                 <div>
-                    <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
+                    <label htmlFor="first_name" className="block mb-2 text-sm font-normal text-white dark:text-white">Gender</label>
                     <button
                         id="dropdownDefaultButton"
                         onClick={toggleDropdownGender}
-                        className="text-white bg-gray-500 hover:bg-gray-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:text-white dark:bg-gray-700 ddark:bg-gray-800"
+                        className="text-white bg-cardBg hover:bg-gray-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:text-white dark:bg-gray-700 ddark:bg-gray-800"
                         type="button"
                     >
                         {gender ? gender : "Select Gender"}
@@ -137,7 +138,7 @@ const UserFilter: React.FC<Props> = ({ setVerified, setUsername, setGender, veri
 
                     <div
                         id="dropdown"
-                        className={`z-50 ${isOpenGender ? "block" : "hidden"} absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
+                        className={`z-50 ${isOpenGender ? "block" : "hidden"} absolute bg-cardBg divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
                         style={{ top: '100%' }}
                     >
                         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
@@ -145,7 +146,7 @@ const UserFilter: React.FC<Props> = ({ setVerified, setUsername, setGender, veri
                                 <a
                                     href="#"
                                     onClick={(e) => handleGenderChange(e, 'men')}
-                                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    className="block px-4 py-2 text-white hover:text-black hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                 >
                                     Men
                                 </a>
@@ -154,7 +155,7 @@ const UserFilter: React.FC<Props> = ({ setVerified, setUsername, setGender, veri
                                 <a
                                     href="#"
                                     onClick={(e) => handleGenderChange(e, 'women')}
-                                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    className="block px-4 py-2 text-white hover:text-black hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                 >
                                     Women
                                 </a>
@@ -164,13 +165,13 @@ const UserFilter: React.FC<Props> = ({ setVerified, setUsername, setGender, veri
                 </div>
 
                 <form className="flex items-center justify-end max-w-lg ml-auto">
-                    {!isSearched ? <button onClick={handleSearch} type="submit" className="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    {!isSearched ? <button onClick={handleSearch} type="submit" className="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-hColor bg-hBgColor rounded-lg border border-blue-700  focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <svg className="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>Search
                     </button>
                         :
-                        <button onClick={clearResult} type="submit" className="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button onClick={clearResult} type="submit" className="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-hColor bg-hBgColor rounded-lg border border-blue-700  focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Clear
                         </button>}
                 </form>

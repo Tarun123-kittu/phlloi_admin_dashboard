@@ -37,7 +37,7 @@ const DropdownUser = () => {
           />
         </span>
 
-        <span className="flex items-center gap-2 font-medium text-dark dark:text-dark-6">
+        <span className="flex items-center gap-2 font-medium text-white dark:text-dark-6">
           <span className="hidden lg:block">{localStorage.getItem('username')}</span>
 
           <svg
@@ -61,10 +61,10 @@ const DropdownUser = () => {
       {/* <!-- Dropdown Star --> */}
       {dropdownOpen && (
         <div
-          className={`absolute right-0 mt-7.5 flex w-[280px] flex-col rounded-lg border-[0.5px] border-stroke bg-white shadow-default dark:border-dark-3 dark:bg-gray-dark`}
+          className={`absolute right-0 mt-7.5 flex w-[280px] flex-col rounded-lg border-[0.5px] border-stroke bg-cardBg shadow-default dark:border-dark-3 dark:bg-gray-dark`}
         >
-          <div className="flex items-center gap-2.5 px-5 pb-5.5 pt-3.5">
-            <span className="relative block h-12 w-12 rounded-full">
+          {/* <div className="flex items-center gap-2.5 px-5 pb-5.5 pt-3.5">
+            <span className="relative block h-12 w-12 rounded-full flex-grow-0 flex-shrink-0">
               <Image
                 width={112}
                 height={112}
@@ -81,16 +81,16 @@ const DropdownUser = () => {
             </span>
 
             <span className="block">
-              <span className="block font-medium text-dark dark:text-white">
+              <span className="block font text-white dark:text-white text-sm">
               {localStorage.getItem('username')}
               </span>
-              <span className="block font-medium text-dark-5 dark:text-dark-6">
+              <span className="block font text-white break-all	text-sm dark:text-dark-6">
               {localStorage.getItem('email')}
               </span>
             </span>
-          </div>
-          <div className="p-1">
-            <button onClick={() => setIsOpen(true)} className="flex w-full items-center gap-2.5 rounded-[7px] p-2.5 text-sm font-medium text-dark-4 duration-300 ease-in-out hover:bg-gray-2 hover:text-dark dark:text-dark-6 dark:hover:bg-dark-3 dark:hover:text-white lg:text-base">
+          </div> */}
+          <div className="">
+            <button onClick={() => setIsOpen(true)} className="flex w-full items-center gap-2.5 rounded-[7px] p-2.5 text-sm font-normal text-white  duration-300 ease-in-out  dark:text-dark-6 dark:hover:bg-dark-3 dark:hover:text-white lg:text-base">
               <svg
                 className="fill-current"
                 width="18"
@@ -118,8 +118,8 @@ const DropdownUser = () => {
               Change Password
             </button>
           </div>
-          <div className="p-">
-            <button onClick={() => handleLogout()} className="flex w-full items-center gap-2.5 rounded-[7px] p-2.5 text-sm font-medium text-dark-4 duration-300 ease-in-out hover:bg-gray-2 hover:text-dark dark:text-dark-6 dark:hover:bg-dark-3 dark:hover:text-white lg:text-base">
+          <div className="">
+            <button onClick={() => handleLogout()} className="flex w-full items-center gap-2.5 rounded-[7px] p-2.5 text-sm font-normal text-white  duration-300 ease-in-out  dark:text-dark-6 dark:hover:bg-dark-3 dark:hover:text-white lg:text-base">
               <svg
                 className="fill-current"
                 width="18"

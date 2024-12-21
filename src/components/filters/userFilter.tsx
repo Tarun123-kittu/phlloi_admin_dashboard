@@ -166,13 +166,13 @@ const UserFilter: React.FC<Props> = ({ setVerified, setUsername, setGender, veri
                 </div>
 
                 <form className="flex items-center justify-end max-w-lg ml-auto">
-                    {!isSearched ? <button onClick={(e) => handleSearch(e)} type="submit" className="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-hColor bg-hBgColor rounded-lg border border-blue-700  focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    {!isSearched ? <button onClick={(e) => handleSearch(e)} type="submit" className="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-hColor bg-gradient-to-r from-[#fbb90d] to-[#22ebff] rounded-lg border   focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <svg className="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>Search
                     </button>
                         :
-                        <button onClick={(e) => clearResult(e)} type="submit" className="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-hColor bg-hBgColor rounded-lg border border-blue-700  focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button onClick={(e) => clearResult(e)} type="submit" className="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-hColor bg-gradient-to-r from-[#fbb90d] to-[#22ebff] rounded-lg border   focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Clear
                         </button>}
                 </form>

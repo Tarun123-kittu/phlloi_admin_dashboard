@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const Buttons = () => {
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Buttons" />
+      {/* <Breadcrumb pageName="Buttons" /> */}
 
       {/* <!-- Normal Button Items --> */}
       <div className="mb-10 rounded-[10px] bg-white shadow-1 dark:bg-gray-dark dark:shadow-card">

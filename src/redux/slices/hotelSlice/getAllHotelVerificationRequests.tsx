@@ -50,36 +50,40 @@ const initialState: HotelState = {
 };
 
 
+export const get_all_hotel_verification_requests = createAsyncThunk(
+    "hotel/get_all_hotel_verification_requests",
+    async ({ showVerifiedHotel, page }: { showVerifiedHotel: boolean, page: number }, thunkAPI) => { // Accepting object with the showVerifiedHotel and page fields
+        try {
+            const myHeaders = new Headers();
+            myHeaders.append("Authorization", "Bearer " + localStorage.getItem('phloii_token'));
 
-export const get_all_hotel_verification_requests = createAsyncThunk("hotel/get_all_hotel_verification_requests", async (_, thunkAPI) => {
-    try {
-        const myHeaders = new Headers();
-        myHeaders.append("Authorization", "Bearer " + localStorage.getItem('phloii_token'));
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_API_URL}get_hotel_verification_requests?showVerifiedHotel=${showVerifiedHotel}&page=${page}`,
+                {
+                    method: "GET",
+                    headers: myHeaders,
+                    redirect: "follow",
+                }
+            );
 
-
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}get_hotel_verification_requests`, {
-            method: "GET",
-            headers: myHeaders,
-            redirect: "follow"
-        })
-
-        if (!response.ok) {
-            const errorMessage = await response.json();
-            if (errorMessage) {
-                throw new Error(errorMessage.message);
+            if (!response.ok) {
+                const errorMessage = await response.json();
+                if (errorMessage) {
+                    throw new Error(errorMessage.message);
+                }
             }
-        }
 
-        const data = await response.json();
-        if (data.type === "success") {
-            return data.data;
-        } else {
-            throw new Error(data.message || "Request failed");
+            const data = await response.json();
+            if (data.type === "success") {
+                return data.data;
+            } else {
+                throw new Error(data.message || "Request failed");
+            }
+        } catch (error: any) {
+            return thunkAPI.rejectWithValue(error.message || "An error occurred");
         }
-    } catch (error: any) {
-        return thunkAPI.rejectWithValue(error.message || "An error occurred");
     }
-})
+);
 
 const hotelSlice = createSlice({
     name: "hotelSlice",

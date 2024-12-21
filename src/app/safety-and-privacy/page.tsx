@@ -13,7 +13,7 @@ const page = () => {
     return (
         <DefaultLayout>
             <div className="mx-auto w-full">
-                <Breadcrumb pageName="Safety And Privacy" />
+                {/* <Breadcrumb pageName="Safety And Privacy" /> */}
                 <AllPagesList />
             </div>
         </DefaultLayout>

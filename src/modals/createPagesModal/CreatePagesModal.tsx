@@ -101,56 +101,72 @@ const CreatePagesModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, isOpe
         <>
             {isOpen && (
                 <div
+                style={{background:"rgba(152, 152, 152, 0.6)"}}
                     id="default-modal"
                     tabIndex={-1}
                     aria-hidden="true"
-                    className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-gray-900 bg-opacity-50"
+                    className="fixed inset-0 z-999 flex items-center justify-center  bg-gray-900 bg-opacity-50"
                 >
-                    <div className="relative w-1/2 max-h-full p-4">
+                                         <div className=" bg-black rounded-lg shadow dark:bg-gray-700 p-8 scroll-smooth overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200" style={{maxHeight:"98vh"}}>
 
-                        <div className="relative bg-white rounded-lg shadow dark:bg-gray-700 p-8">
-                            <h1 className='font-bold text-2xl'>Add New Page</h1>
-                            <div className="mb-6">
-                                <label htmlFor="section-name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Section name</label>
+                        <div className="relative  rounded-lg shadow dark:bg-gray-700 p-8">
+                            <h1 className='font-medium text-2xl text-white mb-3'>Add New Page</h1>
+                            <div className="mb-6 mt-3">
+                                <label htmlFor="section-name" className="block mb-2 text-sm font-medium text-white dark:text-white">Section name</label>
                                 <input
+                                placeholder='Section name'
                                     type="text"
                                     id="section-name"
                                     value={sectionName}
                                     onChange={(e) => setSectionName(e.target.value)}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    className="bg-cardBg text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 />
                             </div>
-                            <button onClick={() => handleAddOneMorePage()} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add Page</button>
-                            {textList.map((list, index) => (
-                                <div key={index} className='border p-4 mb-4'>
-                                    <svg onClick={() => handleRemoveIndex(index)} style={{ cursor: "pointer" }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
+                            <div className='text-right mb-3'> 
+                            <button onClick={() => handleAddOneMorePage()} type="button" className="text-black bg-hBgColor  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add Page</button>
+                         
+                            </div>
+                              {textList.map((list, index) => (
+                                <div key={index} className='bg-cardBg rounded p-4 mb-4'>
+                                    <div className='text-right'>
+                                   {textList?.length > 1 &&  <svg onClick={() => handleRemoveIndex(index)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" className="size-6 ml-auto cursor-pointer">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                    </svg>
+                                    </svg>}
+                                    </div>
 
                                     <div className="mb-6">
-                                        <label htmlFor={`page-name-${index}`} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Page name</label>
+                                        <label htmlFor={`page-name-${index}`} className="block mb-2 text-sm font-medium text-white dark:text-white">Page name</label>
                                         <input
+                                        placeholder='Page name'
                                             type="text"
                                             id={`page-name-${index}`}
                                             value={textList[index].title}
                                             onChange={(e) => handleSetValues(e, index, "title")}
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            className="bg-black text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         />
                                     </div>
                                     <div className="mb-6">
-                                        <label htmlFor={`slug-${index}`} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Slug</label>
+                                        <label htmlFor={`slug-${index}`} className="block mb-2 text-sm font-medium text-white dark:text-white">Slug</label>
                                         <input
+                                        placeholder='https://www.google.com'
                                             type="text"
                                             id={`slug-${index}`}
                                             value={textList[index].slug}
                                             onChange={(e) => handleSetValues(e, index, "slug")}
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            className="bg-black text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         />
                                     </div>
                                     <TextEditor setTextList={setTextList} index={index} />
                                 </div>
                             ))}
-                            {!is_page_saved?.isLoading ? <button onClick={(e) => handleSave(e)} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Submit</button> :
+                           <div className='flex gap-3'> 
+                           <button
+                                    onClick={() => setIsOpen(false)}
+                                    className=" w-full inline-flex justify-center rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-cardBg text-base font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:mt-0 sm:ml-3"
+                                    >
+                                    Cancel
+                                </button>
+                            {!is_page_saved?.isLoading ? <button onClick={(e) => handleSave(e)} type="button" className="text-center text-sm font-medium text-black rounded  bg-gradient-to-r from-[#fbb90d] to-[#22ebff] w-full">Submit</button> :
                             <button disabled type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center">
                                 <svg aria-hidden="true" role="status" className="inline w-4 h-4 me-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB" />
@@ -158,6 +174,7 @@ const CreatePagesModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, isOpe
                                 </svg>
                                 Loading...
                             </button>}
+                           </div>
                         </div>
                     </div>
                 </div>

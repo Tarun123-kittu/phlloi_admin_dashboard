@@ -77,7 +77,7 @@ const EditRoomModal: React.FC<EditRoomProps> = ({setIsOpen,isOpen,id}) => {
 
   return isOpen && (
     <div   className="fixed inset-0 z-10 flex items-center justify-center shadow-lg" style={{ backgroundColor: '#000000c4' }}>
-      <div className="p-6 rounded-lg shadow-xl w-full max-w-lg dark:bg-gray-dark">
+      <div className="p-6 rounded-lg bg-black shadow-xl w-full max-w-lg dark:bg-gray-dark">
         {/* Modal Content */}
         <div className="">
           {/* Image Preview */}
@@ -96,7 +96,7 @@ const EditRoomModal: React.FC<EditRoomProps> = ({setIsOpen,isOpen,id}) => {
 <div className="mb-3">
   <label
     htmlFor="image-input"
-    className="block text-sm text-gray-700 dark:text-gray-300 mb-1"
+    className="block text-sm text-white dark:text-gray-300 mb-1"
   >
     Upload Image
   </label>
@@ -105,7 +105,7 @@ const EditRoomModal: React.FC<EditRoomProps> = ({setIsOpen,isOpen,id}) => {
     type="file"
     accept="image/*"
     onChange={handleImageChange}
-    className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
+    className="px-4 py-3 bg-cardBg dark:bg-gray-700 text-white dark:text-white w-full text-sm dark:border-gray-600 focus:border-[#007bff] outline-none"
     style={{ borderRadius: '10px' }}
  />
 </div>
@@ -114,7 +114,7 @@ const EditRoomModal: React.FC<EditRoomProps> = ({setIsOpen,isOpen,id}) => {
 <div className="mb-6">
   <label
     htmlFor="text-input"
-    className="block text-sm text-gray-700 dark:text-gray-300 mb-1"
+    className="block text-sm text-white dark:text-gray-300 mb-1"
   >
     Room Name
   </label>
@@ -124,7 +124,7 @@ const EditRoomModal: React.FC<EditRoomProps> = ({setIsOpen,isOpen,id}) => {
   value={text}
   onChange={(e) => setText(e.target.value)}
   placeholder="Enter room name"
-  className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
+  className="px-4 py-3 bg-cardBg dark:bg-gray-700 text-white dark:text-white w-full text-sm dark:border-gray-600 focus:border-[#007bff] outline-none"
   style={{ borderRadius: '10px' }}
 />
 
@@ -141,7 +141,7 @@ const EditRoomModal: React.FC<EditRoomProps> = ({setIsOpen,isOpen,id}) => {
         
           <button
           onClick={() => setIsModalOpen(false)}
-          className="mt-3 w-full inline-flex justify-center rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+          className="mt-3 w-full inline-flex justify-center rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-cardBg text-base font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
         >
           Cancel
       </button>
@@ -155,7 +155,7 @@ const EditRoomModal: React.FC<EditRoomProps> = ({setIsOpen,isOpen,id}) => {
             </button>}
             <button
             onClick={handleSubmit}
-            className="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
+            className="py-3  text-center text-sm font-medium text-black rounded  bg-gradient-to-r from-[#fbb90d] to-[#22ebff] w-full"
           >
             Submit
           </button>

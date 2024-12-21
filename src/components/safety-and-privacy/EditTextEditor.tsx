@@ -4,32 +4,41 @@ import {
   EditorState,
   convertToRaw,
   convertFromRaw,
-  ContentState,
 } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
-interface Pages {
+interface PagesArray {
   title: string;
   content: string;
   slug: string;
+  sectionId: string;
+  _id: string;
 }
 
+interface EditTextEditorProps {
+  setTextList: React.Dispatch<React.SetStateAction<PagesArray[]>>;
+  index: number;
+  textList: PagesArray[];
+}
 
-const Editor: any = dynamic(
-  () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
-  { ssr: false }
-);
+const Editor = dynamic(() => import("react-draft-wysiwyg").then((mod) => mod.Editor), {
+  ssr: false,
+}) as unknown as React.ComponentType<{
+  editorState: EditorState;
+  onEditorStateChange: (newEditorState: EditorState) => void;
+  wrapperClassName?: string;
+  editorClassName?: string;
+  toolbarClassName?: string;
+}>;
 
-const RichTextExample = ({
+const RichTextExample: React.FC<EditTextEditorProps> = ({
   setTextList,
   index,
   textList,
-}: {
-  setTextList: (updater: (prev: Pages[]) => Pages[]) => void;
-  index: number;
-  textList: Pages[];
 }) => {
-  const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createEmpty()
+  );
 
   const onEditorStateChange = (newEditorState: EditorState): void => {
     setEditorState(newEditorState);
@@ -50,7 +59,10 @@ const RichTextExample = ({
 
   useEffect(() => {
     const content = textList[index]?.content;
-    if (content && content !== JSON.stringify(convertToRaw(editorState.getCurrentContent()))) {
+    if (
+      content &&
+      content !== JSON.stringify(convertToRaw(editorState.getCurrentContent()))
+    ) {
       try {
         const parsedContent = JSON.parse(content);
         const contentState = convertFromRaw(parsedContent);

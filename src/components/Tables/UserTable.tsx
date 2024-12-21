@@ -38,10 +38,10 @@ export interface UserState {
 const TableThree = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [page, setPage] = useState<number>(1)
-  const [verified, setVerified] = useState<boolean>(false)
+  const [verified, setVerified] = useState<boolean | null>(null);
   const [username, setUsername] = useState<string>("")
   const [gender, setGender] = useState<string>("")
-  const [isSearched,setIsSearched] = useState<boolean>(false)
+  const [isSearched, setIsSearched] = useState<boolean>(false)
   const router = useRouter()
   useEffect(() => {
     dispatch(UsersList({ page }))
@@ -56,19 +56,24 @@ const TableThree = () => {
     return date.toLocaleDateString('en-GB');
   };
 
-  const handleSearch = () => {
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
     setIsSearched(true)
-    dispatch(UsersList({ page, verified, gender, username }))
+    dispatch(UsersList({ page, verified:verified ?? undefined, gender, username }))
   }
-  const clearResult = () => {
+  const clearResult = (e: React.FormEvent) => {
+    e.preventDefault()
     setIsSearched(false)
+    setVerified(null)
+    setUsername("")
+    setGender("")
     dispatch(UsersList({ page }))
   }
 
 
   return (
     <>
-      <UserFilter setVerified={setVerified} setUsername={setUsername} setGender={setGender} verified={verified} username={username} gender={gender} handleSearch={handleSearch} clearResult={clearResult} isSearched={isSearched}/>
+      <UserFilter setVerified={setVerified} setUsername={setUsername} setGender={setGender} verified={verified} username={username} gender={gender} handleSearch={handleSearch} clearResult={clearResult} isSearched={isSearched} />
 
       <div className="rounded-[10px] border border-stroke bg-cardBg p-2 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">
         <div className="max-w-full overflow-x-auto">

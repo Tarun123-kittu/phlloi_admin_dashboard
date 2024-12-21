@@ -56,13 +56,13 @@ const AllPagesList = () => {
                         {all_pages_list?.isLoading ? <Loader /> : all_pages_list?.data?.map((pages_list, i) => {
                             return (
                                 <tr key={i} className=" border-b dark:bg-gray-800 dark:[#fdfdfd3d]">
-                                    <th scope="row" className="px-6 py-4 font-medium text-white whitespace-nowrap dark:text-white">
+                                    <td scope="row" className="px-6 py-4 text-xs text-white whitespace-nowrap dark:text-white">
                                         {pages_list?.section}
-                                    </th>
-                                    <td className="px-6 py-4 text-white">
+                                    </td>
+                                    <td className="px-6 py-4 text-white text-xs">
                                         {formatDate(pages_list?.createdAt)}
                                     </td>
-                                    <td className="px-6 py-4 text-white">
+                                    <td className="px-6 py-4 text-white text-xs">
                                         {pages_list?.pages?.length}
                                     </td>
                                     <td

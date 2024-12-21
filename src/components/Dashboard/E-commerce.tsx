@@ -26,7 +26,7 @@ const ECommerce: React.FC = () => {
         <ChartTwo />
         <ChartThree />
         {/* <MapOne /> */}
-        <div className="col-span-12 xl:col-span-8">
+        <div className="col-span-12 xl:col-span-7">
           <TableOne />
         </div>
         {/* <ChatCard />   */}

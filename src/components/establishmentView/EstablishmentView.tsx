@@ -55,7 +55,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
     }, [is_hotel_verified])
 
     const formatTime = (time:any) => {
-        const [hours, minutes] = time.split(':').map(Number);
+        const [hours, minutes] = time?.split(':')?.map(Number);
         const isPM = hours >= 12;
         const formattedHours = hours % 12 || 12; // Convert 24-hour format to 12-hour
         const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes; // Add leading zero if minutes < 10

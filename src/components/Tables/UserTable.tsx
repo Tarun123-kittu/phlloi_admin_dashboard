@@ -105,7 +105,7 @@ const TableThree = () => {
 
             </thead>
             <tbody>
-              {usersData?.isLoading  ? <td className="h-60 relative" colSpan={7}><Loader /></td> : usersData?.users?.users?.map((data: UserData, index: number) => (
+              {usersData?.isLoading  ? <td className="h-60 relative" colSpan={7}><Loader /></td> : usersData?.users?.users?.length === 0 ? <td className="h-60 relative" colSpan={6}><h1 className='text-white text-center'>No Data Found</h1></td> : usersData?.users?.users?.map((data: UserData, index: number) => (
                 <tr key={index}>
                   <td
                     className={`border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 border-b`}

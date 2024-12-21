@@ -38,6 +38,7 @@ const VerificationList = () => {
     const router = useRouter()
 
     const verificationListData = useSelector((state: RootState) => state.VERIFICATION_LIST);
+    console.log(verificationListData,"this is the verification list")
 
     useEffect(() => {
         dispatch(VerificationListAPI({ page }))
@@ -72,7 +73,7 @@ const VerificationList = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {verificationListData?.isLoading ? <td className="h-60 relative" colSpan={5}><Loader /></td> : verificationListData?.verification_data?.users?.map((data: UserData, index: number) => (
+                            {verificationListData?.isLoading ? <td className="h-60 relative" colSpan={5}><Loader /></td> : verificationListData?.error === "No user found" ? <td className="h-60 relative" colSpan={5}><h1 className='text-white text-center'>No Data Found</h1></td> : verificationListData?.verification_data?.users?.map((data: UserData, index: number) => (
                                 <tr key={index}>
                                     <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 border-b">
                                         <h5 className="text-dark dark:text-white">{data?.username}</h5>

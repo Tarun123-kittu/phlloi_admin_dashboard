@@ -36,57 +36,57 @@ const EstablishmentList = () => {
     }, [verification_hotel_requests]);
     return (
         <div>
-            <div className="rounded-[10px] border border-stroke bg-cardBg p-2 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">
+            <div className="rounded-[10px]  bg-cardBg p-2 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">
                 <div className="max-w-full overflow-x-auto">
                     <table className="w-full table-auto">
                         <thead>
-                            <tr className="text-left">
-                                <th className="min-w-[220px] px-4 py-4 font-medium text-white dark:text-white xl:pl-7.5 text-sm">
+                            <tr className="text-left ">
+                                <th className="min-w-[220px] border-[#fdfdfd3d] border-b px-4  py-4 font-medium text-white dark:text-white xl:pl-7.5 text-sm">
                                     Establishment Name
                                 </th>
-                                <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white text-sm">
+                                <th className="min-w-[120px] border-[#fdfdfd3d] border-b px-4  py-4 font-medium text-white dark:text-white text-sm">
                                     Establishment Type
 
                                 </th>
-                                <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white text-sm">
+                                <th className="min-w-[120px] border-[#fdfdfd3d] border-b px-4  py-4 font-medium text-white dark:text-white text-sm">
                                     Country
                                 </th>
-                                <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white text-sm">
+                                <th className="min-w-[120px] border-[#fdfdfd3d] border-b px-4  py-4 font-medium text-white dark:text-white text-sm">
                                     State
                                 </th>
-                                <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white text-sm">
+                                <th className="min-w-[120px] border-[#fdfdfd3d] border-b px-4  py-4 font-medium text-white dark:text-white text-sm">
                                     Pin/Zip Code
 
                                 </th>
-                                <th className="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-white text-sm">
+                                <th className="min-w-[120px] border-[#fdfdfd3d] border-b px-4  py-4 font-medium text-white dark:text-white text-sm">
                                     Action
 
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {verification_hotel_requests?.isLoading ? <td className="h-40" colSpan={6}><Loader /></td> : Array?.isArray(data) && data?.map((data: any, index: number) => (
+                            {verification_hotel_requests?.isLoading ? <td className="h-60 relative" colSpan={6}><Loader /></td> : Array?.isArray(data) && data?.map((data: any, index: number) => (
                                 <tr key={index}>
-                                    <td className="border-[#eee] px-4 py-4 dark:border-dark-3 xl:pl-7.5 border-b">
-                                        <h5 className="text-dark dark:text-white">{data?.establishmentName}</h5>
+                                    <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 border-b">
+                                        <h5 className="text-white dark:text-white">{data?.establishmentName}</h5>
                                     </td>
-                                    <td className="border-[#eee] px-4 py-4 dark:border-dark-3 border-b">
-                                        <p className="text-dark dark:text-white">{data?.establishmentType}</p>
+                                    <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b">
+                                        <p className="text-white dark:text-white">{data?.establishmentType}</p>
                                     </td>
-                                    <td className="border-[#eee] px-4 py-4 dark:border-dark-3 border-b">
-                                        <p className="text-dark dark:text-white">{data?.address?.country}</p>
+                                    <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b">
+                                        <p className="text-white dark:text-white">{data?.address?.country}</p>
                                     </td>
-                                    <td className="border-[#eee] px-4 py-4 dark:border-dark-3 border-b">
-                                        <p className="text-dark dark:text-white">{data?.address?.state}</p>
+                                    <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b">
+                                        <p className="text-white dark:text-white">{data?.address?.state}</p>
                                     </td>
                                     <td
-                                        className={`border-[#eee] px-4 py-4 dark:border-dark-3 border-b`}
+                                        className={`border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b`}
                                         title="View Details"
                                     >
-                                        <p className="text-dark dark:text-white">{data?.address?.pinCode}</p>
+                                        <p className="text-white dark:text-white">{data?.address?.pinCode}</p>
                                     </td>
                                     <td
-                                        className={`border-[#eee] px-4 py-4 dark:border-dark-3 border-b`}
+                                        className={`border-[#fdfdfd3d] border-b px-4 py-4 dark:border-dark-3 `}
                                         title="View Details"
                                         onClick={() => router.push(`/establishment-view/${data?._id}`)}
                                     >

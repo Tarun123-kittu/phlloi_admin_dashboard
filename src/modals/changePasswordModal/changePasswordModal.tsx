@@ -75,7 +75,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, is
             backgroundColor: 'rgba(152, 152, 152, 0.6)',
           }}
         >
-          <div className="relative p-6 w-1/3 max-w-sm bg-black rounded-lg shadow-lg dark:bg-gray-700 mx-auto">
+          <div className="p-6 rounded-lg bg-black shadow-xl w-full max-w-lg dark:bg-gray-dark relative">
             <div className="flex items-center justify-between px-4  dark:border-gray-600">
               <h3 className="text-xl font-semibold text-white dark:text-white">Change Password</h3>
               <button

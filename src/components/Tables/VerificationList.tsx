@@ -49,45 +49,45 @@ const VerificationList = () => {
     };
     return (
         <div>
-            <div className="rounded-[10px] border border-stroke bg-cardBg p-2 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">
+            <div className="rounded-[10px]  bg-cardBg p-2 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">
                 <div className="max-w-full overflow-x-auto">
                     <table className="w-full table-auto">
                         <thead>
                             <tr className="text-left">
-                                <th className="min-w-[220px] px-4 py-4 font-medium text-white dark:text-white xl:pl-7.5 text-sm">
+                                <th className="min-w-[220px] px-4 border-[#fdfdfd3d] border-b py-4 font-medium text-white dark:text-white xl:pl-7.5 text-sm">
                                     Username
                                 </th>
-                                <th className="min-w-[120px] px-4 py-4 font-medium text-white dark:text-white text-sm">
+                                <th className="min-w-[120px] px-4 border-[#fdfdfd3d] border-b py-4 font-medium text-white dark:text-white text-sm">
                                     DOB
                                 </th>
-                                <th className="min-w-[120px] px-4 py-4 font-medium text-white dark:text-white text-sm">
+                                <th className="min-w-[120px] px-4 border-[#fdfdfd3d] border-b py-4 font-medium text-white dark:text-white text-sm">
                                     Gender
                                 </th>
-                                <th className="min-w-[120px] px-4 py-4 font-medium text-white dark:text-white text-sm">
+                                <th className="min-w-[120px] px-4 border-[#fdfdfd3d] border-b py-4 font-medium text-white dark:text-white text-sm">
                                     Online Status
                                 </th>
-                                <th className="min-w-[120px] px-4 py-4 font-medium text-white dark:text-white text-sm">
+                                <th className="min-w-[120px] px-4 border-[#fdfdfd3d] border-b py-4 font-medium text-white dark:text-white text-sm">
                                     Action
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {verificationListData?.isLoading ? <td className="h-40" colSpan={6}><Loader /></td> : verificationListData?.verification_data?.users?.map((data: UserData, index: number) => (
+                            {verificationListData?.isLoading ? <td className="h-60 relative" colSpan={5}><Loader /></td> : verificationListData?.verification_data?.users?.map((data: UserData, index: number) => (
                                 <tr key={index}>
-                                    <td className="border-[#eee] px-4 py-4 dark:border-dark-3 xl:pl-7.5 border-b">
+                                    <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 border-b">
                                         <h5 className="text-dark dark:text-white">{data?.username}</h5>
                                     </td>
-                                    <td className="border-[#eee] px-4 py-4 dark:border-dark-3 border-b">
+                                    <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b">
                                         <p className="text-dark dark:text-white">{formatDate(data.dob)}</p>
                                     </td>
-                                    <td className="border-[#eee] px-4 py-4 dark:border-dark-3 border-b">
+                                    <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b">
                                         <p className="text-dark dark:text-white">{data?.gender}</p>
                                     </td>
-                                    <td className="border-[#eee] px-4 py-4 dark:border-dark-3 border-b">
+                                    <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b">
                                         <p className="text-dark dark:text-white">{data.online_status ? "True" : "False"}</p>
                                     </td>
                                     <td
-                                        className={`border-[#eee] px-4 py-4 dark:border-dark-3 border-b`}
+                                        className={`border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b`}
                                          title="View Details"
                                          onClick={() => router.push(`/user_details/${data?._id}`)}
                                     >

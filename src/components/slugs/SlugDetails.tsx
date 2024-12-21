@@ -35,7 +35,7 @@ const SlugDetails = ({ slugName }: { slugName: string }) => {
       </div>
       <div className="min-h-screen bg-black pt-5">
         <div
-          className="container mx-auto"
+          className="container mx-auto text-white"
           dangerouslySetInnerHTML={{ __html: slug_data?.content || "" }}
         ></div>
       </div>

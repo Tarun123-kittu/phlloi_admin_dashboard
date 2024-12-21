@@ -14,7 +14,7 @@ const page = () => {
         <div>
             <DefaultLayout>
                 <div className="mx-auto w-full">
-                    <Breadcrumb pageName="Settings" />
+                    {/* <Breadcrumb pageName="Settings" /> */}
                     <Settings />
                 </div>
             </DefaultLayout>

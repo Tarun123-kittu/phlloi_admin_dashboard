@@ -14,7 +14,7 @@ const Profile = () => {
   return (
     <DefaultLayout>
       <div className="mx-auto w-full w-full">
-        <Breadcrumb pageName="Users" />
+        {/* <Breadcrumb pageName="Users" /> */}
 
         <UserTable />
       </div>

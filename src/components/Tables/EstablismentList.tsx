@@ -14,14 +14,15 @@ const EstablishmentList = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [page, setPage] = useState<number>(1);
     const [data, setData] = useState([])
+    const [showVerifiedHotel, setShowVerifiedHotel] = useState<boolean>(false)
     const router = useRouter()
 
     const verification_hotel_requests = useSelector((state: RootState) => state.ALL_VARIFICATION_HOTELS);
     console.log(verification_hotel_requests)
 
     useEffect(() => {
-        dispatch(get_all_hotel_verification_requests())
-    }, [page])
+        dispatch(get_all_hotel_verification_requests({ showVerifiedHotel, page }))
+    }, [page, showVerifiedHotel])
 
     const formatDate = (dateString: number) => {
         const date = new Date(dateString);
@@ -30,13 +31,27 @@ const EstablishmentList = () => {
 
     useEffect(() => {
         if (verification_hotel_requests.isSuccess && verification_hotel_requests.hotels) {
-            const allRequests:any = verification_hotel_requests.hotels.requests;
+            const allRequests: any = verification_hotel_requests.hotels.requests;
             setData(allRequests); // Set the hotel requests
         }
     }, [verification_hotel_requests]);
     return (
         <div>
-            <div className="rounded-[10px]  bg-cardBg p-2 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">
+            <div className="rounded-[10px] border border-stroke bg-cardBg p-2 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">
+                <div className='flex justify-end items-center'>
+                    <div className="form-check mr-3">
+                        <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked={showVerifiedHotel} onChange={() => setShowVerifiedHotel(!showVerifiedHotel)} />
+                        <label className="form-check-label" htmlFor="flexCheckDefault">
+                            verified
+                        </label>
+                    </div>
+                    <div className="form-check">
+                        <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked={!showVerifiedHotel} onChange={() => setShowVerifiedHotel(!showVerifiedHotel)} />
+                        <label className="form-check-label" htmlFor="flexCheckChecked">
+                            Not verified
+                        </label>
+                    </div>
+                </div>
                 <div className="max-w-full overflow-x-auto">
                     <table className="w-full table-auto">
                         <thead>

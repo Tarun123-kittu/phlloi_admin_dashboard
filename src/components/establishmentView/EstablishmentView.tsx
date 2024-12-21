@@ -53,6 +53,17 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
             dispatch(clearVerifyHotelState())
         }
     }, [is_hotel_verified])
+
+    const formatTime = (time:any) => {
+        const [hours, minutes] = time.split(':').map(Number);
+        const isPM = hours >= 12;
+        const formattedHours = hours % 12 || 12; // Convert 24-hour format to 12-hour
+        const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes; // Add leading zero if minutes < 10
+        const period = isPM ? 'PM' : 'AM';
+
+        return `${formattedHours}:${formattedMinutes} ${period}`;
+    };
+
     return (
         <div className="mx-auto  w-full">
 
@@ -172,8 +183,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                             <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.state}</strong>
                          
                             <span className="block text-[13px]">Timings</span>
-                            <strong className="text-[14px] font-semibold">{data?.openCloseTimings?.open} - {data?.openCloseTimings?.close}</strong>
-                       
+                            <strong className="text-[14px] font-semibold">{formatTime(data?.openCloseTimings?.open)} - {formatTime(data?.openCloseTimings?.close)}</strong>
                         </li>
                         <li>
                             <span className="block text-[13px]">Suite/Unit Number</span>

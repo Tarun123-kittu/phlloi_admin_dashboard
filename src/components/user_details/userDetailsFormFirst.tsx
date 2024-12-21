@@ -24,7 +24,7 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
 
           {userData?.images?.length > 0 && (
             <div className="relative ">
-              <div className='bg-white dark:bg-gray-700 p-5 mb-6 rounded-lg' >
+              <div className='dark:bg-gray-700 p-5 mb-6 rounded-lg  bg-black' >
                 <Carousel {...{ showThumbs: false, infiniteLoop: true }}>
                   {(userData.images || []).map((image, i) => (
                     <div key={i}>
@@ -49,7 +49,7 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
                     value={userData?.username || ''}
                     readOnly
                     style={{ borderRadius: '10px' }}
-                    className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
+                      className="px-4 py-3 bg-black dark:bg-gray-700 text-white dark:text-white w-full text-sm  dark:border-gray-600 focus:border-[#007bff] outline-none"
                   />
 
                 </div>
@@ -65,7 +65,7 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
                     value={userData?.mobile_number || ''}
                     readOnly
                     style={{ borderRadius: '10px' }}
-                    className="px-4 py-3 bg-white dark:bg-gray-700 text-black dark:text-white w-full text-sm border-b-2 border-gray-300 dark:border-gray-600 focus:border-[#007bff] outline-none"
+                      className="px-4 py-3 bg-black dark:bg-gray-700 text-white dark:text-white w-full text-sm  dark:border-gray-600 focus:border-[#007bff] outline-none"
                   />
                 </div>
 

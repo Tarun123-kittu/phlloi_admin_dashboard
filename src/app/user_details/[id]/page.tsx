@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const page = ({ params }: { params: { id: string } }) => {
     return (
         <DefaultLayout>
-            <Breadcrumb pageName="User Details" />
+            {/* <Breadcrumb pageName="User Details" /> */}
 
             <div className="flex flex-col gap-10">
                 <div>

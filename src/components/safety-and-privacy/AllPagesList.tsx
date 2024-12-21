@@ -31,8 +31,8 @@ const AllPagesList = () => {
         <div>
             {isOpen && <CreatePagesModal isOpen={isOpen} setIsOpen={setIsOpen} />}
             {editModalOpen && <EditPagesModal isOpen={editModalOpen} setIsOpen={setEditModalOpen} sectionId={sectionId}/>}
-            <div>
-                <button onClick={() => setIsOpen(true)} type="button" className="text-black bg-hBgColor  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add New Section</button>
+            <div className='text-right'>
+                <button onClick={() => setIsOpen(true)} type="button" className="text-black bg-gradient-to-r from-[#fbb90d] to-[#22ebff]  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add New Section</button>
             </div>
             <div className="relative overflow-x-auto rounded-[10px]  bg-cardBg p-2 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -53,7 +53,7 @@ const AllPagesList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {all_pages_list?.isLoading ? <Loader /> : all_pages_list?.data?.map((pages_list, i) => {
+                        {all_pages_list?.isLoading  ? <tr><td className='h-60 relative' colSpan={4}> <Loader /> </td></tr>: all_pages_list?.data?.map((pages_list, i) => {
                             return (
                                 <tr key={i} className=" border-b border-[#fdfdfd3d] dark:[#fdfdfd3d]">
                                     <td scope="row" className="px-6 py-4 text-xs text-white whitespace-nowrap dark:text-white">

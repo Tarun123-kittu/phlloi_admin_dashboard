@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import {
-  EditorState,
-  convertToRaw,
-  convertFromRaw,
-} from "draft-js";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Import the styles for quill
 
 interface PagesArray {
   title: string;
@@ -21,37 +17,22 @@ interface EditTextEditorProps {
   textList: PagesArray[];
 }
 
-const Editor = dynamic(() => import("react-draft-wysiwyg").then((mod) => mod.Editor), {
-  ssr: false,
-}) as unknown as React.ComponentType<{
-  editorState: EditorState;
-  onEditorStateChange: (newEditorState: EditorState) => void;
-  wrapperClassName?: string;
-  editorClassName?: string;
-  toolbarClassName?: string;
-}>;
-
 const RichTextExample: React.FC<EditTextEditorProps> = ({
   setTextList,
   index,
   textList,
 }) => {
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
-  );
+  const [editorState, setEditorState] = useState<string>("");
 
-  const onEditorStateChange = (newEditorState: EditorState): void => {
+  const onEditorStateChange = (newEditorState: string): void => {
     setEditorState(newEditorState);
-    const content = JSON.stringify(
-      convertToRaw(newEditorState.getCurrentContent())
-    );
     setTextList((prev) =>
       prev.map((item, idx) =>
         idx === index
           ? {
-            ...item,
-            content,
-          }
+              ...item,
+              content: newEditorState,
+            }
           : item
       )
     );
@@ -59,28 +40,31 @@ const RichTextExample: React.FC<EditTextEditorProps> = ({
 
   useEffect(() => {
     const content = textList[index]?.content;
-    if (
-      content &&
-      content !== JSON.stringify(convertToRaw(editorState.getCurrentContent()))
-    ) {
-      try {
-        const parsedContent = JSON.parse(content);
-        const contentState = convertFromRaw(parsedContent);
-        setEditorState(EditorState.createWithContent(contentState));
-      } catch (error) {
-        console.error("Failed to load content:", error);
-      }
+    if (content && content !== editorState) {
+      setEditorState(content);
     }
   }, [textList, index, editorState]);
 
+  const toolbarOptions = [
+    [{ 'header': '1' }, { 'header': '2' }],
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    ['bold', 'italic', 'underline', 'strike'],
+    [{ 'align': [] }],
+    ['link', 'image', 'video'],
+    [{ 'color': [] }, { 'background': [] }],
+    [{ 'font': [] }],
+    [{ 'size': ['small', false, 'large', 'huge'] }],
+  ];
+
   return (
     <div className="border border-lg">
-      <Editor
-        editorState={editorState}
-        onEditorStateChange={onEditorStateChange}
-        wrapperClassName="wrapper-class"
-        editorClassName="editor-class"
-        toolbarClassName="toolbar-class"
+      <ReactQuill
+        value={editorState}
+        onChange={onEditorStateChange}
+        modules={{
+          toolbar: toolbarOptions,
+        }}
+        placeholder="Type your text here"
       />
     </div>
   );

@@ -80,7 +80,7 @@ const EstablishmentList = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {verification_hotel_requests?.isLoading ? <td className="h-60 relative" colSpan={6}><Loader /></td> : Array?.isArray(data) && data?.map((data: any, index: number) => (
+                            {verification_hotel_requests?.isLoading ? <td className="h-60 relative" colSpan={6}><Loader /></td> : data?.length === 0 ? <td className="h-60 relative" colSpan={6}><h1 className='text-white text-center'>No Data Found</h1></td> : Array?.isArray(data) && data?.map((data: any, index: number) => (
                                 <tr key={index}>
                                     <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 border-b">
                                         <h5 className="text-white dark:text-white">{data?.establishmentName}</h5>

@@ -180,8 +180,15 @@ if(update_section_data?.isSuccess){
                     {section_details?.isSuccess && <div className="">
                         {isOpenDeleteModal && <DeleteModal isModalOpen={isOpenDeleteModal} setIsModalOpen={setIsOpenDeleteModal} handleDelete={deletePages} />}
                         {isOpenDeleteSelectionModal && <DeleteModal isModalOpen={isOpenDeleteSelectionModal} setIsModalOpen={setIsOpenDeleteSelectionModal} handleDelete={deleteSection} />}
-                     <div className=" bg-cardBg rounded-lg shadow dark:bg-gray-700 p-8 scroll-smooth overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200" style={{maxHeight:"98vh"}}>
+                     <div className=" bg-cardBg rounded-lg shadow dark:bg-gray-700 p-8 scroll-smooth overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200" style={{maxHeight:"98vh",maxWidth:"750px"}}>
+                           <div className='flex justify-between'>
+
                             <h1 className='font-medium text-2xl text-white mb-3'>Edit Section</h1>
+                         
+                                    <svg onClick={() => setIsOpen(false)} style={{ cursor: "pointer" }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" className="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                    </svg>
+                           </div>
                             <div className="mb-6">
                                 <label htmlFor="section-name" className="block mb-2 text-sm font-medium text-white dark:text-white">Section name</label>
                                 <input
@@ -193,7 +200,7 @@ if(update_section_data?.isSuccess){
                                 />
                             </div>
                             <div className='text-right'>
-                            <button onClick={() => handleAddOneMorePage()} type="button" className="text-black bg-hBgColor  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add Page</button>
+                            <button onClick={() => handleAddOneMorePage()} type="button" className="text-black bg-gradient-to-r from-[#fbb90d] to-[#22ebff]  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add Page</button>
 
                             </div>
                             <svg onClick={() => handleDeleteSection()} style={{ cursor: "pointer" }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" className="size-6">
@@ -237,7 +244,7 @@ if(update_section_data?.isSuccess){
                          <div className='flex gap-3'> 
                            <button
                                     onClick={() => setIsOpen(false)}
-                                    className=" w-full inline-flex justify-center rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-cardBg text-base font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                                    className=" w-full inline-flex justify-center rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-cardBg text-base font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:mt-0 sm:ml-3 "
                                     >
                                     Cancel
                                 </button>

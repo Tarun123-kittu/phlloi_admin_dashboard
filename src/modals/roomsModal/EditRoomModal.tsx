@@ -80,6 +80,12 @@ const EditRoomModal: React.FC<EditRoomProps> = ({setIsOpen,isOpen,id}) => {
       <div className="p-6 rounded-lg bg-black shadow-xl w-full max-w-lg dark:bg-gray-dark">
         {/* Modal Content */}
         <div className="">
+        <div className='justify-between flex'>
+                            <h1 className='font-medium text-2xl text-white mb-3'>Edit Room</h1>
+                            <svg onClick={() => setIsOpen(false)} style={{ cursor: "pointer" }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" className="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                    </svg>
+                            </div>
           {/* Image Preview */}
           <div className="w-full pb-4">
             <img

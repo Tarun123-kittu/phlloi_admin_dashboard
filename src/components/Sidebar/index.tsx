@@ -117,7 +117,7 @@ const menuGroups = [
           </svg>
         ),
         label: "Pages",
-        route: "/safety-and-privacy",
+        route: "/pages",
       },
       {
         icon: (
@@ -128,7 +128,7 @@ const menuGroups = [
 
         ),
         label: "Settings",
-        route: "/settings",
+        route: "/app-settings",
       },
     ],
   },

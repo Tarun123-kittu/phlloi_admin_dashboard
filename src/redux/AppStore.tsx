@@ -27,6 +27,7 @@ import monthlyJoinedSlice from "./slices/dashboardSlice/getUserMonthlyCount"
 import hotelSlice from "./slices/hotelSlice/getAllHotelVerificationRequests"
 import getSelectedHotelDetailsSlice from "./slices/hotelSlice/getSelectedHotelDetails"
 import verifyHotelState from "./slices/hotelSlice/verifyHotel"
+import getSlugDetails from "./slices/pagesSlice/getSlugDetails"
 
 export const store = configureStore({
   reducer: {
@@ -57,7 +58,8 @@ export const store = configureStore({
     MONTHLY_JOINED_USER: monthlyJoinedSlice,
     ALL_VARIFICATION_HOTELS: hotelSlice,
     SELECTED_HOTEL_DETAILS: getSelectedHotelDetailsSlice,
-    VERIFY_HOTEl: verifyHotelState
+    VERIFY_HOTEl: verifyHotelState,
+    SLUG_DETAILS:getSlugDetails
   },
 });
 

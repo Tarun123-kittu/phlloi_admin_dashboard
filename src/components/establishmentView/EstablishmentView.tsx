@@ -268,7 +268,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                         <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/globe_icon.svg" /> <a href="" className="text-white">{data?.ownerDetails?.websiteLink}</a></li>
                     </ul>
                     <div className="pt-6">
-                        <h4 className="text-[20px] text-white mb-2 pb-4"> Taj Hotel</h4>
+                        <h4 className="text-[20px] text-white mb-2 pb-4"> Restaurant Photos</h4>
                         <img src={data?.images[0]} onClick={() => { setShow_image_preview(true); setImages; (data.images); setIndex(-1) }} className="w-full rounded-md " alt="" />
                         <ul className="flex gap-2 pt-4">
                         {data?.images?.slice(1, 5).map((image:string, i:number) => (

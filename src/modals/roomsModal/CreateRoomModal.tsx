@@ -66,6 +66,12 @@ if(is_room_created?.isSuccess){
         {/* Modal Content */}
         <div className="">
           {/* Image Preview */}
+          <div className='justify-between flex'>
+                            <h1 className='font-medium text-2xl text-white mb-3'>Create Room</h1>
+                            <svg onClick={() => setIsOpen(false)} style={{ cursor: "pointer" }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" className="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                    </svg>
+                            </div>
           <div className="w-full pb-4">
             <img
               src={image}

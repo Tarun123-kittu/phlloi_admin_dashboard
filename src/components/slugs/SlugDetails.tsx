@@ -26,7 +26,7 @@ const SlugDetails = ({ slugName }: { slugName: string }) => {
     <div>
       <div className="bg-cardBg p-2  text-center">
         <Image
-          src="/images/phloii_logo.png"
+          src="/images/logo.svg"
           className="m-auto"
           alt="logo"
           width={100}

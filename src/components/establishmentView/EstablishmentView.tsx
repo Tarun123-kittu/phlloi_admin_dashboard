@@ -166,7 +166,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                         <li>
                             <span className="block text-[13px]">Country</span>
                             <strong className="text-[14px] font-semibold mb-3 block">
-                                {data?.address?.streetAddress}
+                                {data?.address?.country}
                             </strong>
                             <span className="block text-[13px]">Atmosphere</span>
                             <strong className="text-[14px] font-semibold">
@@ -175,7 +175,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                         </li>
                         <li>
                             <span className="block text-[13px]">State</span>
-                            <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.country}</strong>
+                            <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.state}</strong>
 
                             <span className="block text-[13px]">Services</span>
                             <strong className="text-[14px] font-semibold">{data?.services?.join(", ")}</strong>
@@ -183,14 +183,14 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                         </li>
                         <li>
                             <span className="block text-[13px]">Pin/Zip Code</span>
-                            <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.state}</strong>
+                            <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.pinCode}</strong>
 
                             <span className="block text-[13px]">Timings</span>
                             <strong className="text-[14px] font-semibold">{formatTime(data?.openCloseTimings?.open)} - {formatTime(data?.openCloseTimings?.close)}</strong>
                         </li>
                         <li>
                             <span className="block text-[13px]">Suite/Unit Number</span>
-                            <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.pinCode}</strong>
+                            <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.suiteUnitNumber}</strong>
 
                             <span className="block text-[13px]">Coustmer Service Number</span>
                             <strong className="text-[14px] font-semibold">{data?.customerServiceNumber}</strong>

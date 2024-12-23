@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { API_CONFIG } from "@/config/app_config";
+import { API_CONFIG } from "../../../../src/config/app_config";
 
 // Define the Page type based on the provided data structure
 interface Page {

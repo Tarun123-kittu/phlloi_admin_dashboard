@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { API_CONFIG } from "@/config/app_config";
+import { API_CONFIG } from "../../../../src/config/app_config";
 
 // Define the type for the API response
 interface Address {

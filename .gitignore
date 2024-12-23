@@ -2,7 +2,6 @@
 
 # dependencies
 /node_modules
-src/config/app_config.js
 .env.local
 .env.development
 /.pnp

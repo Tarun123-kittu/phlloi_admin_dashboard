@@ -112,7 +112,8 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                                 className="text-white bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 type="button"
                             >
-                                {data?.adminVerified ? "Verified" : "Not Verified"} {is_hotel_verified?.isLoading && <LoadingSpinner />}
+                                {data?.adminVerified ? "Verified" : "Not Verified"}
+                                 {/* {is_hotel_verified?.isLoading && <LoadingSpinner />} */}
                                 <svg
                                     className="w-2.5 h-2.5 ms-3"
                                     aria-hidden="true"
@@ -134,7 +135,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                             {isDropdownVisible && (
                                 <div
                                     id="dropdown"
-                                    className="absolute z-10 bg-black divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                                    className="absolute z-10 bg-black divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 right-0"
                                 >
                                     <ul
                                         className="py-2 text-sm text-gray-700 dark:text-gray-200"
@@ -151,7 +152,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                             )}
                         </div>
                     </div>
-                    <ul className="mb-5 mt-4 flex justify-between text-white">
+                    <ul className="mb-5 mt-4 flex justify-between text-white gap-3">
                         <li>
                             <span className="block text-[13px]">Establishment Type</span>
                             <strong className="text-[14px] mb-3 block font-semibold">
@@ -263,9 +264,9 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                         </div>
                     </div>
                     <ul className="owner_details pt-5">
-                        <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/mobile_icon.svg" /> <a href="" className="text-white">{data?.ownerDetails?.ownerPhone}</a></li>
-                        <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/message_icon.svg" /> <a href="" className="text-white">{data?.ownerDetails?.ownerEmail}</a></li>
-                        <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/globe_icon.svg" /> <a href={data?.ownerDetails?.websiteLink} target="_blank" className="text-white">{data?.ownerDetails?.websiteLink}</a></li>
+                    {data?.ownerDetails?.ownerPhone && <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/mobile_icon.svg" /> <a href="" className="text-white text-sm">{data?.ownerDetails?.ownerPhone}</a></li>}
+                    {data?.ownerDetails?.ownerEmail && <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/message_icon.svg" /> <a href="" className="text-white text-sm">{data?.ownerDetails?.ownerEmail}</a></li>}
+                    { data?.ownerDetails?.websiteLink && <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/globe_icon.svg" /> <a href={data?.ownerDetails?.websiteLink} target="_blank" className="text-white text-sm">{data?.ownerDetails?.websiteLink}</a></li>}
                     </ul>
                     <div className="pt-6">
                         <h4 className="text-[20px] text-white mb-2 pb-4"> Restaurant Photos</h4>

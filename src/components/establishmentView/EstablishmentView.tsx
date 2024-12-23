@@ -152,7 +152,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                             {isDropdownVisible && (
                                 <div
                                     id="dropdown"
-                                    className="absolute z-10 bg-black divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 right-0"
+                                    className="absolute z-10 bg-black divide-y border border-[#fdfdfd3d] divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 right-0"
                                 >
                                     <ul
                                         className="py-2 text-sm text-gray-700 dark:text-gray-200"

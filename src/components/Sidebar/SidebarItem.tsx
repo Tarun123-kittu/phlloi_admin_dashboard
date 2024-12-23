@@ -4,9 +4,9 @@ import SidebarDropdown from "@/components/Sidebar/SidebarDropdown";
 
 const SidebarItem = ({ item, pageName, setPageName }: any) => {
   const handleClick = () => {
-    const updatedPageName =
-      pageName !== item.label.toLowerCase() ? item.label.toLowerCase() : "";
-    return setPageName(updatedPageName);
+    if (pageName !== item.label.toLowerCase()) {
+      setPageName(item.label.toLowerCase());
+    }
   };
 
   return (
@@ -15,7 +15,11 @@ const SidebarItem = ({ item, pageName, setPageName }: any) => {
         <Link
           href={item.route}
           onClick={handleClick}
-          className={`${pageName === item.label.toLowerCase() ? "bg-hBgColor text-hColor  dark:text-white" : "text-menuColor  dark:text-gray-5 dark:hover:bg-white/10 dark:hover:text-white"} group relative flex items-center gap-3 rounded-[7px] px-2 py-2 text-sm duration-300 ease-in-out`}
+          className={`${
+            pageName === item.label.toLowerCase()
+              ? "bg-hBgColor text-hColor dark:text-white"
+              : "text-menuColor dark:text-gray-5 dark:hover:bg-white/10 dark:hover:text-white"
+          } group relative flex items-center gap-3 rounded-[7px] px-2 py-2 text-sm duration-300 ease-in-out`}
         >
           {item.icon}
           {item.label}
@@ -32,7 +36,7 @@ const SidebarItem = ({ item, pageName, setPageName }: any) => {
           {item.children && (
             <svg
               className={`absolute right-3.5 top-1/2 -translate-y-1/2 fill-current ${
-                pageName !== item.label.toLowerCase() && "rotate-180"
+                pageName === item.label.toLowerCase() ? "" : "rotate-180"
               }`}
               width="22"
               height="22"
@@ -53,7 +57,7 @@ const SidebarItem = ({ item, pageName, setPageName }: any) => {
         {item.children && (
           <div
             className={`translate transform overflow-hidden ${
-              pageName !== item.label.toLowerCase() && "hidden"
+              pageName === item.label.toLowerCase() ? "" : "hidden"
             }`}
           >
             <SidebarDropdown item={item.children} />

@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "../../../../src/config/app_config";
 
 interface MonthlyJoinedUsersState {
   userCounts: number[];
@@ -37,7 +38,7 @@ export const user_monthly_joined = createAsyncThunk<
     };
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/monthly_joined_users?year=${year}`,
+      `${API_CONFIG.BASE_URL}/monthly_joined_users?year=${year}`,
       requestOptions
     );
 

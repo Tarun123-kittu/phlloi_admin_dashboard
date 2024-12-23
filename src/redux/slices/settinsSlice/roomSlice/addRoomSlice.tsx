@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "../../../../../src/config/app_config";
 
 interface initialStateProps {
     isLoading: boolean;
@@ -29,7 +30,7 @@ const formdata = new FormData();
 formdata.append("room", room);
 formdata.append("image", image);
 
-const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}add_explore_room`, {
+const response = await fetch(`${API_CONFIG.BASE_URL}add_explore_room`, {
     method: "POST",
     headers: myHeaders,
     body: formdata,

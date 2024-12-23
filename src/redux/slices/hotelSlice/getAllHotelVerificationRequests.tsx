@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "../../../../src/config/app_config";
 
 // Interface for Address data
 interface AddressType {
@@ -58,7 +59,7 @@ export const get_all_hotel_verification_requests = createAsyncThunk(
             myHeaders.append("Authorization", "Bearer " + localStorage.getItem('phloii_token'));
 
             const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}get_hotel_verification_requests?showVerifiedHotel=${showVerifiedHotel}&page=${page}`,
+                `${API_CONFIG.BASE_URL}get_hotel_verification_requests?showVerifiedHotel=${showVerifiedHotel}&page=${page}`,
                 {
                     method: "GET",
                     headers: myHeaders,

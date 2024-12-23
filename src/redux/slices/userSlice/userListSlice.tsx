@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "../../../../src/config/app_config";
 
 export interface Pagination {
   currentPage: number;
@@ -50,7 +51,7 @@ export const UsersList = createAsyncThunk(
 
       const queryString = new URLSearchParams(queryParams).toString();
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}get_all_users?${queryString}`, {
+      const response = await fetch(`${API_CONFIG.BASE_URL}get_all_users?${queryString}`, {
         method: "GET",
         headers: myHeaders,
         redirect: "follow",

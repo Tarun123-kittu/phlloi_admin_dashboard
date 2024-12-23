@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { API_CONFIG } from "../../../../src/config/app_config";
 
 // Define the Page type based on the provided data structure
 interface Page {
@@ -32,7 +33,7 @@ export const get_slug_details = createAsyncThunk<Page, { slugName: string }>(
   async ({ slugName }, thunkAPI) => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}get_page_by_slug?slug=${slugName}`,
+        `${API_CONFIG.BASE_URL}get_page_by_slug?slug=${slugName}`,
         {
           method: "GET",
           redirect: "follow",

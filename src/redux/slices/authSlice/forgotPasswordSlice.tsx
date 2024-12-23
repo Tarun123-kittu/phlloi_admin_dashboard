@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "../../../../src/config/app_config";
 
 export interface ForgotPasswordState {
     isLoading: boolean;
@@ -25,7 +26,7 @@ export const Forgot_Password = createAsyncThunk("ForgotPassword", async ({ email
             "email": email
         });
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}forget_password`, {
+        const response = await fetch(`${API_CONFIG.BASE_URL}forget_password`, {
             method: "PUT",
             headers: myHeaders,
             body: raw,

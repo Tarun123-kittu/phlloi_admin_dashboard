@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "../../../../src/config/app_config";
 
 interface RoomsState {
   _id: string;
@@ -39,7 +40,7 @@ export const get_all_dashboard_rooms = createAsyncThunk<
     };
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/explore_rooms_joinedUsers`,
+      `${API_CONFIG.BASE_URL}/explore_rooms_joinedUsers`,
       requestOptions
     );
 

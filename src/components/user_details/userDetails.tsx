@@ -107,6 +107,7 @@ const UserDetails = ({ id }: { id: string }) => {
                                 onClick={() => handleChangeVerifyStatus(user_details?.users?.verified_profile, user_details?.users?._id)}
                                 checked={user_details?.users?.verified_profile}
                                 id="default-radio-2"
+                                disabled={user_verification_status?.isLoading}
                                 type="radio"
                                 value=""
                                 name="default-radio"

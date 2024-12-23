@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "../../../../../src/config/app_config";
 
 interface RoomState {
   _id: string;
@@ -33,7 +34,7 @@ export const get_room_by_id = createAsyncThunk<
     myHeaders.append("Authorization", "Bearer " + localStorage.getItem("phloii_token"));
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}get_expore_room?roomId=${id}`,
+      `${API_CONFIG.BASE_URL}get_expore_room?roomId=${id}`,
       {
         method: "GET",
         headers: myHeaders,

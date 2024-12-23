@@ -112,7 +112,8 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                                 className="text-white bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 type="button"
                             >
-                                {data?.adminVerified ? "Verified" : "Not Verified"} {is_hotel_verified?.isLoading && <LoadingSpinner />}
+                                {data?.adminVerified ? "Verified" : "Not Verified"}
+                                 {/* {is_hotel_verified?.isLoading && <LoadingSpinner />} */}
                                 <svg
                                     className="w-2.5 h-2.5 ms-3"
                                     aria-hidden="true"
@@ -134,7 +135,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                             {isDropdownVisible && (
                                 <div
                                     id="dropdown"
-                                    className="absolute z-10 bg-black divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                                    className="absolute z-10 bg-black divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 right-0"
                                 >
                                     <ul
                                         className="py-2 text-sm text-gray-700 dark:text-gray-200"
@@ -151,7 +152,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                             )}
                         </div>
                     </div>
-                    <ul className="mb-5 mt-4 flex justify-between text-white">
+                    <ul className="mb-5 mt-4 flex justify-between text-white gap-3">
                         <li>
                             <span className="block text-[13px]">Establishment Type</span>
                             <strong className="text-[14px] mb-3 block font-semibold">
@@ -161,12 +162,12 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                             <strong className="text-[14px] font-semibold">
                                 {data?.food?.join(", ")}
                             </strong>
-                       
+
                         </li>
                         <li>
                             <span className="block text-[13px]">Country</span>
                             <strong className="text-[14px] font-semibold mb-3 block">
-                                {data?.address?.streetAddress}
+                                {data?.address?.country}
                             </strong>
                             <span className="block text-[13px]">Atmosphere</span>
                             <strong className="text-[14px] font-semibold">
@@ -175,28 +176,28 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                         </li>
                         <li>
                             <span className="block text-[13px]">State</span>
-                            <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.country}</strong>
-                         
+                            <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.state}</strong>
+
                             <span className="block text-[13px]">Services</span>
                             <strong className="text-[14px] font-semibold">{data?.services?.join(", ")}</strong>
-                    
+
                         </li>
                         <li>
                             <span className="block text-[13px]">Pin/Zip Code</span>
-                            <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.state}</strong>
-                         
+                            <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.pinCode}</strong>
+
                             <span className="block text-[13px]">Timings</span>
                             <strong className="text-[14px] font-semibold">{formatTime(data?.openCloseTimings?.open)} - {formatTime(data?.openCloseTimings?.close)}</strong>
                         </li>
                         <li>
                             <span className="block text-[13px]">Suite/Unit Number</span>
-                            <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.pinCode}</strong>
-                        
+                            <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.suiteUnitNumber}</strong>
+
                             <span className="block text-[13px]">Coustmer Service Number</span>
                             <strong className="text-[14px] font-semibold">{data?.customerServiceNumber}</strong>
                         </li>
                     </ul>
-              
+
                     <div className="info mb-4">
                         <label className="mb-2 block text-white">
                             Why do you want to be on Phloii Verified?
@@ -263,37 +264,37 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                         </div>
                     </div>
                     <ul className="owner_details pt-5">
-                        <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/mobile_icon.svg" /> <a href="" className="text-white">{data?.ownerDetails?.ownerPhone}</a></li>
-                        <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/message_icon.svg" /> <a href="" className="text-white">{data?.ownerDetails?.ownerEmail}</a></li>
-                        <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/globe_icon.svg" /> <a href="" className="text-white">{data?.ownerDetails?.websiteLink}</a></li>
+                    {data?.ownerDetails?.ownerPhone && <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/mobile_icon.svg" /> <a href="" className="text-white text-sm">{data?.ownerDetails?.ownerPhone}</a></li>}
+                    {data?.ownerDetails?.ownerEmail && <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/message_icon.svg" /> <a href="" className="text-white text-sm">{data?.ownerDetails?.ownerEmail}</a></li>}
+                    { data?.ownerDetails?.websiteLink && <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/globe_icon.svg" /> <a href={data?.ownerDetails?.websiteLink} target="_blank" className="text-white text-sm">{data?.ownerDetails?.websiteLink}</a></li>}
                     </ul>
                     <div className="pt-6">
                         <h4 className="text-[20px] text-white mb-2 pb-4"> Restaurant Photos</h4>
-                        <img src={data?.images[0]} onClick={() => { setShow_image_preview(true); setImages; (data.images); setIndex(-1) }} className="w-full rounded-md " alt="" />
+                        <img src={data?.images[0]} onClick={() => { setShow_image_preview(true); setImages(data.images); setIndex(-1) }} className="w-full rounded-md " alt="" />
                         <ul className="flex gap-2 pt-4">
-                        {data?.images?.slice(1, 5).map((image:string, i:number) => (
-                            <li
-                                onClick={() => {
-                                    setShow_image_preview(true);
-                                    setImages(data.images);
-                                    setIndex(i);
-                                }}
-                                key={i}
-                                className="w-full relative"
-                            >
-                                {i === 3 && data?.images?.length > 5 && (
-                                    <div className="bg-[#00000052] view-more-overlay absolute flex items-center justify-center w-full h-18 rounded">
-                                        <p className="text-xs text-white">View <br /> More</p>
-                                    </div>
-                                )}
-                                <img src={image} className="w-full h-18 rounded" alt={`Hotel Image ${i + 1}`} />
-                            </li>
-                        ))}
+                            {data?.images?.slice(1, 5).map((image: string, i: number) => (
+                                <li
+                                    onClick={() => {
+                                        setShow_image_preview(true);
+                                        setImages(data.images);
+                                        setIndex(i);
+                                    }}
+                                    key={i}
+                                    className="w-full relative"
+                                >
+                                    {i === 3 && data?.images?.length > 5 && (
+                                        <div className="bg-[#00000052] view-more-overlay absolute flex items-center justify-center w-full h-18 rounded">
+                                            <p className="text-xs text-white">View <br /> More</p>
+                                        </div>
+                                    )}
+                                    <img src={image} className="w-full h-18 rounded" alt={`Hotel Image ${i + 1}`} />
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>
             </div>
-            {show_image_preview && <ImageGallery images={images} setShow_image_preview={setShow_image_preview} show_image_preview={show_image_preview} index={index} />}
+            {show_image_preview && index !== null && <ImageGallery images={images} setShow_image_preview={setShow_image_preview} show_image_preview={show_image_preview} index={index} />}
         </div>
     );
 };

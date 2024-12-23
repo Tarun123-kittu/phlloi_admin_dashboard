@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "../../../../src/config/app_config";
 
 export interface ChangePasswordState {
     isLoading: boolean;
@@ -18,7 +19,7 @@ const initialState: ChangePasswordState = {
 
 export const Change_password = createAsyncThunk(
     "changePassword",
-    async (
+    async ( 
         { password, newPassword, confirmPassword }: { password: string; newPassword: string; confirmPassword: string },
         thunkAPI
     ) => {
@@ -33,7 +34,7 @@ export const Change_password = createAsyncThunk(
                 confirmPassword : confirmPassword,
             });
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}change_password`, {
+            const response = await fetch(`${API_CONFIG.BASE_URL}change_password`, {
                 method: "PUT",
                 headers: myHeaders,
                 body: raw,

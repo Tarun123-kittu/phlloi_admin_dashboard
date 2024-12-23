@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "../../../../src/config/app_config";
 
 interface SexualOrientation {
     id: string;
@@ -71,7 +72,7 @@ export const UserDetailsAPI = createAsyncThunk(
         try {
             const myHeaders = new Headers();
             myHeaders.append("Authorization", "Bearer " + localStorage.getItem('phloii_token'));
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}user_Details?userId=${id}`, {
+            const response = await fetch(`${API_CONFIG.BASE_URL}user_Details?userId=${id}`, {
                 method: "GET",
                 headers: myHeaders,
                 redirect: "follow"

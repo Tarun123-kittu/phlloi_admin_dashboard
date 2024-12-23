@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "../../../../src/config/app_config";
 
 interface ActiveInactiveUserState {
     data: [
@@ -40,7 +41,7 @@ export const get_active_inactive_users = createAsyncThunk<
     };
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/active_inactive_users`,
+      `${API_CONFIG.BASE_URL}/active_inactive_users`,
       requestOptions
     );
 

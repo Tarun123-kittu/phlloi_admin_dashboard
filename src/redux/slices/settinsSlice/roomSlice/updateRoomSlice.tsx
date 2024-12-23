@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "../../../../../src/config/app_config";
 
 interface initialStateProps {
   isLoading: boolean;
@@ -40,7 +41,7 @@ export const update_room = createAsyncThunk<
       };
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}update_explore_room`,
+        `${API_CONFIG.BASE_URL}update_explore_room`,
         requestOptions
       );
 

@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { API_CONFIG } from "../../../../src/config/app_config";
 
 interface PagesList {
     sectionId: string,
@@ -42,7 +43,7 @@ export const update_section = createAsyncThunk<
                 pages,
             });
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}update_section`, {
+            const response = await fetch(`${API_CONFIG.BASE_URL}update_section`, {
                 method: "PUT",
                 headers: myHeaders,
                 body: raw,

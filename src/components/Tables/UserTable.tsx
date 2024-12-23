@@ -210,7 +210,7 @@ const TableThree = () => {
               )}
             </tbody>
           </table>
-          {userdata &&
+          {userdata && !usersData?.isError &&
             userdata?.users?.pagination?.totalPages > 1 && (
               <Pagination
                 totalPages={userdata?.users?.pagination?.totalPages || 0}

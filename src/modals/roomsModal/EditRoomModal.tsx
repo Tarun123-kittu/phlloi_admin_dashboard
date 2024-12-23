@@ -82,16 +82,35 @@ const EditRoomModal: React.FC<EditRoomProps> = ({setIsOpen,isOpen,id}) => {
         <div className="">
         <div className='justify-between flex'>
                             <h1 className='font-medium text-2xl text-white mb-3'>Edit Room</h1>
-                            <svg onClick={() => setIsOpen(false)} style={{ cursor: "pointer" }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" className="size-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                    </svg>
+                            <button
+               onClick={() => setIsOpen(false)}
+                type="button"
+                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                <svg
+                  className="w-3 h-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  />
+                </svg>
+                <span className="sr-only">Close modal</span>
+              </button>
                             </div>
           {/* Image Preview */}
           <div className="w-full pb-4">
             <img
               src={image}
               alt="Preview"
-              className="w-full h-[300px] object-cover"
+              className="w-full h-[250px] object-cover"
             />
           </div>
 

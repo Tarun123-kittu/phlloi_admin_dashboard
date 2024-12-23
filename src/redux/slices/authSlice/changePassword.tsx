@@ -19,7 +19,7 @@ const initialState: ChangePasswordState = {
 
 export const Change_password = createAsyncThunk(
     "changePassword",
-    async (
+    async ( 
         { password, newPassword, confirmPassword }: { password: string; newPassword: string; confirmPassword: string },
         thunkAPI
     ) => {

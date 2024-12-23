@@ -1,6 +1,7 @@
 import React from "react";
 import SlugDetails from "@/components/slugs/SlugDetails";
 import { Metadata } from "next";
+import { API_CONFIG } from "@/config/app_config";
 
 
 async function fetchSlugData(slugName: string) {

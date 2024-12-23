@@ -51,7 +51,7 @@ const UserFilter: React.FC<Props> = ({ setVerified, setUsername, setGender, veri
                         value={username}
                         onChange={handleUsernameChange}
                         className="bg-cardBg  text-white  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-white"
-                        placeholder="John"
+                        placeholder="eg. john"
                     />
                 </div>
                 <div>

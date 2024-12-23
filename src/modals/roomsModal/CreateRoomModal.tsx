@@ -66,6 +66,12 @@ if(is_room_created?.isSuccess){
         {/* Modal Content */}
         <div className="">
           {/* Image Preview */}
+          <div className='justify-between flex'>
+                            <h1 className='font-medium text-2xl text-white mb-3'>Create Room</h1>
+                            <svg onClick={() => setIsOpen(false)} style={{ cursor: "pointer" }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" className="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                    </svg>
+                            </div>
           <div className="w-full pb-4">
             <img
               src={image}
@@ -118,7 +124,7 @@ if(is_room_created?.isSuccess){
           {!is_room_created?.isLoading ? 
           <button
           onClick={() => setIsModalOpen(false)}
-          className="mt-3 w-full justify-center rounded-lg border  border-gray-300 shadow-sm px-4 py-2 bg-cardBg text-base font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+          className="mt-3 w-full justify-center rounded-lg border  border-gray-300 shadow-sm px-4 py-2 bg-cardBg text-base font-normal text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:mt-0 sm:ml-3 "
         >
           Cancel
         </button>

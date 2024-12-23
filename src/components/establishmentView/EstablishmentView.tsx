@@ -54,16 +54,17 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
         }
     }, [is_hotel_verified])
 
-    const formatTime = (time: any) => {
-        if (time) {
-            const [hours, minutes] = time?.split(':')?.map(Number);
-            const isPM = hours >= 12;
-            const formattedHours = hours % 12 || 12; // Convert 24-hour format to 12-hour
-            const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes; // Add leading zero if minutes < 10
-            const period = isPM ? 'PM' : 'AM';
-
-            return `${formattedHours}:${formattedMinutes} ${period}`;
-        }
+    const formatTime = (time:any) => {
+        if (time)
+            {
+                       const [hours, minutes] = time?.split(':')?.map(Number);
+                       const isPM = hours >= 12;
+                       const formattedHours = hours % 12 || 12; // Convert 24-hour format to 12-hour
+                       const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes; // Add leading zero if minutes < 10
+                       const period = isPM ? 'PM' : 'AM';
+           
+                       return `${formattedHours}:${formattedMinutes} ${period}`;
+                   }
     };
 
     return (
@@ -264,11 +265,11 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                     <ul className="owner_details pt-5">
                         <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/mobile_icon.svg" /> <a href="" className="text-white">{data?.ownerDetails?.ownerPhone}</a></li>
                         <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/message_icon.svg" /> <a href="" className="text-white">{data?.ownerDetails?.ownerEmail}</a></li>
-                        <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/globe_icon.svg" /> <a href="" className="text-white">{data?.ownerDetails?.websiteLink}</a></li>
+                        <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/globe_icon.svg" /> <a href={data?.ownerDetails?.websiteLink} target="_blank" className="text-white">{data?.ownerDetails?.websiteLink}</a></li>
                     </ul>
                     <div className="pt-6">
-                        <h4 className="text-[20px] text-white mb-2 pb-4"> Taj Hotel</h4>
-                        <img src={data?.images[0]} onClick={() => { setShow_image_preview(true); setImages; (data.images); setIndex(-1) }} className="w-full rounded-md " alt="" />
+                        <h4 className="text-[20px] text-white mb-2 pb-4"> Restaurant Photos</h4>
+                        <img src={data?.images[0]} onClick={() => { setShow_image_preview(true); setImages(data.images); setIndex(-1) }} className="w-full rounded-md " alt="" />
                         <ul className="flex gap-2 pt-4">
                             {data?.images?.slice(1, 5).map((image: string, i: number) => (
                                 <li
@@ -292,7 +293,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                     </div>
                 </div>
             </div>
-            {show_image_preview && <ImageGallery images={images} setShow_image_preview={setShow_image_preview} show_image_preview={show_image_preview} index={index} />}
+            {show_image_preview && index !== null && <ImageGallery images={images} setShow_image_preview={setShow_image_preview} show_image_preview={show_image_preview} index={index} />}
         </div>
     );
 };

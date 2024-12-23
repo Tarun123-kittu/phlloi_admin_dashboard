@@ -110,7 +110,12 @@ const CreatePagesModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, isOpe
                                          <div className=" bg-black rounded-lg shadow dark:bg-gray-700 p-8 scroll-smooth overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200" style={{maxHeight:"98vh"}}>
 
                         <div className="relative  rounded-lg shadow dark:bg-gray-700 p-8">
+                            <div className='justify-between flex'>
                             <h1 className='font-medium text-2xl text-white mb-3'>Add New Page</h1>
+                            <svg onClick={() => setIsOpen(false)} style={{ cursor: "pointer" }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" className="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                    </svg>
+                            </div>
                             <div className="mb-6 mt-3">
                                 <label htmlFor="section-name" className="block mb-2 text-sm font-medium text-white dark:text-white">Section name</label>
                                 <input

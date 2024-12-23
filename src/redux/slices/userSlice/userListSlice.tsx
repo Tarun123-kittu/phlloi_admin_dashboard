@@ -90,6 +90,7 @@ const userSlice = createSlice({
       })
       .addCase(UsersList.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.isSuccess = true
         state.users = action.payload;
       })
       .addCase(UsersList.rejected, (state, action) => {

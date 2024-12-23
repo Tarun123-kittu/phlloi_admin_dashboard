@@ -41,13 +41,13 @@ const EstablishmentList = () => {
                 <div className='flex justify-end items-center'>
                     <div className="form-check mr-3">
                         <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked={showVerifiedHotel} onChange={() => setShowVerifiedHotel(!showVerifiedHotel)} />
-                        <label className="form-check-label" htmlFor="flexCheckDefault">
+                        <label className="form-check-label ml-2" htmlFor="flexCheckDefault">
                             verified
                         </label>
                     </div>
                     <div className="form-check">
                         <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked={!showVerifiedHotel} onChange={() => setShowVerifiedHotel(!showVerifiedHotel)} />
-                        <label className="form-check-label" htmlFor="flexCheckChecked">
+                        <label className="form-check-label ml-2" htmlFor="flexCheckChecked">
                             Not verified
                         </label>
                     </div>
@@ -83,22 +83,22 @@ const EstablishmentList = () => {
                             {verification_hotel_requests?.isLoading ? <td className="h-60 relative" colSpan={6}><Loader /></td> : data?.length === 0 ? <td className="h-60 relative" colSpan={6}><h1 className='text-white text-center'>No Data Found</h1></td> : Array?.isArray(data) && data?.map((data: any, index: number) => (
                                 <tr key={index}>
                                     <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 border-b">
-                                        <h5 className="text-white dark:text-white">{data?.establishmentName}</h5>
+                                        <h5 className="text-white dark:text-white text-xs">{data?.establishmentName}</h5>
                                     </td>
                                     <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b">
-                                        <p className="text-white dark:text-white">{data?.establishmentType}</p>
+                                        <p className="text-white dark:text-white text-xs">{data?.establishmentType}</p>
                                     </td>
                                     <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b">
-                                        <p className="text-white dark:text-white">{data?.address?.country}</p>
+                                        <p className="text-white dark:text-white text-xs">{data?.address?.country}</p>
                                     </td>
                                     <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b">
-                                        <p className="text-white dark:text-white">{data?.address?.state}</p>
+                                        <p className="text-white dark:text-white text-xs">{data?.address?.state}</p>
                                     </td>
                                     <td
                                         className={`border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b`}
                                         title="View Details"
                                     >
-                                        <p className="text-white dark:text-white">{data?.address?.pinCode}</p>
+                                        <p className="text-white dark:text-white text-xs">{data?.address?.pinCode}</p>
                                     </td>
                                     <td
                                         className={`border-[#fdfdfd3d] border-b px-4 py-4 dark:border-dark-3 `}

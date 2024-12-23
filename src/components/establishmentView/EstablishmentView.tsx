@@ -54,14 +54,16 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
         }
     }, [is_hotel_verified])
 
-    const formatTime = (time:any) => {
-        const [hours, minutes] = time?.split(':')?.map(Number);
-        const isPM = hours >= 12;
-        const formattedHours = hours % 12 || 12; // Convert 24-hour format to 12-hour
-        const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes; // Add leading zero if minutes < 10
-        const period = isPM ? 'PM' : 'AM';
+    const formatTime = (time: any) => {
+        if (time) {
+            const [hours, minutes] = time?.split(':')?.map(Number);
+            const isPM = hours >= 12;
+            const formattedHours = hours % 12 || 12; // Convert 24-hour format to 12-hour
+            const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes; // Add leading zero if minutes < 10
+            const period = isPM ? 'PM' : 'AM';
 
-        return `${formattedHours}:${formattedMinutes} ${period}`;
+            return `${formattedHours}:${formattedMinutes} ${period}`;
+        }
     };
 
     return (
@@ -158,7 +160,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                             <strong className="text-[14px] font-semibold">
                                 {data?.food?.join(", ")}
                             </strong>
-                       
+
                         </li>
                         <li>
                             <span className="block text-[13px]">Country</span>
@@ -173,27 +175,27 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                         <li>
                             <span className="block text-[13px]">State</span>
                             <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.country}</strong>
-                         
+
                             <span className="block text-[13px]">Services</span>
                             <strong className="text-[14px] font-semibold">{data?.services?.join(", ")}</strong>
-                    
+
                         </li>
                         <li>
                             <span className="block text-[13px]">Pin/Zip Code</span>
                             <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.state}</strong>
-                         
+
                             <span className="block text-[13px]">Timings</span>
                             <strong className="text-[14px] font-semibold">{formatTime(data?.openCloseTimings?.open)} - {formatTime(data?.openCloseTimings?.close)}</strong>
                         </li>
                         <li>
                             <span className="block text-[13px]">Suite/Unit Number</span>
                             <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.pinCode}</strong>
-                        
+
                             <span className="block text-[13px]">Coustmer Service Number</span>
                             <strong className="text-[14px] font-semibold">{data?.customerServiceNumber}</strong>
                         </li>
                     </ul>
-              
+
                     <div className="info mb-4">
                         <label className="mb-2 block text-white">
                             Why do you want to be on Phloii Verified?
@@ -268,24 +270,24 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                         <h4 className="text-[20px] text-white mb-2 pb-4"> Taj Hotel</h4>
                         <img src={data?.images[0]} onClick={() => { setShow_image_preview(true); setImages; (data.images); setIndex(-1) }} className="w-full rounded-md " alt="" />
                         <ul className="flex gap-2 pt-4">
-                        {data?.images?.slice(1, 5).map((image:string, i:number) => (
-                            <li
-                                onClick={() => {
-                                    setShow_image_preview(true);
-                                    setImages(data.images);
-                                    setIndex(i);
-                                }}
-                                key={i}
-                                className="w-full relative"
-                            >
-                                {i === 3 && data?.images?.length > 5 && (
-                                    <div className="bg-[#00000052] view-more-overlay absolute flex items-center justify-center w-full h-18 rounded">
-                                        <p className="text-xs text-white">View <br /> More</p>
-                                    </div>
-                                )}
-                                <img src={image} className="w-full h-18 rounded" alt={`Hotel Image ${i + 1}`} />
-                            </li>
-                        ))}
+                            {data?.images?.slice(1, 5).map((image: string, i: number) => (
+                                <li
+                                    onClick={() => {
+                                        setShow_image_preview(true);
+                                        setImages(data.images);
+                                        setIndex(i);
+                                    }}
+                                    key={i}
+                                    className="w-full relative"
+                                >
+                                    {i === 3 && data?.images?.length > 5 && (
+                                        <div className="bg-[#00000052] view-more-overlay absolute flex items-center justify-center w-full h-18 rounded">
+                                            <p className="text-xs text-white">View <br /> More</p>
+                                        </div>
+                                    )}
+                                    <img src={image} className="w-full h-18 rounded" alt={`Hotel Image ${i + 1}`} />
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>

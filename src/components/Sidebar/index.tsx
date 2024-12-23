@@ -117,7 +117,7 @@ const menuGroups = [
           </svg>
         ),
         label: "Pages",
-        route: "/safety-and-privacy",
+        route: "/pages",
       },
       {
         icon: (

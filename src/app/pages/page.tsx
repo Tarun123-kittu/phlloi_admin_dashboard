@@ -5,7 +5,7 @@ import AllPagesList from "../../components/safety-and-privacy/AllPagesList"
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 
 export const metadata: Metadata = {
-    title: "Privacy and safety",
+    title: "Phloii pages",
     description: "This is Next.js Settings page for NextAdmin Dashboard Kit",
 };
 

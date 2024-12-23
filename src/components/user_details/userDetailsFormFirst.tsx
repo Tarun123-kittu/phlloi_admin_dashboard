@@ -4,6 +4,15 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
+
+  const formatDate = (dateString: string): string => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    const day = String(date?.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
   return (
     <div className="bg-cardBg dark:bg-gray-800 text-black dark:text-white p-6  shadow-lg mx-auto  rounded-lg dark:border-gray-700">
       <form className="font-[sans-serif] mx-auto w-full ">
@@ -49,7 +58,7 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
                     value={userData?.username || ''}
                     readOnly
                     style={{ borderRadius: '10px' }}
-                      className="px-4 py-3 bg-black dark:bg-gray-700 text-white dark:text-white w-full text-sm  dark:border-gray-600 focus:border-[#007bff] outline-none"
+                    className="px-4 py-3 bg-black dark:bg-gray-700 text-white dark:text-white w-full text-sm  dark:border-gray-600 focus:border-[#007bff] outline-none"
                   />
 
                 </div>
@@ -62,10 +71,10 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
                   <input
                     id="mobile"
                     type="text"
-                    value={userData?.mobile_number || ''}
+                    value={+userData?.mobile_number || ''}
                     readOnly
                     style={{ borderRadius: '10px' }}
-                      className="px-4 py-3 bg-black dark:bg-gray-700 text-white dark:text-white w-full text-sm  dark:border-gray-600 focus:border-[#007bff] outline-none"
+                    className="px-4 py-3 bg-black dark:bg-gray-700 text-white dark:text-white w-full text-sm  dark:border-gray-600 focus:border-[#007bff] outline-none"
                   />
                 </div>
 
@@ -91,17 +100,17 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
             </div>
 
             {/* Date of Birth */}
-            <div className=" relative mb-2">
+            <div className="relative mb-2">
               <label htmlFor="dob" className="text-sm text-white dark:text-gray-300 pb-2 block">
                 Date of Birth
               </label>
               <input
                 id="dob"
                 type="text"
-                value={userData?.dob || ''}
+                value={formatDate(userData?.dob) || ''}
                 readOnly
                 style={{ borderRadius: '10px' }}
-                className="px-4 py-3 bg-black dark:bg-gray-700 text-white dark:text-white w-full text-sm  dark:border-gray-600 focus:border-[#007bff] outline-none"
+                className="px-4 py-3 bg-black dark:bg-gray-700 text-white dark:text-white w-full text-sm dark:border-gray-600 focus:border-[#007bff] outline-none"
               />
             </div>
 

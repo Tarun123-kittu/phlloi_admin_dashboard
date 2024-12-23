@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "@/config/app_config";
 
 export interface sectionState {
     isLoading: boolean;
@@ -21,7 +22,7 @@ export const delete_page = createAsyncThunk("delete_page", async ({ id }: { id: 
         const myHeaders = new Headers();
         myHeaders.append("Authorization", "Bearer " + localStorage.getItem('phloii_token'));
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}delete_page?pageId=${id}`, {
+        const response = await fetch(`${API_CONFIG.BASE_URL}delete_page?pageId=${id}`, {
             method: "DELETE",
             headers: myHeaders,
             redirect: "follow"

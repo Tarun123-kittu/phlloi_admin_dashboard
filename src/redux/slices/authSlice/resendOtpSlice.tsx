@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "@/config/app_config";
 
 export interface ResendOTP {
     isLoading: boolean;
@@ -25,7 +26,7 @@ export const Resend_Otp = createAsyncThunk(
 
             const raw = JSON.stringify({ email });
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}resend_otp`, {
+            const response = await fetch(`${API_CONFIG.BASE_URL}resend_otp`, {
                 method: "PUT",
                 headers: myHeaders,
                 body: raw,

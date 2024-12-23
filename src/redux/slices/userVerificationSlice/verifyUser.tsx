@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "@/config/app_config";
 
 export interface VerifyUserStateState {
     isLoading: boolean;
@@ -32,7 +33,7 @@ export const Verify_User_API = createAsyncThunk(
                 "verificationStatus": verificationStatus
               });
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}approve_or_reject_verification`, {
+            const response = await fetch(`${API_CONFIG.BASE_URL}approve_or_reject_verification`, {
                 method: "PUT",
                 headers: myHeaders,
                 body: raw,

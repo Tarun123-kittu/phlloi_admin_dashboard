@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "@/config/app_config";
 
 interface maxDistance {
   _id: string;
@@ -31,7 +32,7 @@ export const get_maximum_distance = createAsyncThunk<
     myHeaders.append("Authorization", "Bearer " + localStorage.getItem("phloii_token"));
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}get_maximum_distance_by_admin`,
+      `${API_CONFIG.BASE_URL}get_maximum_distance_by_admin`,
       {
         method: "GET",
         headers: myHeaders,

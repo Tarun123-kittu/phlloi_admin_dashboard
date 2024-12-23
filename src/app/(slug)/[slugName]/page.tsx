@@ -5,7 +5,7 @@ import { Metadata } from "next";
 
 async function fetchSlugData(slugName: string) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}get_page_by_slug?slug=${slugName}`
+    `${API_CONFIG.BASE_URL}get_page_by_slug?slug=${slugName}`
   );
 
   if (!response.ok) {

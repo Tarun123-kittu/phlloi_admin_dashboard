@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "@/config/app_config";
 
 interface initialStateProps {
   isLoading: boolean;
@@ -31,7 +32,7 @@ export const update_max_distance = createAsyncThunk<
       const requestBody = JSON.stringify({ maximum_distance });
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}update_maximum_distance_preference`,
+        `${API_CONFIG.BASE_URL}update_maximum_distance_preference`,
         {
           method: "PUT",
           headers: myHeaders,

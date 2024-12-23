@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "@/config/app_config";
 
 export interface VerifyOTP {
     isLoading: boolean;
@@ -20,7 +21,7 @@ export const Verify_Otp = createAsyncThunk(
     "verifyOtp",
     async ({ otp, email }: { otp: string; email: string }, thunkAPI) => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}forgetPassword_verifyOtp`, {
+            const response = await fetch(`${API_CONFIG.BASE_URL}forgetPassword_verifyOtp`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

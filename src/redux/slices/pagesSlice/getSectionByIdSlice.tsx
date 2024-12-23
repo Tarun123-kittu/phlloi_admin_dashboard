@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { API_CONFIG } from "@/config/app_config";
 
 interface PagesList {
   _id: string;
@@ -42,7 +43,7 @@ export const get_section_by_id = createAsyncThunk<
     myHeaders.append("Authorization", "Bearer " + localStorage.getItem("phloii_token"));
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}get_section_by_id?sectionId=${id}`,
+      `${API_CONFIG.BASE_URL}get_section_by_id?sectionId=${id}`,
       {
         method: "GET",
         headers: myHeaders,

@@ -52,7 +52,7 @@ export default function SigninWithPassword() {
     try {
       setLoader(true);
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}admin_login`,
+        `${API_CONFIG.BASE_URL}admin_login`,
         requestOptions
       );
 

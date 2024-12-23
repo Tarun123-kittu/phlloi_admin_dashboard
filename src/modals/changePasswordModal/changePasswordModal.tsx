@@ -81,7 +81,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, is
               <button
                 onClick={toggleModal}
                 type="button"
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                className="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 <svg
                   className="w-3 h-3"
@@ -112,7 +112,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, is
                   </label>
                   <input
                     type="password"
-                    className="bg-cardBg mb-3 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    className="bg-cardBg mb-3 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="*********"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -129,7 +129,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, is
                   <input
                     type="password"
                     placeholder="••••••••"
-                    className="bg-cardBg mb-3 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    className="bg-cardBg mb-3 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                   />

@@ -41,7 +41,7 @@ export const get_active_inactive_users = createAsyncThunk<
     };
 
     const response = await fetch(
-      `${API_CONFIG.BASE_URL}/active_inactive_users`,
+      `${API_CONFIG.BASE_URL}active_inactive_users`,
       requestOptions
     );
 

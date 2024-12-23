@@ -75,7 +75,7 @@ export const get_selected_hotel_details = createAsyncThunk(
         redirect: "follow",
       };
 
-      const response = await fetch(`${API_CONFIG.BASE_URL}/get_hotel_details?hotelId=${hotelId}`, requestOptions);
+      const response = await fetch(`${API_CONFIG.BASE_URL}get_hotel_details?hotelId=${hotelId}`, requestOptions);
       if (!response.ok) {
         throw new Error("Failed to fetch hotel details");
       }

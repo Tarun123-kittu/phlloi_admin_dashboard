@@ -38,7 +38,7 @@ export const secret_dating_monthly_joined = createAsyncThunk<
     };
 
     const response = await fetch(
-      `${API_CONFIG.BASE_URL}/secretDating_monthly_joined_users?year=${year}`,
+      `${API_CONFIG.BASE_URL}secretDating_monthly_joined_users?year=${year}`,
       requestOptions
     );
 

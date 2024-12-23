@@ -40,7 +40,7 @@ export const get_all_dashboard_rooms = createAsyncThunk<
     };
 
     const response = await fetch(
-      `${API_CONFIG.BASE_URL}/explore_rooms_joinedUsers`,
+      `${API_CONFIG.BASE_URL}explore_rooms_joinedUsers`,
       requestOptions
     );
 

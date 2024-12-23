@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "@/config/app_config";
 
 interface pagesInterface {
     title: string;
@@ -33,7 +34,7 @@ export const add_section = createAsyncThunk("add_section", async ({ section, pag
             "pages": pages
         });
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}add_section`, {
+        const response = await fetch(`${API_CONFIG.BASE_URL}add_section`, {
             method: "POST",
             headers: myHeaders,
             body: raw,

@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "@/config/app_config";
 
 export interface Pagination {
     currentPage: number;
@@ -39,7 +40,7 @@ export const VerificationListAPI = createAsyncThunk(
         try {
             const myHeaders = new Headers();
             myHeaders.append("Authorization", "Bearer " + localStorage.getItem('phloii_token'));
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}get_profile_verification_requests?page=${page}`, {
+            const response = await fetch(`${API_CONFIG.BASE_URL}get_profile_verification_requests?page=${page}`, {
                 method: "GET",
                 headers: myHeaders,
                 redirect: "follow"

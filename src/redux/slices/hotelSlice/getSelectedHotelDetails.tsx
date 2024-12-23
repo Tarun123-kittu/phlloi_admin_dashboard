@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { API_CONFIG } from "@/config/app_config";
 
 // Define the type for the API response
 interface Address {
@@ -74,7 +75,7 @@ export const get_selected_hotel_details = createAsyncThunk(
         redirect: "follow",
       };
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/get_hotel_details?hotelId=${hotelId}`, requestOptions);
+      const response = await fetch(`${API_CONFIG.BASE_URL}/get_hotel_details?hotelId=${hotelId}`, requestOptions);
       if (!response.ok) {
         throw new Error("Failed to fetch hotel details");
       }

@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "@/config/app_config";
 
 interface RoomState {
   _id: string;
@@ -37,7 +38,7 @@ export const get_all_rooms = createAsyncThunk<
       headers: myHeaders,
     };
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}get_explore_rooms`, requestOptions);
+    const response = await fetch(`${API_CONFIG.BASE_URL}get_explore_rooms`, requestOptions);
 
     if (!response.ok) {
       const errorData = await response.json();

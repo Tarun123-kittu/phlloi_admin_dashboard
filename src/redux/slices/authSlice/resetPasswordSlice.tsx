@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "@/config/app_config";
 
 export interface ResetPassword {
     isLoading: boolean;
@@ -27,7 +28,7 @@ export const reset_password = createAsyncThunk("reset_password", async ({ email,
             "confirmPassword": confirmPassword
         });
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}reset_password`, {
+        const response = await fetch(`${API_CONFIG.BASE_URL}reset_password`, {
             method: "PUT",
             headers: myHeaders,
             body: raw,

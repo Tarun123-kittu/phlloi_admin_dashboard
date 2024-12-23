@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_CONFIG } from "@/config/app_config";
 
 export interface VerifyUserState {
     isLoading: boolean;
@@ -40,7 +41,7 @@ export const verify_hotel = createAsyncThunk<
             requestResponse: verificationStatus,
         });
 
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        const apiUrl = API_CONFIG.BASE_URL;
         if (!apiUrl) {
             throw new Error("API URL is not defined in environment variables");
         }

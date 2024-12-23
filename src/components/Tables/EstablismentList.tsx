@@ -152,7 +152,7 @@ const EstablishmentList = () => {
                                     State
                                 </th>
                                 <th className="min-w-[120px] border-[#fdfdfd3d] border-b px-4  py-4 font-medium text-white dark:text-white text-sm">
-                                    Pin/Zip Code
+                                    Payment Status
 
                                 </th>
                                 <th className="min-w-[120px] border-[#fdfdfd3d] border-b px-4  py-4 font-medium text-white dark:text-white text-sm">
@@ -180,7 +180,7 @@ const EstablishmentList = () => {
                                         className={`border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b`}
                                         title="View Details"
                                     >
-                                        <p className="text-white dark:text-white text-xs">{data?.address?.pinCode}</p>
+                                        <p className="text-white dark:text-white text-xs">{data?.paymentStatus ? data?.paymentStatus : "Not Available"}</p>
                                     </td>
                                     <td
                                         className={`border-[#fdfdfd3d] border-b px-4 py-4 dark:border-dark-3 `}

@@ -15,12 +15,14 @@ interface EditTextEditorProps {
   setTextList: React.Dispatch<React.SetStateAction<PagesArray[]>>;
   index: number;
   textList: PagesArray[];
+  disable: boolean
 }
 
 const RichTextExample: React.FC<EditTextEditorProps> = ({
   setTextList,
   index,
   textList,
+  disable
 }) => {
   const [editorState, setEditorState] = useState<string>("");
 
@@ -30,9 +32,9 @@ const RichTextExample: React.FC<EditTextEditorProps> = ({
       prev.map((item, idx) =>
         idx === index
           ? {
-              ...item,
-              content: newEditorState,
-            }
+            ...item,
+            content: newEditorState,
+          }
           : item
       )
     );
@@ -47,7 +49,7 @@ const RichTextExample: React.FC<EditTextEditorProps> = ({
 
   const toolbarOptions = [
     [{ 'header': '1' }, { 'header': '2' }],
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
     ['bold', 'italic', 'underline', 'strike'],
     [{ 'align': [] }],
     ['link', 'image', 'video'],
@@ -65,6 +67,7 @@ const RichTextExample: React.FC<EditTextEditorProps> = ({
           toolbar: toolbarOptions,
         }}
         placeholder="Type your text here"
+        readOnly={disable}
       />
     </div>
   );

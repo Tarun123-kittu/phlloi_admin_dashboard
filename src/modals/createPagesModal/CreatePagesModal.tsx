@@ -69,10 +69,6 @@ const CreatePagesModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, isOpe
                 toast.error("Title are required to create new page")
                 return
             }
-            if (textList[i].slug === "") {
-                toast.error("Slug are required to create new page")
-                return
-            }
             if (textList[i].content === "") {
                 toast.error("Content are required to create new page")
                 return
@@ -169,7 +165,7 @@ const CreatePagesModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, isOpe
                                             className="bg-black text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         />
                                     </div>
-                                    <div className="mb-6">
+                                    {/* <div className="mb-6">
                                         <label htmlFor={`slug-${index}`} className="block mb-2 text-sm font-medium text-white dark:text-white">Slug</label>
                                         <input
                                         placeholder='https://www.google.com'
@@ -179,7 +175,7 @@ const CreatePagesModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, isOpe
                                             onChange={(e) => handleSetValues(e, index, "slug")}
                                             className="bg-black text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         />
-                                    </div>
+                                    </div> */}
                                     <TextEditor setTextList={setTextList} index={index} />
                                 </div>
                             ))}

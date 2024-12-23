@@ -151,13 +151,13 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                             {isDropdownVisible && (
                                 <div
                                     id="dropdown"
-                                    className="absolute z-10 bg-black divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 right-0"
+                                    className="absolute z-10 bg-black divide-y border border-[#fdfdfd3d] divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 right-0"
                                 >
                                     <ul
                                         className="py-2 text-sm text-gray-700 dark:text-gray-200"
                                         aria-labelledby="dropdownDefaultButton"
                                     >
-                                        <li className="block px-4 py-2 text-white cursor-pointer dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => dispatch(verify_hotel({ hotelId: data?._id, verificationStatus: true }))}>
+                                        <li className="block border-b border-[#fdfdfd3d] px-4 py-2 text-white cursor-pointer dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => dispatch(verify_hotel({ hotelId: data?._id, verificationStatus: true }))}>
                                             Verify
                                         </li>
                                         <li className="block px-4 py-2 text-white cursor-pointer dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => dispatch(verify_hotel({ hotelId: data?._id, verificationStatus: false }))}>

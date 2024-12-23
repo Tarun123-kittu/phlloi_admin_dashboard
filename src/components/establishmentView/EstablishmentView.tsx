@@ -13,6 +13,7 @@ import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
     const dispatch = useDispatch<AppDispatch>();
     const [data, setData] = useState<any>();
+    console.log(data,"this is teh data")
     const [images, setImages] = useState()
     const [index, setIndex] = useState<Number>(1)
     const [show_image_preview, setShow_image_preview] = useState(false)
@@ -63,7 +64,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                 }),
                 {
                     loading: 'Saving...',
-                    success: <b>Payment status updated</b>,
+                    success: <b>Verification status updated</b>,
                     error: <b>Could not save.</b>,
                 }
             );
@@ -128,7 +129,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                                 className="text-white bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 type="button"
                             >
-                                {data?.adminVerified ? "Verified" : "Not Verified"}
+                                {data?.adminVerified === null ? "Change verify Status" : data?.adminVerified ?  "Appoved" : "Rejected"}
                                 {/* {is_hotel_verified?.isLoading && <LoadingSpinner />} */}
                                 <svg
                                     className="w-2.5 h-2.5 ms-3"
@@ -158,7 +159,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                                         aria-labelledby="dropdownDefaultButton"
                                     >
                                         <li className="block px-4 py-2 text-white cursor-pointer dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => dispatch(verify_hotel({ hotelId: data?._id, verificationStatus: true }))}>
-                                            Verify
+                                            Approve
                                         </li>
                                         <li className="block px-4 py-2 text-white cursor-pointer dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => dispatch(verify_hotel({ hotelId: data?._id, verificationStatus: false }))}>
                                             Reject

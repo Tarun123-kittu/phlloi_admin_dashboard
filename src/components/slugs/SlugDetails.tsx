@@ -24,7 +24,7 @@ const SlugDetails = ({ slugName }: { slugName: string }) => {
   }, [slug_details]);
   return (
     <div>
-      <div className="bg-cardBg p-2 text-center">
+      <div className="bg-cardBg p-2  text-center">
         <Image
           src="/images/phloii_logo.png"
           className="m-auto"
@@ -33,7 +33,7 @@ const SlugDetails = ({ slugName }: { slugName: string }) => {
           height={100}
         />
       </div>
-      <div className="min-h-screen bg-black pt-5">
+      <div className="min-h-screen bg-black  pt-10 pb-10">
         <div
           className="container mx-auto text-white"
           dangerouslySetInnerHTML={{ __html: slug_data?.content || "" }}

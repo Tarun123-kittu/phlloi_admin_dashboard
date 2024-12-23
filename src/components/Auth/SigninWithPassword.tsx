@@ -96,7 +96,7 @@ export default function SigninWithPassword() {
           <Image
             width={139}
             height={3}
-            src={"/images/phloii_logo.png"}
+            src={"/images/logo.svg"}
             alt="Logo"
             priority
             className="dark:hidden m-auto mb-3"

@@ -22,6 +22,9 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <link rel="shortcut icon" href="/images/black.svg" type="image/svg+xml" />
+      </head>
       <body suppressHydrationWarning={true}>
         <Provider store={store}>
           <Toaster />

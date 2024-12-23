@@ -15,6 +15,7 @@ interface Props {
   
 
 const UserFilter: React.FC<Props> = ({ setVerified, setUsername, setGender, verified, username, gender, handleSearch, clearResult, isSearched }) => {
+    console.log(verified,"this is the verified")
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenGender, setIsOpenGender] = useState(false);
 
@@ -62,7 +63,7 @@ const UserFilter: React.FC<Props> = ({ setVerified, setUsername, setGender, veri
                         className="text-white bg-cardBg hover:bg-gray-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:text-white dark:bg-gray-700 ddark:bg-gray-800"
                         type="button"
                     >
-                        {verified === undefined ? "Select Verified Status" : verified ? "True" : "False"}
+                        {verified === null ? "Select Verified Status" : verified ? "Verified" : "Not verified"}
 
                         <svg
                             className="w-2.5 h-2.5 ms-3"
@@ -93,7 +94,7 @@ const UserFilter: React.FC<Props> = ({ setVerified, setUsername, setGender, veri
                                     onClick={(e) => handleVerifiedChange(e, true)}
                                     className="block px-4 py-2 text-white hover:text-black hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                 >
-                                    True
+                                    Verified
                                 </a>
                             </li>
                             <li>
@@ -102,7 +103,7 @@ const UserFilter: React.FC<Props> = ({ setVerified, setUsername, setGender, veri
                                     onClick={(e) => handleVerifiedChange(e, false)}
                                     className="block px-4 py-2 text-white hover:text-black hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                 >
-                                    False
+                                    Not varified
                                 </a>
                             </li>
                         </ul>

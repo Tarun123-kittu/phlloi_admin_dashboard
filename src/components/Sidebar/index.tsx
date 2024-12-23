@@ -153,7 +153,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             <Image
               width={139}
               height={3}
-              src={"/images/phloii_logo.png"}
+              src={"/images/logo.svg"}
               alt="Logo"
               priority
               className="dark:hidden"
@@ -161,7 +161,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             <Image
               width={139}
               height={3}
-              src={"/images/phloii_logo.png"}
+              src={"/images/logo.svg"}
               alt="Logo"
               priority
               className="hidden dark:block"

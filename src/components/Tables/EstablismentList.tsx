@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,useRef } from 'react'
 import UserFilter from "../filters/userFilter"
 import Pagination from "../pagination/pagination"
 import Loader from "../loader/Loader"
@@ -15,6 +15,25 @@ const EstablishmentList = () => {
     const [page, setPage] = useState<number>(1);
     const [data, setData] = useState([])
     const [showVerifiedHotel, setShowVerifiedHotel] = useState<boolean>(false)
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+  
+    const toggleDropdown = () => {
+      setIsDropdownOpen((prev) => !prev);
+    };
+  
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+  
+    useEffect(() => {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, []);
     const router = useRouter()
 
     const verification_hotel_requests = useSelector((state: RootState) => state.ALL_VARIFICATION_HOTELS);
@@ -35,23 +54,86 @@ const EstablishmentList = () => {
             setData(allRequests); // Set the hotel requests
         }
     }, [verification_hotel_requests]);
+  
     return (
         <div>
-            <div className="rounded-[10px] border border-stroke bg-cardBg p-2 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">
-                <div className='flex justify-end items-center'>
-                    <div className="form-check mr-3">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked={showVerifiedHotel} onChange={() => setShowVerifiedHotel(!showVerifiedHotel)} />
-                        <label className="form-check-label ml-2" htmlFor="flexCheckDefault">
-                            verified
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked={!showVerifiedHotel} onChange={() => setShowVerifiedHotel(!showVerifiedHotel)} />
-                        <label className="form-check-label ml-2" htmlFor="flexCheckChecked">
-                            Not verified
-                        </label>
-                    </div>
-                </div>
+            
+            <div className='flex justify-end mb-3'>
+            <div className="relative" ref={dropdownRef}>
+      <button
+        id="dropdownCheckboxButton"
+        onClick={toggleDropdown}
+        className="text-white bg-cardBg  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="button"
+      >
+     Filters
+        <svg
+          className="w-2.5 h-2.5 ms-3"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 10 6"
+        >
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="m1 1 4 4 4-4"
+          />
+        </svg>
+      </button>
+
+      <div
+        id="dropdownDefaultCheckbox"
+        className={`z-10 ${
+          isDropdownOpen ? "block" : "hidden"
+        } w-48 bg-cardBg divide-y divide-gray-100 border rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 absolute mt-2 right-0`}
+      >
+        <ul
+          className="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
+          aria-labelledby="dropdownCheckboxButton"
+        >
+          
+          <li>
+            <div className="flex items-center">
+              <input
+                id="checkbox-item-2"
+                type="checkbox"
+                checked={showVerifiedHotel} onChange={() => setShowVerifiedHotel(!showVerifiedHotel)} 
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+              />
+              <label
+                htmlFor="checkbox-item-2"
+                className="ms-2 text-sm font-medium text-white dark:text-gray-300"
+              >
+                verified
+              </label>
+            </div>
+          </li>
+          <li>
+            <div className="flex items-center">
+              <input
+              checked={!showVerifiedHotel} onChange={() => setShowVerifiedHotel(!showVerifiedHotel)}
+                id="checkbox-item-3"
+                type="checkbox"
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+              />
+              <label
+                htmlFor="checkbox-item-3"
+                className="ms-2 text-sm font-medium text-white dark:text-gray-300"
+              >
+                Not verified
+              </label>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+            </div>
+
+            <div className="rounded-[10px] bg-cardBg p-2 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">
+               
                 <div className="max-w-full overflow-x-auto">
                     <table className="w-full table-auto">
                         <thead>

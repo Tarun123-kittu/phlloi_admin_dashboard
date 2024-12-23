@@ -88,14 +88,14 @@ const EstablishmentList = () => {
         id="dropdownDefaultCheckbox"
         className={`z-10 ${
           isDropdownOpen ? "block" : "hidden"
-        } w-48 bg-cardBg divide-y divide-gray-100 border rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 absolute mt-2 right-0`}
+        } w-48 bg-cardBg divide-y divide-gray-100 border border-[#fdfdfd3d] rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 absolute mt-2 right-0`}
       >
         <ul
-          className="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
+          className=" space-y-3 text-sm text-gray-700 dark:text-gray-200"
           aria-labelledby="dropdownCheckboxButton"
         >
           
-          <li>
+          <li className='border-b border-[#fdfdfd3d] p-3'>
             <div className="flex items-center">
               <input
                 id="checkbox-item-2"
@@ -111,7 +111,7 @@ const EstablishmentList = () => {
               </label>
             </div>
           </li>
-          <li>
+          <li className='p-3 mt-0' style={{marginTop:"0"}}>
             <div className="flex items-center">
               <input
               checked={!showVerifiedHotel} onChange={() => setShowVerifiedHotel(!showVerifiedHotel)}

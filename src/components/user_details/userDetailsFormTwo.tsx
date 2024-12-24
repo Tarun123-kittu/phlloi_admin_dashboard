@@ -109,7 +109,7 @@ const UserDetailsFormTwo = ({ userData }: { userData: UserProfile }) => {
                     <FormField
                         label="Show Gender"
                         id="showGender"
-                        value={userData?.show_gender?.toString()}
+                        value={userData?.show_gender ? "Enabled" : "Disabled"}
                         placeholder="Gender display preference"
                     />
                 </div>

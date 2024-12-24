@@ -45,7 +45,7 @@ const TableThree = () => {
   // console.log(userdata,"this is the data")
   const router = useRouter();
   useEffect(() => {
-    dispatch(UsersList({ page }));
+    dispatch(UsersList({ page,verified: verified ?? undefined, gender, username }));
   }, [page]);
 
   const usersData = useSelector((state: RootState) => state.USERLIST);
@@ -71,7 +71,7 @@ const TableThree = () => {
     setVerified(null);
     setUsername("");
     setGender("");
-    dispatch(UsersList({ page }));
+    dispatch(UsersList({ page:1 }));
   };
 
   useEffect(() => {

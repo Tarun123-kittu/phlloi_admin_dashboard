@@ -7,13 +7,11 @@ import { get_selected_hotel_details, clear_selected_hotel_details } from "@/redu
 import ImageGallery from "../../components/imageGallery/ImageGallery"
 import { verify_hotel, clearVerifyHotelState } from "@/redux/slices/hotelSlice/verifyHotel";
 import toast from "react-hot-toast";
-import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
 
 const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
     const dispatch = useDispatch<AppDispatch>();
     const [data, setData] = useState<any>();
-    console.log(data,"this is teh data")
     const [images, setImages] = useState()
     const [index, setIndex] = useState<Number>(1)
     const [show_image_preview, setShow_image_preview] = useState(false)
@@ -129,7 +127,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                                 className="text-white bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 type="button"
                             >
-                                {data?.adminVerified === null ? "Change verify Status" : data?.adminVerified ?  "Appoved" : "Rejected"}
+                                {data?.adminVerified === null ? "Change verify Status" : data?.adminVerified ? "Appoved" : "Rejected"}
                                 {/* {is_hotel_verified?.isLoading && <LoadingSpinner />} */}
                                 <svg
                                     className="w-2.5 h-2.5 ms-3"
@@ -300,12 +298,25 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                     <ul className="owner_details pt-5">
                         {data?.ownerDetails?.ownerPhone && <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/mobile_icon.svg" /> <a href="" className="text-white text-sm">{data?.ownerDetails?.ownerPhone}</a></li>}
                         {data?.ownerDetails?.ownerEmail && <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/message_icon.svg" /> <a href="" className="text-white text-sm">{data?.ownerDetails?.ownerEmail}</a></li>}
-                        {data?.ownerDetails?.websiteLink && <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/globe_icon.svg" /> <a href={data?.ownerDetails?.websiteLink} target="_blank" className="text-white text-sm">{data?.ownerDetails?.websiteLink}</a></li>}
+                        {data?.ownerDetails?.websiteLink &&
+                            <li className="list-none flex items-center gap-3 pb-3">
+                                <img alt="icons" src="/images/globe_icon.svg" />
+                                <a
+                                    href={`http://${data.ownerDetails.websiteLink.replace(/^https?:\/\//, '')}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-white text-sm"
+                                >
+                                    {data?.ownerDetails?.websiteLink}
+                                </a>
+                            </li>
+                        }
+
                         {/* {data?.paymentStatus && <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/globe_icon.svg" /> <a href={data?.ownerDetails?.websiteLink} target="_blank" className="text-white text-sm">{data?.paymentStatus}</a></li>} */}
                     </ul>
                     <div className="pt-6">
                         <h4 className="text-[20px] text-white mb-2 pb-4"> Restaurant Photos</h4>
-                        <img src={data?.images[0]} onClick={() => { setShow_image_preview(true); setImages(data.images); setIndex(-1) }} className="w-full rounded-md " alt="" />
+                        <img src={data?.images[0]} onClick={() => { setShow_image_preview(true); setImages(data.images); setIndex(-1) }} className="w-full rounded-md " alt="" style={{cursor:"pointer"}}/>
                         <ul className="flex gap-2 pt-4">
                             {data?.images?.slice(1, 5).map((image: string, i: number) => (
                                 <li
@@ -322,7 +333,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                                             <p className="text-xs text-white">View <br /> More</p>
                                         </div>
                                     )}
-                                    <img src={image} className="w-full h-18 rounded" alt={`Hotel Image ${i + 1}`} />
+                                    <img src={image} className="w-full h-18 rounded" alt={`Hotel Image ${i + 1}`} style={{cursor:"pointer"}}/>
                                 </li>
                             ))}
                         </ul>

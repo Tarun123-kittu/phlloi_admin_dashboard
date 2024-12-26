@@ -47,14 +47,14 @@ const ForgotPassword = () => {
     <div>
       <div className="flex min-h-screen items-center justify-center">
         <div className="flex w-full">
-          <div className="relative		 h-screen	w-2/4 after:absolute after:inset-0 after:bg-[#0000004d] after:blur-md after:filter after:backdrop-blur-sm after:content-['']">
+          <div className="relative hidden lg:block 		 h-screen	w-2/4 after:absolute after:inset-0 after:bg-[#0000004d] after:blur-md after:filter after:backdrop-blur-sm after:content-['']">
             <img
               src="/images/login_image.png"
               className="h-full w-full object-cover"
               alt="login"
             />
           </div>
-          <div className="h-screen	w-2/4	bg-black">
+          <div className="h-screen w-full	lg:w-2/4 p-3	bg-black">
             <div>
               <div className="flex min-h-screen items-center justify-center bg-black">
                 <div className="max-w-[466px] w-full">

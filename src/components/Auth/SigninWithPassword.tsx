@@ -208,7 +208,7 @@ export default function SigninWithPassword() {
             </span>
           </div>
         </div>
-        <div className="gap-2 mb-5">
+        <div className="gap-2 mb-5 flex items-center">
           <input
             className="form-check-input"
             type="checkbox"
@@ -217,23 +217,21 @@ export default function SigninWithPassword() {
             onChange={() => setRememberMe(!rememberMe)}
           />
           <label
-            className="form-check-label sub-text fadeColor mt-1"
+            className="form-check-label sub-text fadeColor  grow-1 ml-1"
             htmlFor="flexCheckDefault"
           >
             Remember me
           </label>
-        </div>
-
-        <div className="flex justify-between mb-10">
-          <div>
             <Link
               href="/forgot-password"
-              className="text-sm font-medium text-hBgColor hover:text-primary-dark"
+              className="text-sm font-medium text-hBgColor hover:text-primary-dark ml-auto"
             >
               Forgot password?
             </Link>
-          </div>
         </div>
+
+        
+    
 
         {!loader ? <button onClick={(e) => handleAuth(e)} className=" py-3 mb-4 text-center text-sm font-medium text-black rounded  bg-gradient-to-r from-[#fbb90d] to-[#22ebff] w-full">
           Sign In

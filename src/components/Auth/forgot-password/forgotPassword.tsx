@@ -11,6 +11,7 @@ import {
 } from "../../../redux/slices/authSlice/forgotPasswordSlice";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 const ForgotPassword = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -47,27 +48,27 @@ const ForgotPassword = () => {
     <div>
       <div className="flex min-h-screen items-center justify-center">
         <div className="flex w-full">
-          <div className="relative hidden lg:block 		 h-screen	w-2/4 after:absolute after:inset-0 after:bg-[#0000004d] after:blur-md after:filter after:backdrop-blur-sm after:content-['']">
+          <div className="relative hidden h-screen 		 w-2/4	after:absolute after:inset-0 after:bg-[#0000004d] after:blur-md after:filter after:backdrop-blur-sm after:content-[''] lg:block">
             <img
               src="/images/login_image.png"
               className="h-full w-full object-cover"
               alt="login"
             />
           </div>
-          <div className="h-screen w-full	lg:w-2/4 p-3	bg-black">
+          <div className="h-screen w-full	bg-black p-3	lg:w-2/4">
             <div>
               <div className="flex min-h-screen items-center justify-center bg-black">
-                <div className="max-w-[466px] w-full">
-                      <div className="text-center">
-                              <Image
-                                          width={139}
-                                          height={3}
-                                          src={"/images/logo.svg"}
-                                          alt="Logo"
-                                          priority
-                                          className="dark:hidden m-auto mb-3"
-                                        />
-                              </div>
+                <div className="w-full max-w-[466px]">
+                  <div className="text-center">
+                    <Image
+                      width={139}
+                      height={3}
+                      src={"/images/logo.svg"}
+                      alt="Logo"
+                      priority
+                      className="m-auto mb-3 dark:hidden"
+                    />
+                  </div>
                   <h1 className="mb-6 text-center text-2xl font-medium text-hBgColor">
                     Forgot Password
                   </h1>
@@ -80,7 +81,7 @@ const ForgotPassword = () => {
                         Email Address
                       </label>
                       <input
-                       className="w-full rounded-lg bg-cardBg h-[38px] pl-4 text-sm pr-4 font-normal text-white outline-none focus:border-primary focus-visible:shadow-none dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:focus:border-primary"
+                        className="h-[38px] w-full rounded-lg bg-cardBg pl-4 pr-4 text-sm font-normal text-white outline-none focus:border-primary focus-visible:shadow-none dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:focus:border-primary"
                         type="email"
                         placeholder="Enter your email address"
                         value={email}
@@ -89,7 +90,7 @@ const ForgotPassword = () => {
                     </div>
                     {!email_state?.isLoading ? (
                       <button
-                      className=" py-3 mb-4 text-center text-sm font-medium text-black rounded  bg-gradient-to-r from-[#fbb90d] to-[#22ebff] w-full"
+                        className=" mb-4 w-full rounded bg-gradient-to-r from-[#fbb90d] to-[#22ebff] py-3  text-center text-sm font-medium text-black"
                         onClick={(e) => handleSendOtp(e)}
                       >
                         Reset Password
@@ -121,6 +122,11 @@ const ForgotPassword = () => {
                       </button>
                     )}
                   </form>
+                  <div>
+                    <p className="text-center">
+                      Back to <Link href="/" className="text-hBgColor">Login</Link>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

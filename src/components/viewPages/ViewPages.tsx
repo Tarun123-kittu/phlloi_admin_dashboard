@@ -171,13 +171,15 @@ const ViewPages: React.FC<ChangePasswordModalProps> = ({ sectionId }) => {
                 <div
 
                 >
-
-                    <img onClick={() => router.push("/pages")} src="https://img.icons8.com/?size=100&id=AO1h97ca7e0A&format=png&color=FFFFFF" alt="back button" width={50} height={50} style={{ cursor: "pointer" }} />
+                    <div className='mb-4'>
+                    <img onClick={() => router.push("/pages")} src="https://img.icons8.com/?size=100&id=AO1h97ca7e0A&format=png&color=FFFFFF" alt="back button" width={30} height={30} style={{ cursor: "pointer" }} />
+                   
+                    </div>
                     {section_details?.isSuccess && <div className="">
                         {isOpenDeleteModal && <DeleteModal isModalOpen={isOpenDeleteModal} setIsModalOpen={setIsOpenDeleteModal} handleDelete={deletePages} />}
                         {isOpenDeleteSelectionModal && <DeleteModal isModalOpen={isOpenDeleteSelectionModal} setIsModalOpen={setIsOpenDeleteSelectionModal} handleDelete={deleteSection} />}
                         <div className=" bg-cardBg rounded-lg shadow dark:bg-gray-700 p-8 scroll-smooth overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
-                            <h1 className='font-medium text-2xl text-white mb-3'>View Section</h1>
+                      
                             <div className="mb-6">
                                 <label htmlFor="section-name" className="block mb-2 text-sm font-medium text-white dark:text-white">Section name</label>
                                 <input

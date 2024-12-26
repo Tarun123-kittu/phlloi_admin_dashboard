@@ -32,7 +32,7 @@ const nextConfig = {
       return isProduction
         ? "https://services.phloii.com/api/v1/" // Production URL
         : isPreview
-        ? "https://staging.phloii.com/api/v1/" // Preview URL
+        ? "https://dev.phloii.com/api/v1/" // Preview URL
         : "https://dev.phloii.com/api/v1/";    // Development URL
     })(),
   },

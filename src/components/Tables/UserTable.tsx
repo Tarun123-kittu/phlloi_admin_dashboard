@@ -123,8 +123,9 @@ const TableThree = () => {
               </tr>
             </thead>
             <tbody>
+              
               {usersData?.isLoading ? (
-                <td className="relative h-60" colSpan={7}>
+                <td className={`${userdata?.users?.pagination?.totalPages > 1 ? "h-screen" : "h-40"} relative min-h-screen	`} colSpan={7}>
                   <Loader />
                 </td>
               ) : usersData?.error === "No user found" ? (

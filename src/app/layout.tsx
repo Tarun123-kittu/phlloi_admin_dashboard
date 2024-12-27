@@ -31,7 +31,7 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning={true}>
         <Provider store={store}>
-          <Toaster position="top-right" reverseOrder={false} toastOptions={{duration:500}} />
+          <Toaster position="top-right" reverseOrder={false} toastOptions={{duration:700}} />
           {loading ? <Loader /> : children}
         </Provider>
       </body>

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import validator from "validator";
-import { Toaster, toast } from "react-hot-toast";
+import {toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { API_CONFIG } from "@/config/app_config";
@@ -243,7 +243,6 @@ export default function SigninWithPassword() {
           </button>
         )}
       </form>
-      <Toaster />
     </div>
   );
 }

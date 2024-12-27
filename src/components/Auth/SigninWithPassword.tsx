@@ -1,5 +1,5 @@
 "use client";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import validator from "validator";
 import { Toaster, toast } from "react-hot-toast";
@@ -11,20 +11,21 @@ export default function SigninWithPassword() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState(false);
-  const [loader, setLoader] = useState<Boolean>(false)
+  const [loader, setLoader] = useState<Boolean>(false);
   const [rememberMe, setRememberMe] = useState<boolean>(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      if (localStorage.getItem('phloii_token') && localStorage.getItem('phloii_admin_remember_me')) {
-        router.push('/dashboard')
-      }
-      else {
-        localStorage.clear()
+      if (
+        localStorage.getItem("phloii_token") &&
+        localStorage.getItem("phloii_admin_remember_me")
+      ) {
+        router.push("/dashboard");
+      } else {
+        localStorage.clear();
       }
     }
   }, []);
-
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,20 +64,22 @@ export default function SigninWithPassword() {
       setLoader(true);
       const response = await fetch(
         `${API_CONFIG.BASE_URL}admin_login`,
-        requestOptions
+        requestOptions,
       );
 
       if (!response.ok) {
         const errorResponse = await response.json();
-        console.log(errorResponse, "this is the error response")
+        console.log(errorResponse, "this is the error response");
         if (errorResponse?.message === "Admin not exist") {
-          setLoader(false)
+          setLoader(false);
           toast.error("Email not found");
-        } else if (errorResponse?.loggedError === "Entered password is incorrect") {
-          setLoader(false)
+        } else if (
+          errorResponse?.loggedError === "Entered password is incorrect"
+        ) {
+          setLoader(false);
           toast.error("Password is incorrect");
         } else {
-          setLoader(false)
+          setLoader(false);
           toast.error(`Something went wrong !!`);
         }
         setLoader(false);
@@ -99,14 +102,13 @@ export default function SigninWithPassword() {
 
   useEffect(() => {
     if (rememberMe) {
-      localStorage.setItem('phloii_admin_remember_me', email)
+      localStorage.setItem("phloii_admin_remember_me", email);
     }
-  }, [rememberMe])
-
+  }, [rememberMe]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <form className=" max-w-[466px] w-full">
+    <div className="flex min-h-screen items-center justify-center">
+      <form className=" w-full max-w-[466px]">
         <div className="text-center">
           <Image
             width={139}
@@ -114,7 +116,7 @@ export default function SigninWithPassword() {
             src={"/images/logo.svg"}
             alt="Logo"
             priority
-            className="dark:hidden m-auto mb-3"
+            className="m-auto mb-3 dark:hidden"
           />
         </div>
         <h1 className="mb-6 text-center text-2xl font-medium text-hBgColor">
@@ -132,7 +134,7 @@ export default function SigninWithPassword() {
               placeholder="Enter your email"
               name="email"
               value={email}
-              className="w-full rounded-lg bg-cardBg h-[38px] pl-4 text-sm pr-4 font-normal text-white outline-none focus:border-primary focus-visible:shadow-none dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:focus:border-primary"
+              className="h-[38px] w-full rounded-lg bg-cardBg pl-4 pr-4 text-sm font-normal text-white outline-none focus:border-primary focus-visible:shadow-none dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:focus:border-primary"
               onChange={(e) => setEmail(e.target.value)}
             />
             <span className="absolute right-4.5 top-1/2 -translate-y-1/2">
@@ -170,45 +172,22 @@ export default function SigninWithPassword() {
               autoComplete="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-lg bg-cardBg h-[38px] pl-4 text-sm pr-4 font-normal text-white outline-none focus:border-primary focus-visible:shadow-none dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:focus:border-primary"
+              className="h-[38px] w-full rounded-lg bg-cardBg pl-4 pr-4 text-sm font-normal text-white outline-none focus:border-primary focus-visible:shadow-none dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:focus:border-primary"
             />
             <span
               className="absolute right-4.5 top-1/2 -translate-y-1/2 cursor-pointer"
               onClick={() => setShowPassword((prev) => !prev)}
             >
               {showPassword ? (
-                <svg
-                  className="fill-current"
-                  width="22"
-                  height="22"
-                  viewBox="0 0 22 22"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12.165 9.21496C11.8953 9.21496 11.6462 9.38246 11.5046 9.62596L10.4611 11.3665C10.3303 11.5824 10.1032 11.7099 9.87758 11.7099C9.65193 11.7099 9.42482 11.5824 9.29406 11.3665L8.25056 9.62596C8.10996 9.38246 7.86093 9.21496 7.5912 9.21496C7.32148 9.21496 7.07245 9.38246 6.93084 9.62596L5.88733 11.3665C5.75656 11.5824 5.52946 11.7099 5.30381 11.7099C5.07816 11.7099 4.85105 11.5824 4.72029 11.3665L3.67678 9.62596C3.53618 9.38246 3.28715 9.21496 3.01743 9.21496C2.7477 9.21496 2.49868 9.38246 2.35707 9.62596C1.70127 10.6815 1.35218 12.0271 1.35218 13.3749C1.35218 14.7227 1.70127 16.0683 2.35707 17.1239C2.49868 17.3674 2.7477 17.5349 3.01743 17.5349C3.28715 17.5349 3.53618 17.3674 3.67678 17.1239L4.72029 15.3833C4.85105 15.1674 5.07816 15.0399 5.30381 15.0399C5.52946 15.0399 5.75656 15.1674 5.88733 15.3833L6.93084 17.1239C7.07245 17.3674 7.32148 17.5349 7.5912 17.5349C7.86093 17.5349 8.10996 17.3674 8.25056 17.1239L9.29406 15.3833C9.42482 15.1674 9.65193 15.0399 9.87758 15.0399C10.1032 15.0399 10.3303 15.1674 10.4611 15.3833L11.5046 17.1239C11.6462 17.3674 11.8953 17.5349 12.165 17.5349C12.4347 17.5349 12.6837 17.3674 12.8253 17.1239C13.4811 16.0683 13.8302 14.7227 13.8302 13.3749C13.8302 12.0271 13.4811 10.6815 12.8253 9.62596C12.6837 9.38246 12.4347 9.21496 12.165 9.21496Z"
-                  />
-                </svg>
+                <img src="/hide.svg" alt="hide" />
               ) : (
-                <svg
-                  className="fill-current"
-                  width="22"
-                  height="22"
-                  viewBox="0 0 22 22"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M9.5 7.5C7.01472 7.5 5 9.51472 5 12C5 14.4853 7.01472 16.5 9.5 16.5C11.9853 16.5 14 14.4853 14 12C14 9.51472 11.9853 7.5 9.5 7.5ZM7.5 12C7.5 10.6193 8.61929 9.5 10 9.5C11.3807 9.5 12.5 10.6193 12.5 12C12.5 13.3807 11.3807 14.5 10 14.5C8.61929 14.5 7.5 13.3807 7.5 12ZM20 12C20 12 16.5 18 10 18C3.5 18 0 12 0 12C0 12 3.5 6 10 6C16.5 6 20 12 20 12ZM10 8C6 8 3 12 3 12C3 12 6 16 10 16C14 16 17 12 17 12C17 12 14 8 10 8Z"
-                  />
-                </svg>
-              )}
+                <img src="/view.svg" alt="hide" />
+              )}{" "}
+              {/* Toggle text */}
             </span>
           </div>
         </div>
-        <div className="gap-2 mb-5 flex items-center">
+        <div className="mb-5 flex items-center gap-2">
           <input
             className="form-check-input"
             type="checkbox"
@@ -222,33 +201,49 @@ export default function SigninWithPassword() {
           >
             Remember me
           </label>
-            <Link
-              href="/forgot-password"
-              className="text-sm font-medium text-hBgColor hover:text-primary-dark ml-auto"
-            >
-              Forgot password?
-            </Link>
+          <Link
+            href="/forgot-password"
+            className="hover:text-primary-dark ml-auto text-sm font-medium text-hBgColor"
+          >
+            Forgot password?
+          </Link>
         </div>
 
-        
-    
-
-        {!loader ? <button onClick={(e) => handleAuth(e)} className=" py-3 mb-4 text-center text-sm font-medium text-black rounded  bg-gradient-to-r from-[#fbb90d] to-[#22ebff] w-full">
-          Sign In
-        </button>
-          :
-          <button disabled type="button" className=" py-3 mb-4 text-center text-sm font-medium text-black rounded  bg-gradient-to-r from-[#fbb90d] to-[#22ebff] w-full">
-            <svg aria-hidden="true" role="status" className="inline w-4 h-4 me-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB" />
-              <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor" />
+        {!loader ? (
+          <button
+            onClick={(e) => handleAuth(e)}
+            className=" mb-4 w-full rounded bg-gradient-to-r from-[#fbb90d] to-[#22ebff] py-3  text-center text-sm font-medium text-black"
+          >
+            Sign In
+          </button>
+        ) : (
+          <button
+            disabled
+            type="button"
+            className=" mb-4 w-full rounded bg-gradient-to-r from-[#fbb90d] to-[#22ebff] py-3  text-center text-sm font-medium text-black"
+          >
+            <svg
+              aria-hidden="true"
+              role="status"
+              className="me-3 inline h-4 w-4 animate-spin text-white"
+              viewBox="0 0 100 101"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                fill="#E5E7EB"
+              />
+              <path
+                d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                fill="currentColor"
+              />
             </svg>
             Loading...
-          </button>}
+          </button>
+        )}
       </form>
       <Toaster />
     </div>
   );
 }
-
-
-

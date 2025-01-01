@@ -49,7 +49,7 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
               <div className="grid sm:grid-cols-1 gap-4">
                 {/* Username Field */}
                 <div className="relative mb-2">
-                  <label htmlFor="username" className="text-sm text-gray-700 dark:text-gray-300">
+                  <label htmlFor="username" className="text-sm text-white dark:text-gray-300">
                     Username
                   </label>
                   <input
@@ -65,7 +65,7 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
 
                 {/* Mobile Number Field */}
                 <div className="relative mb-2">
-                  <label htmlFor="mobile" className="text-sm text-gray-700 dark:text-gray-300">
+                  <label htmlFor="mobile" className="text-sm text-white dark:text-gray-300">
                     Mobile Number
                   </label>
                   <input
@@ -86,7 +86,7 @@ const UserDetailsFormFirst = ({ userData }: { userData: UserProfile }) => {
           <div className="grid sm:grid-cols-1 gap-y-4">
             {/* Email Field */}
             <div className="relative mb-2">
-              <label htmlFor="email" className="text-sm text-gray-700 dark:text-gray-300">
+              <label htmlFor="email" className="text-sm text-white dark:text-gray-300">
                 Email
               </label>
               <input

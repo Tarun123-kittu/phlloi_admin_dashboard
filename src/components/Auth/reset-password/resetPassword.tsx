@@ -108,6 +108,7 @@ const ResetPassword = ({ email }: { email: string }) => {
                                 Loading...
                             </button>}
                     </div>
+                  
                 </form>
             </div>
         </div>

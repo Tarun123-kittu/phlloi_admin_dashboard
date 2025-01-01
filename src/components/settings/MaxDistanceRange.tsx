@@ -11,7 +11,7 @@ import './MaxDistance.css';
 
 const MaxDistanceRange = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const [maxDistance, setMaxDistance] = useState<number>(300);
+  const [maxDistance, setMaxDistance] = useState<number>(400);
   const [rangeValue, setRangeValue] = useState<number>(0);
 
   const debounceTimeout = useRef<NodeJS.Timeout | null>(null); 
@@ -72,7 +72,7 @@ const MaxDistanceRange = () => {
       >
        <p> Maximum Distance Range</p>
         <p className=" text-sm text-white dark:text-gray-300">
-        Selected Distance: {rangeValue} / {maxDistance} km
+        Selected Distance: {rangeValue} / {maxDistance} mi
       </p>
       </label>
       {maxDistanceData?.isLoading || updateMaxDistance?.isLoading ? (

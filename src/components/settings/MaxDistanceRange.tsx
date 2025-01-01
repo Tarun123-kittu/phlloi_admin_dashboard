@@ -79,13 +79,8 @@ const MaxDistanceRange = () => {
       >
         <p> Maximum Distance Range</p>
         <p className=" text-sm text-white dark:text-gray-300">
-<<<<<<< HEAD
         Selected Distance: {rangeValue} / {maxDistance} mi
       </p>
-=======
-          Selected Distance: {rangeValue} / {maxDistance} km
-        </p>
->>>>>>> a8fdf4f80d31d551db44d68c73d405f62d441ba0
       </label>
       <div className="flex gap-2 items-center">
         <input

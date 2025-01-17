@@ -129,10 +129,12 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, is
                   <input
                     type="password"
                     placeholder="••••••••"
-                    className="bg-cardBg mb-3 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    className="bg-cardBg  text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                   />
+                  <span className='text-white text-xs block mb-3 mt-1'>Password must contain atleast 8 chracter,including a number and letter
+                  </span>
                 </div>
                 <div className='mb-6'>
                   <label
@@ -144,7 +146,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, is
                   <input
                     type="password"
                     placeholder="••••••••"
-                    className="bg-cardBg mb-3 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    className="bg-cardBg mb-3 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                   />

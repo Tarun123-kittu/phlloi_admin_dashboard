@@ -35,7 +35,7 @@ const TableOne = () => {
               Room Image
             </h5>
           </div>
-          <div className="px-2 pb-3.5 text-center">
+          <div className="px-2 pb-3.5 ">
             <h5 className="text-sm text-white font-medium uppercase xsm:text-base">
               Name
             </h5>
@@ -57,14 +57,14 @@ const TableOne = () => {
           >
             <div className="flex items-center justify-between gap-5 px-2 py-4">
               <div className="flex-shrink-0">
-                <img src={room.image} className="rounded-2xl" alt="Brand" width={48} height={48} />
+                <img src={room.image} className="rounded object-cover h-12 w-12" alt="Brand" width={48} height={48} />
               </div>
               {/* <p className="hidden font-medium text-white dark:text-white sm:block">
                 {room.room}
               </p> */}
             </div>
 
-            <div className="flex items-center justify-center px-2 py-4">
+            <div className="flex items-center justify-start px-2 py-4">
               <p className="font-medium text-white dark:text-white">
                 {room.room}
               </p>

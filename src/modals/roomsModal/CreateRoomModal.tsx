@@ -14,9 +14,9 @@ interface CreateRoomProps {
 
 const CreateRoomModal: React.FC<CreateRoomProps> = ({setIsOpen,isOpen}) => {
   const dispatch = useDispatch<AppDispatch>();
-  const [image, setImage] = useState<string>("https://via.placeholder.com/100");
+  const [image, setImage] = useState<string>("https://media.istockphoto.com/id/1222357475/vector/image-preview-icon-picture-placeholder-for-website-or-ui-ux-design-vector-illustration.jpg?s=612x612&w=0&k=20&c=KuCo-dRBYV7nz2gbk4J9w1WtTAgpTdznHu55W9FjimE=");
   const [text, setText] = useState<string>("");
-  const [saveImage,setSaveImage] = useState<string>("https://via.placeholder.com/100")
+  const [saveImage,setSaveImage] = useState<string>("https://media.istockphoto.com/id/1222357475/vector/image-preview-icon-picture-placeholder-for-website-or-ui-ux-design-vector-illustration.jpg?s=612x612&w=0&k=20&c=KuCo-dRBYV7nz2gbk4J9w1WtTAgpTdznHu55W9FjimE=")
   const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
 
   const is_room_created = useSelector((state:RootState) => state.ADD_ROOM)
@@ -31,7 +31,7 @@ const CreateRoomModal: React.FC<CreateRoomProps> = ({setIsOpen,isOpen}) => {
       };
       reader.readAsDataURL(file);
     } else {
-      setImage("https://via.placeholder.com/100"); // Default placeholder
+      setImage("https://media.istockphoto.com/id/1222357475/vector/image-preview-icon-picture-placeholder-for-website-or-ui-ux-design-vector-illustration.jpg?s=612x612&w=0&k=20&c=KuCo-dRBYV7nz2gbk4J9w1WtTAgpTdznHu55W9FjimE="); // Default placeholder
     }
   };
 

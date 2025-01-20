@@ -103,7 +103,7 @@ const CreatePagesModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, isOpe
                     aria-hidden="true"
                     className="fixed inset-0 z-999 flex items-center justify-center  bg-gray-900 bg-opacity-50"
                 >
-                                         <div className=" bg-black rounded-lg shadow dark:bg-gray-700 p-1 scroll-smooth overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200" style={{maxHeight:"98vh"}}>
+                                         <div className=" bg-black rounded-lg shadow dark:bg-gray-700 p-1 scroll-smooth overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200" style={{maxHeight:"98vh",maxWidth:'750px',width:"100%"}}>
 
                         <div className="relative  rounded-lg shadow dark:bg-gray-700 p-8">
                             <div className='justify-between flex'>
@@ -176,7 +176,9 @@ const CreatePagesModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, isOpe
                                             className="bg-black text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         />
                                     </div> */}
-                                    <TextEditor setTextList={setTextList} index={index} />
+                                  <div className='text-white'>
+                                  <TextEditor setTextList={setTextList} index={index}/>
+                                  </div>
                                 </div>
                             ))}
                            <div className='flex gap-3'> 

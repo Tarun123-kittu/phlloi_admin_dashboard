@@ -180,7 +180,7 @@ if(update_section_data?.isSuccess){
                     {section_details?.isSuccess && <div className="">
                         {isOpenDeleteModal && <DeleteModal isModalOpen={isOpenDeleteModal} setIsModalOpen={setIsOpenDeleteModal} handleDelete={deletePages} />}
                         {isOpenDeleteSelectionModal && <DeleteModal isModalOpen={isOpenDeleteSelectionModal} setIsModalOpen={setIsOpenDeleteSelectionModal} handleDelete={deleteSection} />}
-                     <div className=" bg-cardBg rounded-lg shadow dark:bg-gray-700 p-8 scroll-smooth overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200" style={{maxHeight:"98vh",maxWidth:"750px"}}>
+                     <div className=" bg-cardBg rounded-lg shadow dark:bg-gray-700 p-8 scroll-smooth overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200" style={{maxHeight:"98vh",maxWidth:"750px",width:"100%"}}>
                            <div className='flex justify-between'>
 
                             <h1 className='font-medium text-2xl text-white mb-3'>Edit Section</h1>
@@ -239,7 +239,10 @@ if(update_section_data?.isSuccess){
                                             className="bg-black text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         />
                                     </div>
+                                    <div className='text-white'>
+
                                     <EditTextEditor setTextList={setTextList} index={index} textList={textList} disable={false}/>
+                                    </div>
                                 </div>
                             ))}
                          <div className='flex gap-3'> 

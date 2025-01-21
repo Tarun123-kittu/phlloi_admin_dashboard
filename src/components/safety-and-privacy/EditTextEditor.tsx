@@ -8,7 +8,7 @@ interface PagesArray {
   content: string;
   slug: string;
   sectionId: string;
-  _id: string;
+  _id?: string | undefined;
 }
 
 interface EditTextEditorProps {

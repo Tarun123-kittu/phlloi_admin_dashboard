@@ -3,7 +3,7 @@ import { API_CONFIG } from "../../../../src/config/app_config";
 
 interface PagesList {
     sectionId: string,
-    _id: string;
+    _id?: string | undefined;
     title: string;
     content: string;
     slug: string;

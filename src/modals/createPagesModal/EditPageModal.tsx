@@ -21,7 +21,7 @@ interface ChangePasswordModalProps {
 
 interface PagesArray {
     sectionId: string,
-    _id: string;
+    _id?: string | undefined;
     title: string;
     content: string;
     slug: string;
@@ -90,19 +90,32 @@ const EditPagesModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, isOpen,
     };
 
     const handleSave = (e: React.FormEvent) => {
-        e.preventDefault()
-        for (let i = 0; i < textList?.length; i++) {
-            if (textList[i].title === "") {
-                toast.error("Title are required to create new page")
-                return
+        e.preventDefault();
+    
+        // Remove the _id field from any object where _id === ""
+        const updatedTextList:PagesArray[] = textList.map((item) => {
+            if (item._id === "") {
+                const { _id, ...rest } = item; // Destructure to remove _id field
+                return { ...rest, _id: undefined }; // Add _id as undefined
             }
-            if (textList[i].content === "") {
-                toast.error("Content are required to create new page")
-                return
+            return item;
+        });
+    
+        // Validate the updated list
+        for (let i = 0; i < updatedTextList.length; i++) {
+            if (updatedTextList[i].title === "") {
+                toast.error("Title is required to create a new page");
+                return;
+            }
+            if (updatedTextList[i].content === "") {
+                toast.error("Content is required to create a new page");
+                return;
             }
         }
-        dispatch(update_section({ sectionId: sectionId, section: sectionName, pages: textList }))
-    }
+    
+        // Dispatch the action with the updated list
+        dispatch(update_section({ sectionId, section: sectionName, pages: updatedTextList }));
+    };s
 
     useEffect(() => {
         if (section_details?.isSuccess) {

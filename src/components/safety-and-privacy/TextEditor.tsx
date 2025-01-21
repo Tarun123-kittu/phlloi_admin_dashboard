@@ -41,7 +41,7 @@ const RichTextExample: React.FC<RichTextExampleProps> = ({ setTextList, index })
         onChange={handleEditorChange}
         modules={{
           toolbar: [
-            [{ header: "1" }, { header: "2" }, { font: [] }],
+            [{ header: "1" }, { header: "2" }],
             [{ list: "ordered" }, { list: "bullet" }],
             [{ align: [] }],
             ["bold", "italic", "underline", "strike"],
@@ -51,6 +51,8 @@ const RichTextExample: React.FC<RichTextExampleProps> = ({ setTextList, index })
             [{ script: "sub" }, { script: "super" }], // Subscript and superscript
             [{ indent: "-1" }, { indent: "+1" }], // Indentation buttons
             [{ direction: "rtl" }], // Right-to-left text direction
+            [{ 'font': [] }],
+            [{ 'size': ['small', false, 'large', 'huge'] }],
           ],
         }}
         theme="snow" // Use the default snow theme

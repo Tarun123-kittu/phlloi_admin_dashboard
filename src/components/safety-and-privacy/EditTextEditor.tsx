@@ -52,8 +52,8 @@ const RichTextExample: React.FC<EditTextEditorProps> = ({
     [{ 'list': 'ordered' }, { 'list': 'bullet' }],
     ['bold', 'italic', 'underline', 'strike'],
     [{ 'align': [] }],
-    ['link', 'image', 'video'],
-    [{ 'color': [] }, { 'background': [] }],
+    ['link'],
+    [{ color: ["#edb524", "#FFFFFF", "#000000", "#808080", "#D3D3D3", "#A9A9A9", "#FF0000", "#008000", "#0000FF", "#FFFF00", "#00FFFF", "#FF00FF", "#F08080", "#CD5C5C", "#DC143C", "#8B0000", "#90EE90", "#00FF00", "#228B22", "#006400", "#87CEEB", "#1E90FF", "#4169E1", "#000080", "#FFFFE0", "#FFD700", "#DAA520", "#B8860B", "#FFA500", "#FF8C00", "#FF7F50", "#FF6347", "#E6E6FA", "#DA70D6", "#9370DB", "#9400D3", "#F5F5DC", "#DEB887", "#8B4513", "#D2691E", "#D2B48C", "#FFFFF0", "#F0E68C"] }, { background: ["#edb524", "#FFFFFF", "#000000", "#808080", "#D3D3D3", "#A9A9A9", "#FF0000", "#008000", "#0000FF", "#FFFF00", "#00FFFF", "#FF00FF", "#F08080", "#CD5C5C", "#DC143C", "#8B0000", "#90EE90", "#00FF00", "#228B22", "#006400", "#87CEEB", "#1E90FF", "#4169E1", "#000080", "#FFFFE0", "#FFD700", "#DAA520", "#B8860B", "#FFA500", "#FF8C00", "#FF7F50", "#FF6347", "#E6E6FA", "#DA70D6", "#9370DB", "#9400D3", "#F5F5DC", "#DEB887", "#8B4513", "#D2691E", "#D2B48C", "#FFFFF0", "#F0E68C"] }],
     [{ 'font': [] }],
     [{ 'size': ['small', false, 'large', 'huge'] }],
   ];

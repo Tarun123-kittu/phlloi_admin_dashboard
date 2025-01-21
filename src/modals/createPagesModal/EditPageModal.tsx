@@ -115,7 +115,7 @@ const EditPagesModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, isOpen,
     
         // Dispatch the action with the updated list
         dispatch(update_section({ sectionId, section: sectionName, pages: updatedTextList }));
-    };s
+    };
 
     useEffect(() => {
         if (section_details?.isSuccess) {

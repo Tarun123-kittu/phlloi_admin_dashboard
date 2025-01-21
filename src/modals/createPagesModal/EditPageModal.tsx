@@ -96,10 +96,6 @@ const EditPagesModal: React.FC<ChangePasswordModalProps> = ({ setIsOpen, isOpen,
                 toast.error("Title are required to create new page")
                 return
             }
-            if (textList[i].slug === "") {
-                toast.error("Slug are required to create new page")
-                return
-            }
             if (textList[i].content === "") {
                 toast.error("Content are required to create new page")
                 return

@@ -141,10 +141,10 @@ const EstablishmentList = () => {
                                 <th className="min-w-[220px] border-[#fdfdfd3d] border-b px-4  py-4 font-medium text-white dark:text-white xl:pl-7.5 text-sm">
                                     Establishment Name
                                 </th>
-                                <th className="min-w-[120px] border-[#fdfdfd3d] border-b px-4  py-4 font-medium text-white dark:text-white text-sm">
+                                {/* <th className="min-w-[120px] border-[#fdfdfd3d] border-b px-4  py-4 font-medium text-white dark:text-white text-sm">
                                     Establishment Type
 
-                                </th>
+                                </th> */}
                                 <th className="min-w-[120px] border-[#fdfdfd3d] border-b px-4  py-4 font-medium text-white dark:text-white text-sm">
                                     Country
                                 </th>
@@ -167,9 +167,9 @@ const EstablishmentList = () => {
                                     <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 border-b">
                                         <h5 className="text-white dark:text-white text-xs">{data?.establishmentName}</h5>
                                     </td>
-                                    <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b">
+                                    {/* <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b">
                                         <p className="text-white dark:text-white text-xs">{data?.establishmentType}</p>
-                                    </td>
+                                    </td> */}
                                     <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b">
                                         <p className="text-white dark:text-white text-xs">{data?.address?.country}</p>
                                     </td>

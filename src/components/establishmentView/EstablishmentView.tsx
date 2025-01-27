@@ -99,7 +99,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
 
     return (
         <div className="mx-auto  w-full">
-             <h1 className='font-bold text-xl text-white grow flex gap-2'><img onClick={() => router.push("/establishment-verification")} src="https://img.icons8.com/?size=100&id=AO1h97ca7e0A&format=png&color=FFFFFF" alt="back button" width={30} height={30} style={{ cursor: "pointer" }} />Establishments</h1>
+            <h1 className='font-bold text-xl text-white grow flex gap-2'><img onClick={() => router.push("/establishment-verification")} src="https://img.icons8.com/?size=100&id=AO1h97ca7e0A&format=png&color=FFFFFF" alt="back button" width={30} height={30} style={{ cursor: "pointer" }} />Establishments</h1>
             <div className="flex bg-cardBg mt-4">
                 <div className="p-6 flex-grow border-r">
                     <div className="flex gap-3">
@@ -236,14 +236,14 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                             {data?.why_want_phloi}
                         </p>
                     </div>
-                    {data?.atmosphere_description && <div className="info mb-4">
+                    {data?.atmosphere_description ? <div className="info mb-4">
                         <label className="mb-2 block text-white">
-                        Please describe your atmosphere in great detail.
+                            Please describe your atmosphere in great detail.
                         </label>
                         <p className="mt-2.5 rounded-md bg-black p-4 text-[#c8c8d099]">
                             {data?.atmosphere_description}
                         </p>
-                    </div>}
+                    </div> : null}
                     <div className="info mb-4">
                         <label className="mb-2 block text-white">
                             What makes your restaurant unique?

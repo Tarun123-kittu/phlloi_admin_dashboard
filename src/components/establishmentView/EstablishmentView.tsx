@@ -135,7 +135,8 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                                 {data?.address?.streetAddress}
                             </span>
                         </div>
-                        <div className="relative inline-block" ref={dropdownRef}>
+                        <div className="relative inline-block flex gap-2 items-center" ref={dropdownRef}>
+                            <p className="text-white text-sm">Verification Status</p>
                             <button
                                 id="dropdownDefaultButton"
                                 onClick={toggleDropdown}

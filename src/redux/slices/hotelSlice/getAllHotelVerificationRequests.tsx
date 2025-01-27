@@ -53,7 +53,7 @@ const initialState: HotelState = {
 
 export const get_all_hotel_verification_requests = createAsyncThunk(
     "hotel/get_all_hotel_verification_requests",
-    async ({ showVerifiedHotel, page }: { showVerifiedHotel: boolean, page: number }, thunkAPI) => { // Accepting object with the showVerifiedHotel and page fields
+    async ({ showVerifiedHotel, page }: { showVerifiedHotel: boolean | null, page: number }, thunkAPI) => { // Accepting object with the showVerifiedHotel and page fields
         try {
             const myHeaders = new Headers();
             myHeaders.append("Authorization", "Bearer " + localStorage.getItem('phloii_token'));

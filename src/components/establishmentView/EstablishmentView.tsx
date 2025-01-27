@@ -236,14 +236,14 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                             {data?.why_want_phloi}
                         </p>
                     </div>
-                    {data?.atmosphere_description ? <div className="info mb-4">
+                    <div className="info mb-4">
                         <label className="mb-2 block text-white">
                             Please describe your atmosphere in great detail.
                         </label>
                         <p className="mt-2.5 rounded-md bg-black p-4 text-[#c8c8d099]">
                             {data?.atmosphere_description}
                         </p>
-                    </div> : null}
+                    </div>
                     <div className="info mb-4">
                         <label className="mb-2 block text-white">
                             What makes your restaurant unique?

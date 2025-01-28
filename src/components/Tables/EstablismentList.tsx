@@ -63,8 +63,20 @@ const EstablishmentList = () => {
   return (
     <div>
 
-      <div className='flex justify-end mb-3'>
-        <div className="relative" ref={dropdownRef}>
+      <div className='flex justify-end mb-3 gap-2'>
+        <div className="flex items-center mb-4">
+          <input id="default-radio-1" type="radio" checked={showVerifiedHotel === null} onChange={() => setShowVerifiedHotel(null)} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300  dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600" />
+          <label htmlFor="default-radio-1" className="ms-2 text-sm font-medium text-white dark:text-white">Pending</label>
+        </div>
+        <div className="flex items-center mb-4">
+          <input id="default-radio-1" type="radio" checked={showVerifiedHotel ? true : false} onChange={() => setShowVerifiedHotel(true)} name="default-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300  dark:focus:ring-blue-600 dark:ring-offset-gray-800  dark:bg-gray-700 dark:border-gray-600" />
+          <label htmlFor="default-radio-1" className="ms-2 text-sm font-medium text-white dark:text-white">Approved</label>
+        </div>
+        <div className="flex items-center mb-4">
+          <input id="default-radio-1" type="radio" checked={showVerifiedHotel === null ? false : showVerifiedHotel === false ? true : false} onChange={() => setShowVerifiedHotel(false)} name="default-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300  dark:focus:ring-blue-600 dark:ring-offset-gray-800  dark:bg-gray-700 dark:border-gray-600" />
+          <label htmlFor="default-radio-1" className="ms-2 text-sm font-medium text-white dark:text-gray-white">Rejected</label>
+        </div>
+        {/* <div className="relative" ref={dropdownRef}>
           <button
             id="dropdownCheckboxButton"
             onClick={toggleDropdown}
@@ -135,7 +147,7 @@ const EstablishmentList = () => {
               </li>
             </ul>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="rounded-[10px] bg-cardBg p-2 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">

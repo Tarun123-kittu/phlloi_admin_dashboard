@@ -245,6 +245,22 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                             {data?.atmosphere_description}
                         </p>
                     </div>
+                    {data?.food && <div className="info mb-4">
+                        <label className="mb-2 block text-white">
+                            Please explain what kind of food you serve (if you serve food)
+                        </label>
+                        <p className="mt-2.5 rounded-md bg-black p-4 text-[#c8c8d099]">
+                            {data?.food}
+                        </p>
+                    </div>}
+                    {data?.additional_information && <div className="info mb-4">
+                        <label className="mb-2 block text-white">
+                            Additional Information (Optional)
+                        </label>
+                        <p className="mt-2.5 rounded-md bg-black p-4 text-[#c8c8d099]">
+                            {data?.additional_information}
+                        </p>
+                    </div>}
                     <div className="info mb-4">
                         <label className="mb-2 block text-white">
                             What makes your restaurant unique?

@@ -63,32 +63,6 @@ const DropdownUser = () => {
         <div
           className={`absolute right-0 mt-3 flex w-[210px] flex-col rounded-lg border-[0.5px] border-stroke bg-cardBg shadow-default dark:border-dark-3 dark:bg-gray-dark`}
         >
-          {/* <div className="flex items-center gap-2.5 px-5 pb-5.5 pt-3.5">
-            <span className="relative block h-12 w-12 rounded-full flex-grow-0 flex-shrink-0">
-              <Image
-                width={112}
-                height={112}
-                src="/images/user/user-03.png"
-                style={{
-                  width: "auto",
-                  height: "auto",
-                }}
-                alt="User"
-                className="overflow-hidden rounded-full"
-              />
-
-              <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-green dark:border-gray-dark"></span>
-            </span>
-
-            <span className="block">
-              <span className="block font text-white dark:text-white text-sm">
-              {localStorage.getItem('username')}
-              </span>
-              <span className="block font text-white break-all	text-sm dark:text-dark-6">
-              {localStorage.getItem('email')}
-              </span>
-            </span>
-          </div> */}
           <div className="">
             <button onClick={() => setIsOpen(true)} className="flex w-full items-center gap-2.5 rounded-[7px] p-2.5 text-sm font-normal text-white  duration-300 ease-in-out  dark:text-dark-6 dark:hover:bg-dark-3 dark:hover:text-white ">
             <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -184,48 +184,43 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                         </div>
                     </div>
                     <ul className="mb-5 mt-4 flex justify-between text-white gap-3">
-                        <li>
+                        {/* <li>
                             <span className="block text-[13px]">Establishment Type</span>
                             <strong className="text-[14px] mb-3 block font-semibold">
                                 {data?.establishmentType}
                             </strong>
-                            {/* <span className="block text-[13px]">Food</span>
+                            <span className="block text-[13px]">Food</span>
                             <strong className="text-[14px] font-semibold">
                                 {data?.food?.join(", ")}
-                            </strong> */}
+                            </strong>
 
-                        </li>
+                        </li> */}
                         <li>
                             <span className="block text-[13px]">Country</span>
                             <strong className="text-[14px] font-semibold mb-3 block">
                                 {data?.address?.country}
                             </strong>
-                            {/* <span className="block text-[13px]">Atmosphere</span>
-                            <strong className="text-[14px] font-semibold">
-                                {data?.atmosphere?.join(", ")}
-                            </strong> */}
+                            <span className="block text-[13px]">City</span>
+                            <strong className="text-[14px] font-semibold">{data?.address?.city}</strong>
                         </li>
                         <li>
                             <span className="block text-[13px]">State</span>
                             <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.state}</strong>
 
-                            {/* <span className="block text-[13px]">Services</span>
-                            <strong className="text-[14px] font-semibold">{data?.services?.join(", ")}</strong> */}
+                            <span className="block text-[13px]">Timings</span>
+                            <strong className="text-[14px] font-semibold">{formatTime(data?.openCloseTimings?.open)} - {formatTime(data?.openCloseTimings?.close)}</strong>
 
                         </li>
                         <li>
                             <span className="block text-[13px]">Pin/Zip Code</span>
                             <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.pinCode}</strong>
 
-                            <span className="block text-[13px]">Timings</span>
-                            <strong className="text-[14px] font-semibold">{formatTime(data?.openCloseTimings?.open)} - {formatTime(data?.openCloseTimings?.close)}</strong>
+                            <span className="block text-[13px]">Coustmer Service Number</span>
+                            <strong className="text-[14px] font-semibold">{data?.customerServiceNumber}</strong>
                         </li>
                         <li>
                             <span className="block text-[13px]">Suite/Unit Number</span>
                             <strong className="text-[14px] font-semibold mb-3 block">{data?.address?.suiteUnitNumber}</strong>
-
-                            <span className="block text-[13px]">Coustmer Service Number</span>
-                            <strong className="text-[14px] font-semibold">{data?.customerServiceNumber}</strong>
                         </li>
                     </ul>
 

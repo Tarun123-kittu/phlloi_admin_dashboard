@@ -60,14 +60,14 @@ const ChartThree: React.FC = () => {
               showAlways: true,
               label: "Users",
               fontSize: "16px",
-              fontWeight: "400",
+              fontWeight: "900",
               color:"#fff"
             },
             value: {
               show: true,
               fontSize: "28px",
               fontWeight: "bold",
-              color:"#ffffff"
+              color:"#ffffff",
             },
           },
         },

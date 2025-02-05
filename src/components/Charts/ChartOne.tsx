@@ -173,14 +173,14 @@ const ChartOne: React.FC = () => {
         </div>
       </div>
 
-      <div className="text-center">
+      {/* <div className="text-center">
         <div className="  xsm:w-1/2  mx-auto">
           <p className="font-medium">Total Users</p>
           <h4 className="mt-1 text-xl font-bold text-white dark:text-white">
             <span>{total}</span>
           </h4>
         </div>
-      </div>
+      </div> */}
 
     </div>
   );

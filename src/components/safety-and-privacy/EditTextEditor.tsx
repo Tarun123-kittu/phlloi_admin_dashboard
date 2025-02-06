@@ -15,7 +15,7 @@ interface EditTextEditorProps {
   setTextList: React.Dispatch<React.SetStateAction<PagesArray[]>>;
   index: number;
   textList: PagesArray[];
-  disable: boolean
+  disable?: boolean
 }
 
 const RichTextExample: React.FC<EditTextEditorProps> = ({

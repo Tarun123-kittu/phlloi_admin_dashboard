@@ -16,7 +16,6 @@ const AllPagesList = () => {
     const router = useRouter()
     const [isOpen, setIsOpen] = useState(false)
     const [sectionId, setSectionId] = useState<string>("")
-    console.log(sectionId,"this is section id")
     const [editModalOpen, setEditModalOpen] = useState<boolean>(false)
     const [isOpenDeleteSelectionModal, setIsOpenDeleteSelectionModal] = useState<boolean>(false)
     const all_pages_list = useSelector((state: RootState) => state.ALL_SECTIONS);
@@ -104,22 +103,12 @@ const AllPagesList = () => {
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                                 </svg>
                                             </div>
-                                            <div title="Edit section" className='cursor-pointer'
-                                                onClick={() => { setSectionId(pages_list?._id); setEditModalOpen(true) }}>
-                                               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.06 6L12 6.94L2.92 16H2V15.08L11.06 6ZM14.66 0C14.41 0 14.15 0.1 13.96 0.29L12.13 2.12L15.88 5.87L17.71 4.04C18.1 3.65 18.1 3 17.71 2.63L15.37 0.29C15.17 0.09 14.92 0 14.66 0ZM11.06 3.19L0 14.25V18H3.75L14.81 6.94L11.06 3.19Z" fill="#666C78"/>
-                                                </svg>
-
-
-                                            </div>
                                             <div title="Delete Section"
-                                            className='cursor-pointer'
-                                                onClick={() => {handleDeleteSection();setSectionId(pages_list?._id)}}>
-                                               <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M1 5H17M7 9V15M11 9V15M2 5L3 17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19H13C13.5304 19 14.0391 18.7893 14.4142 18.4142C14.7893 18.0391 15 17.5304 15 17L16 5M6 5V2C6 1.73478 6.10536 1.48043 6.29289 1.29289C6.48043 1.10536 6.73478 1 7 1H11C11.2652 1 11.5196 1.10536 11.7071 1.29289C11.8946 1.48043 12 1.73478 12 2V5" stroke="#666C78" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-
-
+                                                className='cursor-pointer'
+                                                onClick={() => { handleDeleteSection(); setSectionId(pages_list?._id) }}>
+                                                <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M1 5H17M7 9V15M11 9V15M2 5L3 17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19H13C13.5304 19 14.0391 18.7893 14.4142 18.4142C14.7893 18.0391 15 17.5304 15 17L16 5M6 5V2C6 1.73478 6.10536 1.48043 6.29289 1.29289C6.48043 1.10536 6.73478 1 7 1H11C11.2652 1 11.5196 1.10536 11.7071 1.29289C11.8946 1.48043 12 1.73478 12 2V5" stroke="#666C78" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
                                             </div>
                                         </div>
 

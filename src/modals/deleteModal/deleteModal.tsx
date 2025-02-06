@@ -1,19 +1,24 @@
+'use client'
+
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation'
 
 interface ChangePasswordModalProps {
     setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
     isModalOpen: boolean;
-    handleDelete : () => void
+    handleDelete: () => void
 }
 
-const DeleteModal: React.FC<ChangePasswordModalProps> = ({ isModalOpen, setIsModalOpen,handleDelete }) => {
+const DeleteModal: React.FC<ChangePasswordModalProps> = ({ isModalOpen, setIsModalOpen, handleDelete }) => {
+    const pathname = usePathname()
+    console.log(pathname,"this is the router pathname")
     const openModal = () => {
         setIsModalOpen(true);
     };
     const closeModal = () => {
         setIsModalOpen(false);
     };
- 
+
 
     return (
         <div>
@@ -27,7 +32,7 @@ const DeleteModal: React.FC<ChangePasswordModalProps> = ({ isModalOpen, setIsMod
                 >
                     <div className="fixed inset-0 bg-red-500/74 transition-opacity " aria-hidden="true" ></div>
 
-                    <div className="fixed inset-0 flex items-center justify-center  w-full h-full overflow-y-auto z-99999" style={{background:"rgba(152, 152, 152, 0.6)"}}>
+                    <div className="fixed inset-0 flex items-center justify-center  w-full h-full overflow-y-auto z-99999" style={{ background: "rgba(152, 152, 152, 0.6)" }}>
                         <div className="flex justify-center items-center p-4 text-center sm:p-0">
                             <div className="relative transform overflow-hidden rounded-lg bg-cardBg text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                                 <div className=" px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
@@ -38,7 +43,7 @@ const DeleteModal: React.FC<ChangePasswordModalProps> = ({ isModalOpen, setIsMod
                                             </svg>
                                         </div> */}
                                         <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                                            <h2 className="text-white text-center" id="modal-title">Delete Page</h2>
+                                            <h2 className="text-white text-center" id="modal-title">{pathname === "/users" ? "Delete User" : "Delete Page"}</h2>
                                             <div className="mt-2">
                                                 <p className="text-sm text-white">Are you sure you want to Delete</p>
                                             </div>
@@ -46,7 +51,7 @@ const DeleteModal: React.FC<ChangePasswordModalProps> = ({ isModalOpen, setIsMod
                                     </div>
                                 </div>
                                 <div className=" px-4 py-3 flex gap-4 sm:px-6">
-                                <button
+                                    <button
                                         type="button"
                                         onClick={() => setIsModalOpen(false)}
                                         className="mt-3 w-full justify-center rounded-lg border  border-gray-300 shadow-sm px-4 py-2 bg-cardBg text-sm font-normal text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:mt-0 sm:ml-3 "
@@ -60,7 +65,7 @@ const DeleteModal: React.FC<ChangePasswordModalProps> = ({ isModalOpen, setIsMod
                                     >
                                         Delete
                                     </button>
-                                   
+
                                 </div>
                             </div>
                         </div>

@@ -3,10 +3,11 @@ import UserFilter from "../filters/userFilter";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux";
-import { UsersList,clear_all_user_state } from "../../redux/slices/userSlice/userListSlice";
+import { UsersList, clear_all_user_state } from "../../redux/slices/userSlice/userListSlice";
 import Pagination from "../pagination/pagination";
 import Loader from "../loader/Loader";
 import { useRouter } from "next/navigation";
+import DeleteModal from "@/modals/deleteModal/deleteModal";
 
 export interface Pagination {
   currentPage: number;
@@ -42,10 +43,12 @@ const TableThree = () => {
   const [gender, setGender] = useState<string>("");
   const [isSearched, setIsSearched] = useState<boolean>(false);
   const [userdata, setUserData] = useState<any>();
+  const [userId, setUserId] = useState<string>("")
+  const [isOpenDeleteSelectionModal, setIsOpenDeleteSelectionModal] = useState<boolean>(false)
   // console.log(userdata,"this is the data")
   const router = useRouter();
   useEffect(() => {
-    dispatch(UsersList({ page,verified: verified ?? undefined, gender, username }));
+    dispatch(UsersList({ page, verified: verified ?? undefined, gender, username }));
   }, [page]);
 
   const usersData = useSelector((state: RootState) => state.USERLIST);
@@ -71,7 +74,7 @@ const TableThree = () => {
     setVerified(null);
     setUsername("");
     setGender("");
-    dispatch(UsersList({ page:1 }));
+    dispatch(UsersList({ page: 1 }));
   };
 
   useEffect(() => {
@@ -79,6 +82,15 @@ const TableThree = () => {
       setUserData(usersData)
     }
   }, [usersData]);
+
+  const handleDeleteSection = () => {
+    setIsOpenDeleteSelectionModal(true)
+  }
+
+
+  const deleteUser = () => {
+    // dispatch(delete_section({ id: sectionId }))
+  }
 
   return (
     <>
@@ -123,7 +135,7 @@ const TableThree = () => {
               </tr>
             </thead>
             <tbody>
-              
+
               {usersData?.isLoading ? (
                 <td className={`${userdata?.users?.pagination?.totalPages > 1 ? "h-screen" : "h-40"} relative min-h-screen	`} colSpan={7}>
                   <Loader />
@@ -205,6 +217,33 @@ const TableThree = () => {
                           />
                         </svg>
                       </td>
+                      <td>
+                        <div
+                          title="Delete Section"
+                          className="cursor-pointer"
+                          onClick={() => {
+                            handleDeleteSection();
+                            setUserId(data?._id);
+                          }}
+                        >
+                          <svg
+                            width="18"
+                            height="20"
+                            viewBox="0 0 18 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M1 5H17M7 9V15M11 9V15M2 5L3 17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19H13C13.5304 19 14.0391 18.7893 14.4142 18.4142C14.7893 18.0391 15 17.5304 15 17L16 5M6 5V2C6 1.73478 6.10536 1.48043 6.29289 1.29289C6.48043 1.10536 6.73478 1 7 1H11C11.2652 1 11.5196 1.10536 11.7071 1.29289C11.8946 1.48043 12 1.73478 12 2V5"
+                              stroke="#666C78"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </div>
+                      </td>
+
                     </tr>
                   ),
                 )
@@ -220,7 +259,8 @@ const TableThree = () => {
               />
             )}
         </div>
-      </div>
+        {isOpenDeleteSelectionModal && <DeleteModal isModalOpen={isOpenDeleteSelectionModal} setIsModalOpen={setIsOpenDeleteSelectionModal} handleDelete={deleteUser} />}
+      </div >
     </>
   );
 };

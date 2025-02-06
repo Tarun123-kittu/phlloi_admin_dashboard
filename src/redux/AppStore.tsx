@@ -28,6 +28,8 @@ import hotelSlice from "./slices/hotelSlice/getAllHotelVerificationRequests"
 import getSelectedHotelDetailsSlice from "./slices/hotelSlice/getSelectedHotelDetails"
 import verifyHotelState from "./slices/hotelSlice/verifyHotel"
 import getSlugDetails from "./slices/pagesSlice/getSlugDetails"
+import DeleteAppUser from "./slices/userSlice/deleteUserSlice"
+import DeleteEstablishment from "./slices/hotelSlice/deleteEstablishmentSlice"
 
 export const store = configureStore({
   reducer: {
@@ -59,7 +61,9 @@ export const store = configureStore({
     ALL_VARIFICATION_HOTELS: hotelSlice,
     SELECTED_HOTEL_DETAILS: getSelectedHotelDetailsSlice,
     VERIFY_HOTEl: verifyHotelState,
-    SLUG_DETAILS:getSlugDetails
+    SLUG_DETAILS: getSlugDetails,
+    DELETE_APP_USER: DeleteAppUser,
+    DELETE_ESTABLISHMENT: DeleteEstablishment
   },
 });
 

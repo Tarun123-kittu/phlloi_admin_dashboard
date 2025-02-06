@@ -7,7 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux";
 import { useRouter } from "next/navigation";
 import { get_all_hotel_verification_requests, clear_hotel_varification_details_state } from '@/redux/slices/hotelSlice/getAllHotelVerificationRequests'
-
+import DeleteModal from '@/modals/deleteModal/deleteModal'
+import { delete_establishment, clear_deleted_establishment_state } from '@/redux/slices/hotelSlice/deleteEstablishmentSlice'
+import toast from 'react-hot-toast'
 
 
 const EstablishmentList = () => {
@@ -15,8 +17,11 @@ const EstablishmentList = () => {
   const [page, setPage] = useState<number>(1);
   const [data, setData] = useState([])
   const [showVerifiedHotel, setShowVerifiedHotel] = useState<boolean | null>(null);
+  const [establishmentId, setEstablishmentId] = useState<string>("")
+  const [isOpenDeleteSelectionModal, setIsOpenDeleteSelectionModal] = useState<boolean>(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const is_establishment_deleted = useSelector((store: RootState) => store.DELETE_ESTABLISHMENT)
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
@@ -37,13 +42,13 @@ const EstablishmentList = () => {
   const router = useRouter()
 
   const verification_hotel_requests = useSelector((state: RootState) => state.ALL_VARIFICATION_HOTELS);
-  console.log(verification_hotel_requests)
 
   useEffect(() => {
     dispatch(get_all_hotel_verification_requests({
       showVerifiedHotel: showVerifiedHotel,
       page
     }));
+    dispatch(clear_deleted_establishment_state())
   }, [page, showVerifiedHotel]);
 
 
@@ -56,9 +61,33 @@ const EstablishmentList = () => {
   useEffect(() => {
     if (verification_hotel_requests.isSuccess && verification_hotel_requests.hotels) {
       const allRequests: any = verification_hotel_requests.hotels.requests;
-      setData(allRequests); // Set the hotel requests
+      setData(allRequests);
     }
   }, [verification_hotel_requests]);
+
+  const handleDeleteSection = () => {
+    setIsOpenDeleteSelectionModal(true)
+  }
+
+  const deleteEstablishment = () => {
+    dispatch(delete_establishment({ establishmentId }))
+  }
+
+  useEffect(() => {
+    if (is_establishment_deleted?.isSuccess) {
+      dispatch(clear_deleted_establishment_state())
+      dispatch(get_all_hotel_verification_requests({
+        showVerifiedHotel: showVerifiedHotel,
+        page
+      }));
+      setIsOpenDeleteSelectionModal(false)
+      toast.success("Establishment deleted successfully")
+    }
+    if (is_establishment_deleted?.isError) {
+      dispatch(clear_deleted_establishment_state())
+      toast.error("Error while deleting establishment, Please try again later")
+    }
+  }, [is_establishment_deleted])
 
   return (
     <div>
@@ -209,7 +238,32 @@ const EstablishmentList = () => {
                       <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                     </svg>
-
+                  </td>
+                  <td>
+                    <div
+                      title="Delete Section"
+                      className="cursor-pointer"
+                      onClick={() => {
+                        handleDeleteSection();
+                        setEstablishmentId(data?._id);
+                      }}
+                    >
+                      <svg
+                        width="18"
+                        height="20"
+                        viewBox="0 0 18 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 5H17M7 9V15M11 9V15M2 5L3 17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19H13C13.5304 19 14.0391 18.7893 14.4142 18.4142C14.7893 18.0391 15 17.5304 15 17L16 5M6 5V2C6 1.73478 6.10536 1.48043 6.29289 1.29289C6.48043 1.10536 6.73478 1 7 1H11C11.2652 1 11.5196 1.10536 11.7071 1.29289C11.8946 1.48043 12 1.73478 12 2V5"
+                          stroke="#666C78"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -224,6 +278,7 @@ const EstablishmentList = () => {
           )}
         </div>
       </div>
+      {isOpenDeleteSelectionModal && <DeleteModal isModalOpen={isOpenDeleteSelectionModal} setIsModalOpen={setIsOpenDeleteSelectionModal} handleDelete={deleteEstablishment} loading={is_establishment_deleted?.isLoading}/>}
     </div>
   );
 }

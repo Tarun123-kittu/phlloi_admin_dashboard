@@ -8,6 +8,8 @@ import Pagination from "../pagination/pagination";
 import Loader from "../loader/Loader";
 import { useRouter } from "next/navigation";
 import DeleteModal from "@/modals/deleteModal/deleteModal";
+import { delete_app_user, clear_deleted_app_user_state } from "@/redux/slices/userSlice/deleteUserSlice";
+import toast from "react-hot-toast";
 
 export interface Pagination {
   currentPage: number;
@@ -45,14 +47,15 @@ const TableThree = () => {
   const [userdata, setUserData] = useState<any>();
   const [userId, setUserId] = useState<string>("")
   const [isOpenDeleteSelectionModal, setIsOpenDeleteSelectionModal] = useState<boolean>(false)
-  // console.log(userdata,"this is the data")
+  const is_user_deleted = useSelector((store: RootState) => store.DELETE_APP_USER)
+  console.log(is_user_deleted, "user deleted status")
   const router = useRouter();
   useEffect(() => {
     dispatch(UsersList({ page, verified: verified ?? undefined, gender, username }));
+    dispatch(clear_deleted_app_user_state())
   }, [page]);
 
   const usersData = useSelector((state: RootState) => state.USERLIST);
-  console.log(usersData, "this is the user data");
 
   const formatDate = (dateString: number) => {
     const date = new Date(dateString);
@@ -89,8 +92,21 @@ const TableThree = () => {
 
 
   const deleteUser = () => {
-    // dispatch(delete_section({ id: sectionId }))
+    dispatch(delete_app_user({ userId }))
   }
+
+  useEffect(() => {
+    if (is_user_deleted?.isSuccess) {
+      dispatch(clear_deleted_app_user_state())
+      dispatch(UsersList({ page, verified: verified ?? undefined, gender, username }));
+      setIsOpenDeleteSelectionModal(false)
+      toast.success("User deleted successfully")
+    }
+    if (is_user_deleted?.isError) {
+      dispatch(clear_deleted_app_user_state())
+      toast.error("Error while deleting user, Please try again later")
+    }
+  }, [is_user_deleted])
 
   return (
     <>
@@ -259,7 +275,7 @@ const TableThree = () => {
               />
             )}
         </div>
-        {isOpenDeleteSelectionModal && <DeleteModal isModalOpen={isOpenDeleteSelectionModal} setIsModalOpen={setIsOpenDeleteSelectionModal} handleDelete={deleteUser} />}
+        {isOpenDeleteSelectionModal && <DeleteModal isModalOpen={isOpenDeleteSelectionModal} setIsModalOpen={setIsOpenDeleteSelectionModal} handleDelete={deleteUser} loading={is_user_deleted?.isLoading}/>}
       </div >
     </>
   );

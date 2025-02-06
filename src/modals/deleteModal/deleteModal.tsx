@@ -7,11 +7,12 @@ interface ChangePasswordModalProps {
     setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
     isModalOpen: boolean;
     handleDelete: () => void
+    loading?: boolean
 }
 
-const DeleteModal: React.FC<ChangePasswordModalProps> = ({ isModalOpen, setIsModalOpen, handleDelete }) => {
+const DeleteModal: React.FC<ChangePasswordModalProps> = ({ isModalOpen, setIsModalOpen, handleDelete, loading }) => {
     const pathname = usePathname()
-    console.log(pathname,"this is the router pathname")
+    console.log(pathname, "this is the router pathname")
     const openModal = () => {
         setIsModalOpen(true);
     };
@@ -43,7 +44,7 @@ const DeleteModal: React.FC<ChangePasswordModalProps> = ({ isModalOpen, setIsMod
                                             </svg>
                                         </div> */}
                                         <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                                            <h2 className="text-white text-center" id="modal-title">{pathname === "/users" ? "Delete User" : "Delete Page"}</h2>
+                                            <h2 className="text-white text-center" id="modal-title">{pathname === "/users" ? "Delete User" : pathname === "/establishment-verification" ? "Delete Establishment" : "Delete Page"}</h2>
                                             <div className="mt-2">
                                                 <p className="text-sm text-white">Are you sure you want to Delete</p>
                                             </div>
@@ -62,8 +63,9 @@ const DeleteModal: React.FC<ChangePasswordModalProps> = ({ isModalOpen, setIsMod
                                         onClick={() => handleDelete()}
                                         type="button"
                                         className="py-3  text-center text-sm font-medium text-black rounded  bg-gradient-to-r from-[#fbb90d] to-[#22ebff] w-full"
+                                        disabled={loading}
                                     >
-                                        Delete
+                                        {loading ? "Deleting..." : "Delete"}
                                     </button>
 
                                 </div>

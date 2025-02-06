@@ -209,11 +209,13 @@ const TableThree = () => {
                       <td
                         className={`border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3`}
                         title="View Details"
-                        onClick={() =>
+                       
+                      >
+                       <div className="flex items-center gap-3">
+                       <svg
+                         onClick={() =>
                           router.push(`/user_details/${data?._id}`)
                         }
-                      >
-                        <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
@@ -232,8 +234,7 @@ const TableThree = () => {
                             d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                           />
                         </svg>
-                      </td>
-                      <td>
+                     
                         <div
                           title="Delete Section"
                           className="cursor-pointer"
@@ -258,6 +259,7 @@ const TableThree = () => {
                             />
                           </svg>
                         </div>
+                       </div>
                       </td>
 
                     </tr>

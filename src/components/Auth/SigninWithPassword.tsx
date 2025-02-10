@@ -30,12 +30,14 @@ export default function SigninWithPassword() {
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!email) {
+    const trimmedEmail = email.trim();
+
+    if (!trimmedEmail) {
       toast.error("Email is required");
       return;
     }
 
-    if (!validator.isEmail(email)) {
+    if (!validator.isEmail(trimmedEmail)) {
       toast.error("Email is not valid");
       return;
     }
@@ -49,7 +51,7 @@ export default function SigninWithPassword() {
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
-      email: email,
+      email: trimmedEmail,
       password: password,
     });
 
@@ -69,7 +71,6 @@ export default function SigninWithPassword() {
 
       if (!response.ok) {
         const errorResponse = await response.json();
-        console.log(errorResponse, "this is the error response");
         if (errorResponse?.message === "Admin not exist") {
           setLoader(false);
           toast.error("Email not found");
@@ -99,6 +100,7 @@ export default function SigninWithPassword() {
       toast.error(error.message || "An unexpected error occurred");
     }
   };
+
 
   useEffect(() => {
     if (rememberMe) {

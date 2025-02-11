@@ -139,13 +139,13 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                         <div className="relative inline-block flex gap-2 items-center">
                             {(data?.adminVerified === null || !data?.adminVerified) ? <button onClick={() => dispatch(verify_hotel({ hotelId: data?._id, verificationStatus: true }))} className="bg-green-300 text-sm min-w-20 text-white py-2 px-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400">
                                 Approve
-                            </button> : <button className="bg-green-500 text-sm min-w-20 text-white py-2 px-2 rounded focus:outline-none  cursor-not-allowed">
+                            </button> : <button className="bg-green-700 text-sm min-w-20 text-white py-2 px-2 rounded focus:outline-none  cursor-not-allowed">
                                 Approved
                             </button>}
 
                             {(data?.adminVerified === null || data?.adminVerified) ? <button onClick={() => dispatch(verify_hotel({ hotelId: data?._id, verificationStatus: false }))} className="bg-red-400 text-sm min-w-20 text-white py-2 px-2 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400">
                                 Reject
-                            </button> : <button className="bg-red-500 text-sm min-w-20 text-white py-2 px-2 rounded focus:outline-none cursor-not-allowed">
+                            </button> : <button className="bg-red-700 text-sm min-w-20 text-white py-2 px-2 rounded focus:outline-none cursor-not-allowed">
                                 Rejected
                             </button>}
 

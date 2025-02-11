@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
     const dispatch = useDispatch<AppDispatch>();
     const [data, setData] = useState<any>();
+    console.log(data, "thisi= s")
     const [images, setImages] = useState()
     const [index, setIndex] = useState<Number>(1)
     const [show_image_preview, setShow_image_preview] = useState(false)
@@ -135,66 +136,23 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                                 {data?.address?.streetAddress}
                             </span>
                         </div>
-                        <div className="relative inline-block flex gap-2 items-center" ref={dropdownRef}>
-                            <p className="text-white text-sm">Verification Status</p>
-                            <button
-                                id="dropdownDefaultButton"
-                                onClick={toggleDropdown}
-                                className="text-white bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                type="button"
-                            >
-                                {data?.adminVerified === null ? "Pending" : data?.adminVerified ? "Approved" : "Rejected"}
-                                {/* {is_hotel_verified?.isLoading && <LoadingSpinner />} */}
-                                <svg
-                                    className="w-2.5 h-2.5 ms-3"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 10 6"
-                                >
-                                    <path
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="m1 1 4 4 4-4"
-                                    />
-                                </svg>
-                            </button>
+                        <div className="relative inline-block flex gap-2 items-center">
+                            {(data?.adminVerified === null || !data?.adminVerified) ? <button onClick={() => dispatch(verify_hotel({ hotelId: data?._id, verificationStatus: true }))} className="bg-green-500 text-sm min-w-20 text-white py-2 px-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400">
+                                Approve
+                            </button> : <button className="bg-green-500 text-sm min-w-20 text-white py-2 px-2 rounded focus:outline-none  cursor-not-allowed">
+                                Approved
+                            </button>}
 
-                            {/* Dropdown menu */}
-                            {isDropdownVisible && (
-                                <div
-                                    id="dropdown"
-                                    className="absolute z-10 mt-2 bg-black divide-y border border-[#fdfdfd3d] divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 right-0"
-                                >
-                                    <ul
-                                        className="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                        aria-labelledby="dropdownDefaultButton"
-                                    >
-                                        <li className="block px-4 py-2 text-white cursor-pointer dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => dispatch(verify_hotel({ hotelId: data?._id, verificationStatus: true }))}>
-                                            Approve
-                                        </li>
-                                        <li className="block px-4 py-2 text-white cursor-pointer dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => dispatch(verify_hotel({ hotelId: data?._id, verificationStatus: false }))}>
-                                            Reject
-                                        </li>
-                                    </ul>
-                                </div>
-                            )}
+                            {(data?.adminVerified === null || data?.adminVerified) ? <button onClick={() => dispatch(verify_hotel({ hotelId: data?._id, verificationStatus: false }))} className="bg-red-500 text-sm min-w-20 text-white py-2 px-2 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400">
+                                Reject
+                            </button> : <button className="bg-red-500 text-sm min-w-20 text-white py-2 px-2 rounded focus:outline-none cursor-not-allowed">
+                                Rejected
+                            </button>}
+
                         </div>
                     </div>
-                    <ul className="mb-5 mt-4 flex justify-between text-white gap-3">
-                        {/* <li>
-                            <span className="block text-[13px]">Establishment Type</span>
-                            <strong className="text-[14px] mb-3 block font-semibold">
-                                {data?.establishmentType}
-                            </strong>
-                            <span className="block text-[13px]">Food</span>
-                            <strong className="text-[14px] font-semibold">
-                                {data?.food?.join(", ")}
-                            </strong>
 
-                        </li> */}
+                    <ul className="mb-5 mt-4 flex justify-between text-white gap-3">
                         <li>
                             <span className="block text-[13px]">Country</span>
                             <strong className="text-[14px] font-semibold mb-3 block">

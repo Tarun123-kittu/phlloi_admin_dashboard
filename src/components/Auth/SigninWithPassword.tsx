@@ -185,7 +185,6 @@ export default function SigninWithPassword() {
               ) : (
                 <img src="/view.svg" alt="hide" />
               )}{" "}
-              {/* Toggle text */}
             </span>
           </div>
         </div>

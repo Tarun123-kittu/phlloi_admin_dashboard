@@ -12,7 +12,6 @@ const SlugDetails = ({ slugName }: { slugName: string }) => {
   const dispatch = useDispatch<AppDispatch>();
   const [slug_data, setSlug_data] = useState<any>();
   const slug_details = useSelector((store: RootState) => store.SLUG_DETAILS);
-  console.log(slug_details, "this is the slug details");
   useEffect(() => {
     dispatch(get_slug_details({ slugName }));
   }, []);

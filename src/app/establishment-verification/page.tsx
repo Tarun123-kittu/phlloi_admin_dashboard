@@ -1,8 +1,6 @@
 import React from 'react'
-import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
-import ProfileBox from "@/components/ProfileBox";
 import EstablishmentList from '@/components/Tables/EstablismentList';
 
 export const metadata: Metadata = {
@@ -13,9 +11,7 @@ export const metadata: Metadata = {
 const EstblishmentVerification = () => {
     return (
         <DefaultLayout>
-          <div className="mx-auto w-full w-full">
-            {/* <Breadcrumb pageName="Varification Requests" /> */}
-    
+          <div className="mx-auto w-full">
             <EstablishmentList />
           </div>
         </DefaultLayout>

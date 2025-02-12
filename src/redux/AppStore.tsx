@@ -30,6 +30,7 @@ import verifyHotelState from "./slices/hotelSlice/verifyHotel"
 import getSlugDetails from "./slices/pagesSlice/getSlugDetails"
 import DeleteAppUser from "./slices/userSlice/deleteUserSlice"
 import DeleteEstablishment from "./slices/hotelSlice/deleteEstablishmentSlice"
+import updateEstablishmentMaxDistanceSlice from "./slices/settinsSlice/distanceSlice/updateEstablishmentMaxDistance"
 
 export const store = configureStore({
   reducer: {
@@ -63,7 +64,8 @@ export const store = configureStore({
     VERIFY_HOTEl: verifyHotelState,
     SLUG_DETAILS: getSlugDetails,
     DELETE_APP_USER: DeleteAppUser,
-    DELETE_ESTABLISHMENT: DeleteEstablishment
+    DELETE_ESTABLISHMENT: DeleteEstablishment,
+    UPDATE_ESTABLISHMENT_DISTANCE: updateEstablishmentMaxDistanceSlice
   },
 });
 

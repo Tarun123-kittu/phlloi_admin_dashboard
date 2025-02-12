@@ -8,7 +8,6 @@ const MapOne: React.FC = () => {
     const mapElement = document.getElementById("mapOne");
 
     if (!mapElement) {
-      console.error("Map element not found");
       return;
     }
 
@@ -50,7 +49,6 @@ const MapOne: React.FC = () => {
       if (vectorMapOne) {
         vectorMapOne?.destroy();
       } else {
-        console.error("Vector map instance not found during cleanup");
       }
     };
   }, []);

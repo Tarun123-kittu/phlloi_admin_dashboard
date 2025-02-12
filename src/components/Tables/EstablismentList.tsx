@@ -105,78 +105,6 @@ const EstablishmentList = () => {
           <input id="default-radio-1" type="radio" checked={showVerifiedHotel === null ? false : showVerifiedHotel === false ? true : false} onChange={() => setShowVerifiedHotel(false)} name="default-radio" className="w-4 h-4 text-yellow-600 bg-gray-100 border-gray-300 accent-yellow-400  dark:focus:ring-yellow-600 cursor-pointer dark:ring-offset-gray-800  dark:bg-gray-700 dark:border-gray-600" />
           <label htmlFor="default-radio-1" className="ms-2 text-sm font-medium text-white dark:text-gray-white">Rejected</label>
         </div>
-        {/* <div className="relative" ref={dropdownRef}>
-          <button
-            id="dropdownCheckboxButton"
-            onClick={toggleDropdown}
-            className="text-white bg-cardBg  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            type="button"
-          >
-            Filters
-            <svg
-              className="w-2.5 h-2.5 ms-3"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 10 6"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m1 1 4 4 4-4"
-              />
-            </svg>
-          </button>
-
-          <div
-            id="dropdownDefaultCheckbox"
-            className={`z-10 ${isDropdownOpen ? "block" : "hidden"
-              } w-48 bg-cardBg divide-y divide-gray-100 border border-[#fdfdfd3d] rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 absolute mt-2 right-0`}
-          >
-            <ul
-              className=" space-y-3 text-sm text-gray-700 dark:text-gray-200"
-              aria-labelledby="dropdownCheckboxButton"
-            >
-
-              <li className='border-b border-[#fdfdfd3d] p-3'>
-                <div className="flex items-center">
-                  <input
-                    id="checkbox-item-2"
-                    type="checkbox"
-                    checked={showVerifiedHotel ?? false} 
-                    onChange={() => setShowVerifiedHotel(true)}
-                    className="w-4 h-4 text-blue-600 accent-yellow-500 bg-gray-100 border-gray-300 rounded"
-                  />
-
-                  <label
-                    htmlFor="checkbox-item-2"
-                    className="ms-2 text-sm font-medium text-white dark:text-gray-300"
-                  >
-                    verified
-                  </label>
-                </div>
-              </li>
-              <li className='p-3 mt-0' style={{ marginTop: "0" }}>
-                <div className="flex items-center">
-                  <input
-                    checked={showVerifiedHotel !== null && !showVerifiedHotel} onChange={() => setShowVerifiedHotel(false)}
-                    id="checkbox-item-3"
-                    type="checkbox"
-                    className="w-4 h-4 text-blue-600 accent-yellow-500 bg-gray-100 border-gray-300 rounded "
-                  />
-                  <label
-                    htmlFor="checkbox-item-3"
-                    className="ms-2 text-sm font-medium text-white dark:text-gray-300"
-                  >
-                    Not verified
-                  </label>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div> */}
       </div>
 
       <div className="rounded-[10px] bg-cardBg p-2 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">
@@ -188,10 +116,6 @@ const EstablishmentList = () => {
                 <th className="min-w-[220px] border-[#fdfdfd3d] border-b px-4  py-4 font-medium text-white dark:text-white xl:pl-7.5 text-sm">
                   Establishment Name
                 </th>
-                {/* <th className="min-w-[120px] border-[#fdfdfd3d] border-b px-4  py-4 font-medium text-white dark:text-white text-sm">
-                                    Establishment Type
-
-                                </th> */}
                 <th className="min-w-[120px] border-[#fdfdfd3d] border-b px-4  py-4 font-medium text-white dark:text-white text-sm">
                   Country
                 </th>
@@ -214,9 +138,6 @@ const EstablishmentList = () => {
                   <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 border-b">
                     <h5 className="text-white dark:text-white text-xs">{data?.establishmentName}</h5>
                   </td>
-                  {/* <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b">
-                                        <p className="text-white dark:text-white text-xs">{data?.establishmentType}</p>
-                                    </td> */}
                   <td className="border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 border-b">
                     <p className="text-white dark:text-white text-xs">{data?.address?.country}</p>
                   </td>

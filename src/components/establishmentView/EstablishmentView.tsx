@@ -12,7 +12,6 @@ import { useRouter } from 'next/navigation';
 const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
     const dispatch = useDispatch<AppDispatch>();
     const [data, setData] = useState<any>();
-    console.log(data, "thisi= s")
     const [images, setImages] = useState()
     const [index, setIndex] = useState<Number>(1)
     const [show_image_preview, setShow_image_preview] = useState(false)
@@ -62,7 +61,6 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
             dispatch(get_selected_hotel_details(hotelId));
         }
         if (is_hotel_verified?.isError) {
-            // toast.error(is_hotel_verified?.error?.message || "An error occurred")
             toggleDropdown()
             dispatch(clearVerifyHotelState())
         }
@@ -89,8 +87,8 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
         if (time) {
             const [hours, minutes] = time?.split(':')?.map(Number);
             const isPM = hours >= 12;
-            const formattedHours = hours % 12 || 12; // Convert 24-hour format to 12-hour
-            const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes; // Add leading zero if minutes < 10
+            const formattedHours = hours % 12 || 12; 
+            const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
             const period = isPM ? 'PM' : 'AM';
 
             return `${formattedHours}:${formattedMinutes} ${period}`;
@@ -270,8 +268,6 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                                 </a>
                             </li>
                         }
-
-                        {/* {data?.paymentStatus && <li className="list-none flex items-center gap-3 pb-3"><img alt="icons" src="/images/globe_icon.svg" /> <a href={data?.ownerDetails?.websiteLink} target="_blank" className="text-white text-sm">{data?.paymentStatus}</a></li>} */}
                     </ul>
                     <div className="pt-6">
                         <h4 className="text-[20px] text-white mb-2 pb-4"> Restaurant Photos</h4>

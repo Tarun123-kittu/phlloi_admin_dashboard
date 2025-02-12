@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef,useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 interface Props {
   setVerified: React.Dispatch<React.SetStateAction<boolean | null>>;
@@ -24,11 +24,10 @@ const UserFilter: React.FC<Props> = ({
   clearResult,
   isSearched,
 }) => {
-  console.log(verified, username, gender, "this is the verified");
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenGender, setIsOpenGender] = useState(false);
- const dropdownRef = useRef<HTMLDivElement>(null); 
- const genderDropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const genderDropdownRef = useRef<HTMLDivElement>(null);
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);
   };
@@ -36,33 +35,39 @@ const UserFilter: React.FC<Props> = ({
   const toggleDropdownGender = () => {
     setIsOpenGender((prev) => !prev);
   };
- const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-      if (genderDropdownRef.current && !genderDropdownRef.current.contains(event.target as Node)) {
-        setIsOpenGender(false);
-      }
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setIsOpen(false);
+    }
+    if (genderDropdownRef.current && !genderDropdownRef.current.contains(event.target as Node)) {
+      setIsOpenGender(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  
-    useEffect(() => {
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, []);
+  }, []);
+
   const handleVerifiedChange = (e: React.FormEvent, value: boolean) => {
     setVerified(value);
     setIsOpen((prev) => !prev);
+    if (verified !== null) {
+      handleSearch(e)
+    }
   };
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
+    handleSearch(e)
   };
 
   const handleGenderChange = (e: React.FormEvent, value: string) => {
     setGender(value);
     setIsOpenGender((prev) => !prev);
+    handleSearch(e)
   };
 
   return (
@@ -133,7 +138,15 @@ const UserFilter: React.FC<Props> = ({
                 <li className="border-b border-[#fdfdfd3d]">
                   <a
                     href="#"
-                    onClick={(e) => handleVerifiedChange(e, true)}
+                    className="block px-4 py-2 text-white  dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    Select Status
+                  </a>
+                </li>
+                <li className="border-b border-[#fdfdfd3d]">
+                  <a
+                    href="#"
+                    onClick={(e) => { handleVerifiedChange(e, true); setVerified(true) }}
                     className="block px-4 py-2 text-white  dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     Verified
@@ -142,7 +155,7 @@ const UserFilter: React.FC<Props> = ({
                 <li>
                   <a
                     href="#"
-                    onClick={(e) => handleVerifiedChange(e, false)}
+                    onClick={(e) => { handleVerifiedChange(e, false); setVerified(false) }}
                     className="block px-4 py-2 text-white  dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     Not varified
@@ -216,43 +229,14 @@ const UserFilter: React.FC<Props> = ({
         </div>
 
         <form className="ml-auto flex max-w-lg items-center justify-end">
-          {!isSearched ? (
-            <button
-              disabled={!username && verified === null && !gender}
-              onClick={(e) => handleSearch(e)}
-              type="submit"
-              className={`ms-2 inline-flex items-center rounded-lg border bg-gradient-to-r from-[#fbb90d] to-[#22ebff] px-3 py-2.5 text-sm font-medium text-hColor focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ${
-                !username && verified === null && !gender
-                  ? "cursor-not-allowed opacity-50"
-                  : ""
-              }`}
-            >
-              <svg
-                className="me-2 h-4 w-4"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                />
-              </svg>
-              Search
-            </button>
-          ) : (
-            <button
-              onClick={(e) => clearResult(e)}
-              type="submit"
-              className="ms-2 inline-flex items-center rounded-lg border bg-gradient-to-r from-[#fbb90d] to-[#22ebff] px-3 py-2.5 text-sm font-medium text-hColor   focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Clear
-            </button>
-          )}
+
+          {isSearched && <button
+            onClick={(e) => clearResult(e)}
+            type="submit"
+            className="ms-2 inline-flex items-center rounded-lg border bg-gradient-to-r from-[#fbb90d] to-[#22ebff] px-3 py-2.5 text-sm font-medium text-hColor   focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Clear
+          </button>}
         </form>
       </div>
     </div>

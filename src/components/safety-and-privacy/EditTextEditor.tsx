@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import ReactQuill from "react-quill";
@@ -16,13 +18,15 @@ interface EditTextEditorProps {
   index: number;
   textList: PagesArray[];
   disable?: boolean
+  newPage: boolean
 }
 
 const RichTextExample: React.FC<EditTextEditorProps> = ({
   setTextList,
   index,
   textList,
-  disable
+  disable,
+  newPage
 }) => {
   const [editorState, setEditorState] = useState<string>("");
 

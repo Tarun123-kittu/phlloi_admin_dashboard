@@ -1,5 +1,6 @@
 import React from 'react'
 import MaxDistanceRange from "./MaxDistanceRange"
+import MaxEstablishmentDistanceRange from './maxEstablishmentrange'
 import Rooms from "./Rooms"
 
 const Settings = () => {
@@ -7,6 +8,9 @@ const Settings = () => {
         <div>
             <div className='p-4  shadow-sm bg-cardBg rounded-2xl dark:bg-gray-dark '>
                 <MaxDistanceRange />
+            </div>
+            <div className='p-4 shadow-sm bg-cardBg rounded-2xl dark:bg-gray-dark mt-5'>
+                <MaxEstablishmentDistanceRange />
             </div>
             <div className='p-4  shadow-sm bg-cardBg rounded-2xl dark:bg-gray-dark dark:border-gray-500 mt-4'>
                 <Rooms />

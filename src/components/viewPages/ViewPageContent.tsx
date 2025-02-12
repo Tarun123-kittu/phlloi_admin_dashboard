@@ -61,7 +61,6 @@ const ViewPageContent: React.FC<ChangePasswordModalProps> = ({ sectionId, headin
     const is_page_deleted = useSelector((state: RootState) => state.DELETE_PAGE);
     const is_section_deleted = useSelector((state: RootState) => state.DELETE_SECTION);
     const update_section_data = useSelector((state: RootState) => state.UPDATE_PAGE);
-    console.log(update_section_data, "this is the update pgae section")
 
 
     const handleAddOneMorePage = () => {
@@ -126,14 +125,14 @@ const ViewPageContent: React.FC<ChangePasswordModalProps> = ({ sectionId, headin
         }
     }, [section_details])
 
-    useEffect(() => {
-        if (is_page_deleted?.isSuccess) {
-            toast.success("Page deleted successfully")
-            dispatch(clear_deletePage_state())
-            dispatch(get_section_by_id({ id: sectionId }))
-            setIsOpenDeleteModal(false)
-        }
-    }, [is_page_deleted])
+    // useEffect(() => {
+    //     if (is_page_deleted?.isSuccess) {
+    //         toast.success("Page deleted successfully")
+    //         dispatch(clear_deletePage_state())
+    //         dispatch(get_section_by_id({ id: sectionId }))
+    //         setIsOpenDeleteModal(false)
+    //     }
+    // }, [is_page_deleted])
 
     useEffect(() => {
         if (is_section_deleted?.isSuccess) {

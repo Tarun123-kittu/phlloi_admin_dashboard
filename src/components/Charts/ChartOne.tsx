@@ -141,11 +141,17 @@ const ChartOne: React.FC = () => {
           fontSize: "0px",
         },
       },
-    },
+      labels: {
+        formatter: function (value: number) {
+          return Math.round(value).toString(); // Convert to string
+        },
+      },
+    }
+    
+    
   };
 
   const total = count?.reduce((sum, item) => sum + item, 0);
-  console.log(total, "this is the totla")
 
   return user_monthly_data?.isError ? <h1>Something Went Wrong</h1> : (
     <div className="col-span-12 rounded-[10px] bg-cardBg px-7.5 pb-6 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-7">
@@ -156,9 +162,6 @@ const ChartOne: React.FC = () => {
           </h4>
         </div>
         <div className="flex items-center gap-2.5">
-          {/* <p className="font-medium uppercase text-white dark:text-dark-6">
-            Short by:
-          </p> */}
           <DefaultSelectOption options={["Monthly", "Yearly"]} />
         </div>
       </div>
@@ -172,16 +175,6 @@ const ChartOne: React.FC = () => {
           />
         </div>
       </div>
-
-      {/* <div className="text-center">
-        <div className="  xsm:w-1/2  mx-auto">
-          <p className="font-medium">Total Users</p>
-          <h4 className="mt-1 text-xl font-bold text-white dark:text-white">
-            <span>{total}</span>
-          </h4>
-        </div>
-      </div> */}
-
     </div>
   );
 };

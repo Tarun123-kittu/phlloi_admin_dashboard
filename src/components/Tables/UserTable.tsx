@@ -48,12 +48,18 @@ const TableThree = () => {
   const [userId, setUserId] = useState<string>("")
   const [isOpenDeleteSelectionModal, setIsOpenDeleteSelectionModal] = useState<boolean>(false)
   const is_user_deleted = useSelector((store: RootState) => store.DELETE_APP_USER)
-  console.log(is_user_deleted, "user deleted status")
   const router = useRouter();
+
   useEffect(() => {
     dispatch(UsersList({ page, verified: verified ?? undefined, gender, username }));
     dispatch(clear_deleted_app_user_state())
   }, [page]);
+
+  useEffect(() => {
+    if (username === "" && verified === null && gender === "") {
+      setIsSearched(false)
+    }
+  }, [username])
 
   const usersData = useSelector((state: RootState) => state.USERLIST);
 
@@ -63,13 +69,18 @@ const TableThree = () => {
   };
 
   const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
+  };
+
+  useEffect(() => {
     dispatch(clear_all_user_state())
-    setIsSearched(true);
+    if (username !== "" || verified !== null || gender !== "") {
+      setIsSearched(true);
+    }
     dispatch(
       UsersList({ page, verified: verified ?? undefined, gender, username }),
     );
-  };
+  }, [page, verified, gender, username])
+
   const clearResult = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(clear_all_user_state())
@@ -152,7 +163,7 @@ const TableThree = () => {
             </thead>
             <tbody>
 
-              {usersData?.isLoading ? (
+              {usersData?.isLoading && !isSearched ? (
                 <td className={`${userdata?.users?.pagination?.totalPages > 1 ? "h-screen" : "h-40"} relative min-h-screen	`} colSpan={7}>
                   <Loader />
                 </td>
@@ -209,57 +220,57 @@ const TableThree = () => {
                       <td
                         className={`border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3`}
                         title="View Details"
-                       
+
                       >
-                       <div className="flex items-center gap-3">
-                       <svg
-                         onClick={() =>
-                          router.push(`/user_details/${data?._id}`)
-                        }
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="currentColor"
-                          className="size-6 cursor-pointer"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
-                          />
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                          />
-                        </svg>
-                     
-                        <div
-                          title="Delete Section"
-                          className="cursor-pointer"
-                          onClick={() => {
-                            handleDeleteSection();
-                            setUserId(data?._id);
-                          }}
-                        >
+                        <div className="flex items-center gap-3">
                           <svg
-                            width="18"
-                            height="20"
-                            viewBox="0 0 18 20"
-                            fill="none"
+                            onClick={() =>
+                              router.push(`/user_details/${data?._id}`)
+                            }
                             xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            className="size-6 cursor-pointer"
                           >
                             <path
-                              d="M1 5H17M7 9V15M11 9V15M2 5L3 17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19H13C13.5304 19 14.0391 18.7893 14.4142 18.4142C14.7893 18.0391 15 17.5304 15 17L16 5M6 5V2C6 1.73478 6.10536 1.48043 6.29289 1.29289C6.48043 1.10536 6.73478 1 7 1H11C11.2652 1 11.5196 1.10536 11.7071 1.29289C11.8946 1.48043 12 1.73478 12 2V5"
-                              stroke="#666C78"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+                            />
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                             />
                           </svg>
+
+                          <div
+                            title="Delete Section"
+                            className="cursor-pointer"
+                            onClick={() => {
+                              handleDeleteSection();
+                              setUserId(data?._id);
+                            }}
+                          >
+                            <svg
+                              width="18"
+                              height="20"
+                              viewBox="0 0 18 20"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M1 5H17M7 9V15M11 9V15M2 5L3 17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19H13C13.5304 19 14.0391 18.7893 14.4142 18.4142C14.7893 18.0391 15 17.5304 15 17L16 5M6 5V2C6 1.73478 6.10536 1.48043 6.29289 1.29289C6.48043 1.10536 6.73478 1 7 1H11C11.2652 1 11.5196 1.10536 11.7071 1.29289C11.8946 1.48043 12 1.73478 12 2V5"
+                                stroke="#666C78"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                          </div>
                         </div>
-                       </div>
                       </td>
 
                     </tr>
@@ -277,7 +288,7 @@ const TableThree = () => {
               />
             )}
         </div>
-        {isOpenDeleteSelectionModal && <DeleteModal isModalOpen={isOpenDeleteSelectionModal} setIsModalOpen={setIsOpenDeleteSelectionModal} handleDelete={deleteUser} loading={is_user_deleted?.isLoading}/>}
+        {isOpenDeleteSelectionModal && <DeleteModal isModalOpen={isOpenDeleteSelectionModal} setIsModalOpen={setIsOpenDeleteSelectionModal} handleDelete={deleteUser} loading={is_user_deleted?.isLoading} />}
       </div >
     </>
   );

@@ -36,7 +36,7 @@ export async function generateMetadata({
 
   return {
     title: slugData.title,
-    description: slugData.content.substring(0, 160), // Example: first 160 chars
+    description: slugData.content.substring(0, 160),
   };
 }
 

@@ -62,7 +62,7 @@ const ChartTwo: React.FC = () => {
         enabled: false,
       },
     },
-
+  
     responsive: [
       {
         breakpoint: 1536,
@@ -88,7 +88,7 @@ const ChartTwo: React.FC = () => {
     dataLabels: {
       enabled: false,
     },
-
+  
     grid: {
       strokeDashArray: 5,
       xaxis: {
@@ -102,9 +102,16 @@ const ChartTwo: React.FC = () => {
         },
       },
     },
-
+  
     xaxis: {
       categories: months,
+    },
+    yaxis: {
+      labels: {
+        formatter: function (value: number) {
+          return Math.round(value).toString(); // Convert to string to match expected type
+        },
+      },
     },
     legend: {
       position: "top",
@@ -112,7 +119,6 @@ const ChartTwo: React.FC = () => {
       fontFamily: "Poppins",
       fontWeight: 500,
       fontSize: "14px",
-
       markers: {
         radius: 99,
         width: 16,
@@ -125,6 +131,7 @@ const ChartTwo: React.FC = () => {
       opacity: 1,
     },
   };
+  
 
   return secret_dating_data?.isError ? <h1>Something Went Wrong</h1> : (
     <div className="col-span-12 rounded-[10px] bg-cardBg px-7.5 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-5">

@@ -10,7 +10,6 @@ const Header = (props: {
   setSidebarOpen: (arg0: boolean) => void;
 }) => {
   const pathname = usePathname();
-  console.log(pathname,"this is the pathname")
   return (
     <header className="sticky top-0 z-9 flex w-full  bg-cardBg dark:border-stroke-dark dark:bg-gray-dark">
       <div className="flex flex-grow items-center justify-between px-4 py-5 shadow-2 md:px-5 2xl:px-10">

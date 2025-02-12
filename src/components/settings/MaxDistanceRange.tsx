@@ -92,7 +92,7 @@ const MaxDistanceRange = () => {
           className="h-2 w-full cursor-pointer appearance-none rounded-lg"
           style={rangeBackground}
         />
-        {updateMaxDistance?.isLoading ||
+        {/* {updateMaxDistance?.isLoading ||
           (maxDistanceData?.isLoading && (
             <div role="status">
               <svg
@@ -113,7 +113,7 @@ const MaxDistanceRange = () => {
               </svg>
               <span className="sr-only">Loading...</span>
             </div>
-          ))}
+          ))} */}
       </div>
     </div>
   );

@@ -38,7 +38,6 @@ const VerificationList = () => {
     const router = useRouter()
 
     const verificationListData = useSelector((state: RootState) => state.VERIFICATION_LIST);
-    console.log(verificationListData,"this is the verification list")
 
     useEffect(() => {
         dispatch(VerificationListAPI({ page }))

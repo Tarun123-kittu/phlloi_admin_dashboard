@@ -2,6 +2,11 @@ import ViewPageComponent from "@/components/viewPages/ViewPageContent";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
 import { Metadata } from "next";
 
+export const metadata: Metadata = {
+    title: "Page details",
+    description: "page details",
+  };
+
 const ViewPageContent = ({ params }: { params: { pageId: string, headingId: string } }) => {
     const { pageId, headingId } = params;
     return (

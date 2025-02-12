@@ -13,9 +13,7 @@ export const metadata: Metadata = {
 const Profile = () => {
   return (
     <DefaultLayout>
-      <div className="mx-auto w-full w-full">
-        {/* <Breadcrumb pageName="Users" /> */}
-
+      <div className="mx-auto w-full">
         <UserTable />
       </div>
     </DefaultLayout>

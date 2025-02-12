@@ -4,6 +4,7 @@ import { API_CONFIG } from "../../../../../src/config/app_config";
 interface maxDistance {
   _id: string;
   maximum_distance: number;
+  serchHotelsUnder:number
 }
 
 interface initialStateProps {
@@ -32,7 +33,7 @@ export const get_maximum_distance = createAsyncThunk<
     myHeaders.append("Authorization", "Bearer " + localStorage.getItem("phloii_token"));
 
     const response = await fetch(
-      `${API_CONFIG.BASE_URL}get_maximum_distance_by_admin`,
+      `${API_CONFIG.BASE_URL}get_maximum_distance`,
       {
         method: "GET",
         headers: myHeaders,

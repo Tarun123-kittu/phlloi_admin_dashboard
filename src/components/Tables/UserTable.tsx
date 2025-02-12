@@ -20,7 +20,7 @@ export interface UserData {
   _id: string;
   username: string;
   email: string;
-  dob: number;
+  createdAt: number;
   gender: string;
   online_status: boolean;
   verified_profile: boolean;
@@ -145,7 +145,7 @@ const TableThree = () => {
                   Email
                 </th>
                 <th className="min-w-[120px] border-b border-[#fdfdfd3d] px-4 py-4 text-sm font-medium text-white dark:text-white">
-                  DOB
+                  Created At
                 </th>
                 <th className="min-w-[120px] border-b border-[#fdfdfd3d] px-4 py-4 text-sm font-medium text-white dark:text-white">
                   Gender
@@ -193,7 +193,7 @@ const TableThree = () => {
                         className={`border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3`}
                       >
                         <p className="text-xs text-white dark:text-white">
-                          {formatDate(data.dob)}
+                          {formatDate(data.createdAt)}
                         </p>
                       </td>
                       <td

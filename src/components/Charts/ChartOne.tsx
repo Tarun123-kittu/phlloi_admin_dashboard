@@ -143,7 +143,7 @@ const ChartOne: React.FC = () => {
       },
       labels: {
         formatter: function (value: number) {
-          return Math.round(value).toString(); // Convert to string
+          return Math.round(value).toString();
         },
       },
     }

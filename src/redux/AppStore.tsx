@@ -31,6 +31,7 @@ import getSlugDetails from "./slices/pagesSlice/getSlugDetails"
 import DeleteAppUser from "./slices/userSlice/deleteUserSlice"
 import DeleteEstablishment from "./slices/hotelSlice/deleteEstablishmentSlice"
 import updateEstablishmentMaxDistanceSlice from "./slices/settinsSlice/distanceSlice/updateEstablishmentMaxDistance"
+import GetAllEstablishmentCountSlice from "./slices/dashboardSlice/getAllEstablishmentCount"
 
 export const store = configureStore({
   reducer: {
@@ -65,7 +66,8 @@ export const store = configureStore({
     SLUG_DETAILS: getSlugDetails,
     DELETE_APP_USER: DeleteAppUser,
     DELETE_ESTABLISHMENT: DeleteEstablishment,
-    UPDATE_ESTABLISHMENT_DISTANCE: updateEstablishmentMaxDistanceSlice
+    UPDATE_ESTABLISHMENT_DISTANCE: updateEstablishmentMaxDistanceSlice,
+    All_ESTABLISHMENT_COUNT: GetAllEstablishmentCountSlice
   },
 });
 

@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { API_CONFIG } from "../../../../src/config/app_config";
+import { format } from "date-fns";
 
 interface MonthlyJoinedUsersState {
   userCounts: number[];
-  months: string[];
+  label: string[];
 }
 
 interface InitialStateTypes {
@@ -23,44 +24,57 @@ const initialState: InitialStateTypes = {
 };
 
 export const user_monthly_joined = createAsyncThunk<
-  MonthlyJoinedUsersState, 
-  { year: number }, 
+  MonthlyJoinedUsersState,
+  { year: number; weekly: boolean; startDate: string; endDate: string },
   { rejectValue: string }
->("user_monthly_joined", async ({ year }, { rejectWithValue }) => {
-  try {
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer " + localStorage.getItem('phloii_token'));
+>(
+  "user_monthly_joined",
+  async ({ year, weekly, startDate, endDate }, { rejectWithValue }) => {
+    try {
+      const myHeaders = new Headers();
+      myHeaders.append("Authorization", "Bearer " + localStorage.getItem("phloii_token"));
 
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow" as RequestRedirect,
-    };
+      const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow" as RequestRedirect,
+      };
 
-    const response = await fetch(
-      `${API_CONFIG.BASE_URL}monthly_joined_users?year=${year}`,
-      requestOptions
-    );
+      const today = format(new Date(), "yyyy-MM-dd");
 
-    if (!response.ok) {
-      return rejectWithValue("Failed to fetch monthly joined users");
+      const queryParams = new URLSearchParams();
+      queryParams.append("year", year.toString());
+      queryParams.append("weekly", weekly.toString());
+      
+      if (startDate && endDate && (startDate !== today && endDate !== today)) {
+        queryParams.append("startDate", startDate);
+        queryParams.append("endDate", endDate);
+      }
+
+      const response = await fetch(
+        `${API_CONFIG.BASE_URL}monthly_joined_users?${queryParams.toString()}`,
+        requestOptions
+      );
+
+      if (!response.ok) {
+        return rejectWithValue("Failed to fetch monthly joined users");
+      }
+
+      const result = await response.json();
+      const userCounts: number[] = [];
+      const label: string[] = [];
+
+      result.data.forEach((item: { count: number; label: string }) => {
+        userCounts.push(item.count);
+        label.push(item.label);
+      });
+
+      return { userCounts, label };
+    } catch (error) {
+      return rejectWithValue("An error occurred while fetching monthly joined users");
     }
-
-    const result = await response.json();
-    const userCounts: number[] = [];
-    const months: string[] = [];
-
-    result.data.forEach((item: { count: number, month: string }) => {
-      userCounts.push(item.count);
-      months.push(item.month);
-    });
-
-    return { userCounts, months };
-  } catch (error) {
-    return rejectWithValue("An error occurred while fetching monthly joined users");
   }
-});
-
+);
 
 const monthlyJoinedSlice = createSlice({
   name: "monthlyJoinedUsers",

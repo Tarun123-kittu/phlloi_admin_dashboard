@@ -76,7 +76,7 @@ const UserFilter: React.FC<Props> = ({
         <div>
           <label
             htmlFor="first_name"
-            className="mb-2 block text-sm font-normal text-white dark:text-white"
+            className="mb-2 block text-sm font-normal text-gray-5 dark:text-white"
           >
             Username
           </label>
@@ -85,14 +85,14 @@ const UserFilter: React.FC<Props> = ({
             id="first_name"
             value={username}
             onChange={handleUsernameChange}
-            className="block  w-full  rounded-lg bg-cardBg p-2.5 text-sm text-white placeholder-white focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            className="block  w-full  rounded-lg bg-cardBg p-2.5 text-sm text-white  focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-blue-500 dark:focus:ring-blue-500"
             placeholder="eg. john"
           />
         </div>
         <div ref={dropdownRef}>
           <label
             htmlFor="first_name"
-            className="mb-2 block text-sm font-normal text-white dark:text-white"
+            className="mb-2 block text-sm font-normal text-gray-5 dark:text-white"
           >
             Verified Profile
           </label>
@@ -100,7 +100,7 @@ const UserFilter: React.FC<Props> = ({
             <button
               id="dropdownDefaultButton"
               onClick={toggleDropdown}
-              className="ddark:bg-gray-800 inline-flex w-40 items-center  rounded-lg bg-cardBg px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-800 dark:bg-gray-700 dark:text-white"
+              className="ddark:bg-gray-800 inline-flex w-40 items-center placeholder:text-gray-5 rounded-lg bg-cardBg px-5 py-2.5 text-center text-sm font-medium text-gray-5 hover:bg-gray-800 dark:bg-gray-700 dark:text-white"
               type="button"
             >
               {verified === null
@@ -138,7 +138,7 @@ const UserFilter: React.FC<Props> = ({
                 <li className="border-b border-[#fdfdfd3d]">
                   <a
                     href="#"
-                    className="block px-4 py-2 text-white  dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="block px-4 py-2 text-gray-5"
                   >
                     Select Status
                   </a>
@@ -147,7 +147,7 @@ const UserFilter: React.FC<Props> = ({
                   <a
                     href="#"
                     onClick={(e) => { handleVerifiedChange(e, true); setVerified(true) }}
-                    className="block px-4 py-2 text-white  dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="block px-4 py-2 text-gray-5  dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     Verified
                   </a>
@@ -156,7 +156,7 @@ const UserFilter: React.FC<Props> = ({
                   <a
                     href="#"
                     onClick={(e) => { handleVerifiedChange(e, false); setVerified(false) }}
-                    className="block px-4 py-2 text-white  dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="block px-4 py-2 text-gray-5  dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     Not varified
                   </a>
@@ -169,14 +169,14 @@ const UserFilter: React.FC<Props> = ({
         <div ref={genderDropdownRef}>
           <label
             htmlFor="first_name"
-            className="mb-2 block text-sm font-normal text-white dark:text-white"
+            className="mb-2 block text-sm font-normal text-gray-5 dark:text-white"
           >
             Gender
           </label>
           <button
             id="dropdownDefaultButton"
             onClick={toggleDropdownGender}
-            className="ddark:bg-gray-800 inline-flex w-40 items-center  rounded-lg bg-cardBg px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-800 dark:bg-gray-700 dark:text-white"
+            className="ddark:bg-gray-800 inline-flex w-40 items-center  rounded-lg bg-cardBg px-5 py-2.5 text-center text-sm font-medium text-gray-5 hover:bg-gray-800 dark:bg-gray-700 dark:text-white"
             type="button"
           >
             {gender ? gender : "Select Gender"}
@@ -210,7 +210,7 @@ const UserFilter: React.FC<Props> = ({
                 <a
                   href="#"
                   onClick={(e) => handleGenderChange(e, "men")}
-                  className="block px-4 py-2 text-white  dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="block px-4 py-2 text-gray-5  dark:hover:bg-gray-600 dark:hover:text-white"
                 >
                   Men
                 </a>
@@ -219,7 +219,7 @@ const UserFilter: React.FC<Props> = ({
                 <a
                   href="#"
                   onClick={(e) => handleGenderChange(e, "women")}
-                  className="block px-4 py-2 text-white  dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="block px-4 py-2 text-gray-5  dark:hover:bg-gray-600 dark:hover:text-white"
                 >
                   Women
                 </a>

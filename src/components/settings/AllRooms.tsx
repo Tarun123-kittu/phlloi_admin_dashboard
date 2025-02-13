@@ -18,7 +18,6 @@ const AllRooms = () => {
   return (
     <div>
     <div className='flex items-center'>
-        <h1 className='font-bold text-xl text-white grow flex gap-2'> <img onClick={() => router.push("/app-settings")} src="https://img.icons8.com/?size=100&id=AO1h97ca7e0A&format=png&color=FFFFFF" alt="back button" width={30} height={30} style={{ cursor: "pointer" }} />Rooms List</h1>
         <button onClick={() => setOpenAddRoom(true)} type="button" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-black  bg-gradient-to-r from-[#fbb90d] to-[#22ebff] rounded-lg cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add New Room</button>
     </div>
     <div className="grid grid-cols-3 gap-4">

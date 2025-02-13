@@ -33,6 +33,7 @@ import DeleteEstablishment from "./slices/hotelSlice/deleteEstablishmentSlice"
 import updateEstablishmentMaxDistanceSlice from "./slices/settinsSlice/distanceSlice/updateEstablishmentMaxDistance"
 import GetAllEstablishmentCountSlice from "./slices/dashboardSlice/getAllEstablishmentCount"
 import GetAllEvents from "./slices/eventsSlice/getAllEvents"
+import GetAllDashboardEvents from "./slices/dashboardSlice/getAllEvents"
 
 export const store = configureStore({
   reducer: {
@@ -69,7 +70,8 @@ export const store = configureStore({
     DELETE_ESTABLISHMENT: DeleteEstablishment,
     UPDATE_ESTABLISHMENT_DISTANCE: updateEstablishmentMaxDistanceSlice,
     All_ESTABLISHMENT_COUNT: GetAllEstablishmentCountSlice,
-    GET_ALL_EVENTS: GetAllEvents
+    GET_ALL_EVENTS: GetAllEvents,
+    DASHBOARD_EVENTS: GetAllDashboardEvents
   },
 });
 

@@ -6,17 +6,19 @@ import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "@/redux";
 import { get_all_establishment_count } from "@/redux/slices/dashboardSlice/getAllEstablishmentCount";
 import { useRouter } from "next/navigation";
-
+import { get_all_events_count } from "@/redux/slices/dashboardSlice/getAllEvents";
 
 const DataStatsOne: React.FC<dataStats> = () => {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter()
   const user_details = useSelector((state: RootState) => state.ACTIVE_INACTIVE_USERS?.data[0]?.data);
   const establishment_count = useSelector((state: RootState) => state.All_ESTABLISHMENT_COUNT?.data);
+  const events_count = useSelector((state: RootState) => state.DASHBOARD_EVENTS?.data);
   const totalUsers = user_details && user_details[0]?.reduce((acc, cur) => acc + cur, 0)
 
   useEffect(() => {
     dispatch(get_all_establishment_count())
+    dispatch(get_all_events_count())
   }, [dispatch])
 
   const dataStatsList = [
@@ -43,9 +45,9 @@ const DataStatsOne: React.FC<dataStats> = () => {
       ),
       color: "#3FD97F",
       title: "Total Users",
-      value: totalUsers > 1000 ? totalUsers / 1000+ "k" : totalUsers,
+      value: totalUsers > 1000 ? totalUsers / 1000 + "k" : totalUsers,
       growthRate: 0.43,
-      path : "/users"
+      path: "/users"
     },
     {
       icon: (
@@ -65,10 +67,10 @@ const DataStatsOne: React.FC<dataStats> = () => {
         </svg>
       ),
       color: "#FF9C55",
-      title: "Total Earnings",
-      value: "$42.2K",
+      title: "Total Events",
+      value: events_count?.toString() ?? "0",
       growthRate: 4.35,
-      path :""
+      path: ""
     },
     {
       icon: (
@@ -95,9 +97,9 @@ const DataStatsOne: React.FC<dataStats> = () => {
       ),
       color: "#8155FF",
       title: "Total Establishments",
-      value: establishment_count,
+      value: establishment_count ?? "0",
       growthRate: 2,
-      path : "/establishment-verification"
+      path: "/establishment-verification"
     },
     {
       icon: (
@@ -136,7 +138,7 @@ const DataStatsOne: React.FC<dataStats> = () => {
       title: "Total Subscriptions",
       value: "3465",
       growthRate: -0.95,
-      path : ""
+      path: ""
     },
   ];
   return (

@@ -25,6 +25,7 @@ const formatDate = (dateString: number) => {
 
 
 const ChartOne: React.FC = () => {
+  
   const dispatch = useDispatch<AppDispatch>();
   const currentYear = new Date().getFullYear()
   const [count, setCounts] = useState<number[]>([]);
@@ -47,6 +48,7 @@ const ChartOne: React.FC = () => {
   }, [range]);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpenDropdown, setIsOpenDropdown] = useState<boolean>(false);
 
   const handleSelect = (ranges: RangeKeyDict) => {
     setRange([ranges.selection as DateRangeState]);
@@ -177,7 +179,9 @@ const ChartOne: React.FC = () => {
     },
   };
   
-  
+  const toggleDropdown = () => {
+    setIsOpenDropdown((prev) => !prev);
+  };
 
   const total = count?.reduce((sum, item) => sum + item, 0);
   const today = format(new Date(), "yyyy-MM-dd");
@@ -190,30 +194,73 @@ const ChartOne: React.FC = () => {
             Monthly Joined User
           </h4>
         </div>
-        <div className="flex items-center gap-2.5">
+        {/* <div className="flex items-center gap-2.5">
           <DefaultSelectOption options={["Monthly", "Yearly"]} />
-        </div>
-        <div className="flex flex-row items-center">
-          <div>
-            <button onClick={() => {
-              setWeekly(!weekly); setStart_date(""); setEnd_date(""); setRange([
-                {
-                  startDate: new Date(),
-                  endDate: new Date(),
-                  key: 'selection',
-                },
-              ])
-            }} className="p-1 min-w-40 m-2 bg-gray-700 text-white rounded">Yearly Report</button>
-          </div>
-          <div className="relative w-full max-w-md mx-auto p-1">
+        </div> */}
+        <div>
+         
+          <div className="relative w-55 text-right">
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="w-full p-1 rounded-lg shadow-sm bg-gray-700 text-white"
+              id="dropdownDefaultButton"
+              onClick={toggleDropdown}
+              className="bg-gray-800 inline-flex w-40 items-center placeholder:text-gray-5 rounded-lg px-5 py-2.5 text-center text-sm font-medium text-gray-5 hover:bg-gray-800 dark:bg-gray-700 dark:text-white"
+              type="button"
             >
-              {`${format(range[0].startDate, 'MM/dd/yyyy')} - ${format(range[0].endDate, 'MM/dd/yyyy')}`}
+        
+            Filter
+              <svg
+                className="ml-auto h-2.5 w-2.5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 10 6"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m1 1 4 4 4-4"
+                />
+              </svg>
             </button>
 
-            {isOpen && (
+            <div
+              id="dropdown"
+              className={`z-50 ${isOpenDropdown ? "block" : "hidden"} mt-2 absolute w-full divide-y divide-gray-100 rounded-lg border border-[#fdfdfd3d] bg-cardBg shadow dark:bg-gray-700`}
+              style={{ top: "100%" }}
+            >
+              <ul
+                className="text-sm text-gray-700 dark:text-gray-200"
+                aria-labelledby="dropdownDefaultButton"
+              >
+              
+                <li className="border-b border-[#fdfdfd3d] text-left">
+                <a
+                    href="#"
+                    onClick={() => {
+                      setWeekly(!weekly); setStart_date(""); setEnd_date(""); setRange([
+                        {
+                          startDate: new Date(),
+                          endDate: new Date(),
+                          key: 'selection',
+                        },
+                      ])
+                    }}
+                    className="block px-4 py-2 text-gray-5  dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    Monthly Data
+                  </a>
+                </li>
+                <li className="border-b border-[#fdfdfd3d] text-left">
+                <a
+                    href="#"
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="block px-4 py-2 text-gray-5  dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                   {`${format(range[0].startDate, 'MM/dd/yyyy')} - ${format(range[0].endDate, 'MM/dd/yyyy')}`}
+                  </a>
+                  {isOpen && (
               <div className="absolute z-50 bg-gray-700 shadow-lg border rounded-lg">
                 <DateRange
                   ranges={range}
@@ -223,29 +270,34 @@ const ChartOne: React.FC = () => {
                 />
               </div>
             )}
-          </div>
-          {(!weekly || (start_date !== today && end_date !== today)) && (
-            <div
-              onClick={() => {
-                setWeekly(true);
-                setStart_date("");
-                setEnd_date("");
-                setIsOpen(false)
-                setRange([
-                  {
-                    startDate: new Date(),
-                    endDate: new Date(),
-                    key: "selection",
-                  },
-                ]);
-              }}
-              className="p-1 m-2 bg-[#FBC42E] text-black rounded cursor-pointer"
-            >
-              Clear
+                </li>
+                <li className="text-right ">
+                {(!weekly || (start_date !== today && end_date !== today)) && (
+                    <button
+                      onClick={() => {
+                        setWeekly(true);
+                        setStart_date("");
+                        setEnd_date("");
+                        setIsOpen(false)
+                        setRange([
+                          {
+                            startDate: new Date(),
+                            endDate: new Date(),
+                            key: "selection",
+                          },
+                        ]);
+                      }}
+                      className="p-2 px-3 mt-2 mb-2 mr-2 bg-[#FBC42E] text-black rounded cursor-pointer"
+                    >
+                      Clear
+                    </button>
+                  )}
+                  </li>
+              </ul>
             </div>
-          )}
-
+          </div>
         </div>
+      
       </div>
       <div>
         <div className="-ml-4 -mr-5">

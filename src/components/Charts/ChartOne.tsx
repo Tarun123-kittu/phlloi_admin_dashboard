@@ -1,7 +1,7 @@
 'use client'
 
 import { ApexOptions } from "apexcharts";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ReactApexChart from "react-apexcharts";
 import DefaultSelectOption from "@/components/SelectOption/DefaultSelectOption";
 import { useSelector, useDispatch } from "react-redux";
@@ -18,15 +18,12 @@ interface DateRangeState {
   key: string;
 }
 
-const formatDate = (dateString: number) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("en-GB");
-};
 
 
 const ChartOne: React.FC = () => {
-  
+  const today = format(new Date(), "yyyy-MM-dd");
   const dispatch = useDispatch<AppDispatch>();
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const currentYear = new Date().getFullYear()
   const [count, setCounts] = useState<number[]>([]);
   const [label, setMonths] = useState<string[]>([]);
@@ -40,8 +37,6 @@ const ChartOne: React.FC = () => {
       key: 'selection',
     },
   ]);
-
-  console.log(start_date, end_date, "this is the range")
   useEffect(() => {
     setStart_date(format(range[0].startDate, 'yyyy-MM-dd'));
     setEnd_date(format(range[0].endDate, 'yyyy-MM-dd'));
@@ -153,7 +148,7 @@ const ChartOne: React.FC = () => {
       enabled: true,
     },
     tooltip: {
-      enabled: true, 
+      enabled: true,
     },
     xaxis: {
       type: "category",
@@ -178,36 +173,49 @@ const ChartOne: React.FC = () => {
       },
     },
   };
-  
+
   const toggleDropdown = () => {
     setIsOpenDropdown((prev) => !prev);
   };
 
   const total = count?.reduce((sum, item) => sum + item, 0);
-  const today = format(new Date(), "yyyy-MM-dd");
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return user_monthly_data?.isError ? <h1>Something Went Wrong</h1> : (
     <div className="col-span-12 rounded-[10px] bg-cardBg px-7.5 pb-6 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-7">
       <div className="mb-3.5 flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h4 className="text-body-2xlg font-medium text-white dark:text-white">
-            Monthly Joined User
+            New Joined User
           </h4>
         </div>
         {/* <div className="flex items-center gap-2.5">
           <DefaultSelectOption options={["Monthly", "Yearly"]} />
         </div> */}
         <div>
-         
-          <div className="relative w-55 text-right">
+
+          <div className="relative w-55 text-right" ref={dropdownRef}>
             <button
               id="dropdownDefaultButton"
               onClick={toggleDropdown}
               className="bg-gray-800 inline-flex w-40 items-center placeholder:text-gray-5 rounded-lg px-5 py-2.5 text-center text-sm font-medium text-gray-5 hover:bg-gray-800 dark:bg-gray-700 dark:text-white"
               type="button"
+              
             >
-        
-            Filter
+
+              Filter
               <svg
                 className="ml-auto h-2.5 w-2.5"
                 aria-hidden="true"
@@ -234,12 +242,12 @@ const ChartOne: React.FC = () => {
                 className="text-sm text-gray-700 dark:text-gray-200"
                 aria-labelledby="dropdownDefaultButton"
               >
-              
+
                 <li className="border-b border-[#fdfdfd3d] text-left">
-                <a
+                  <a
                     href="#"
                     onClick={() => {
-                      setWeekly(!weekly); setStart_date(""); setEnd_date(""); setRange([
+                      setWeekly(!weekly); setStart_date(""); setIsOpenDropdown(false); setEnd_date(""); setRange([
                         {
                           startDate: new Date(),
                           endDate: new Date(),
@@ -253,32 +261,33 @@ const ChartOne: React.FC = () => {
                   </a>
                 </li>
                 <li className="border-b border-[#fdfdfd3d] text-left">
-                <a
+                  <a
                     href="#"
                     onClick={() => setIsOpen(!isOpen)}
                     className="block px-4 py-2 text-gray-5  dark:hover:bg-gray-600 dark:hover:text-white"
                   >
-                   {`${format(range[0].startDate, 'MM/dd/yyyy')} - ${format(range[0].endDate, 'MM/dd/yyyy')}`}
+                    {`${format(range[0].startDate, 'MM/dd/yyyy')} - ${format(range[0].endDate, 'MM/dd/yyyy')}`}
                   </a>
                   {isOpen && (
-              <div className="absolute z-50 bg-gray-700 shadow-lg border rounded-lg">
-                <DateRange
-                  ranges={range}
-                  onChange={handleSelect}
-                  moveRangeOnFirstSelection={false}
-                  rangeColors={["#FBC42E"]} // Tailwind Indigo-600
-                />
-              </div>
-            )}
+                    <div className="absolute z-50 bg-gray-700 shadow-lg border rounded-lg">
+                      <DateRange
+                        ranges={range}
+                        onChange={handleSelect}
+                        moveRangeOnFirstSelection={false}
+                        rangeColors={["#FBC42E"]} // Tailwind Indigo-600
+                      />
+                    </div>
+                  )}
                 </li>
                 <li className="text-right ">
-                {(!weekly || (start_date !== today && end_date !== today)) && (
+                  {(!weekly || (start_date !== today && end_date !== today)) && (
                     <button
                       onClick={() => {
                         setWeekly(true);
                         setStart_date("");
                         setEnd_date("");
                         setIsOpen(false)
+                        setIsOpenDropdown(false)
                         setRange([
                           {
                             startDate: new Date(),
@@ -292,12 +301,12 @@ const ChartOne: React.FC = () => {
                       Clear
                     </button>
                   )}
-                  </li>
+                </li>
               </ul>
             </div>
           </div>
         </div>
-      
+
       </div>
       <div>
         <div className="-ml-4 -mr-5">

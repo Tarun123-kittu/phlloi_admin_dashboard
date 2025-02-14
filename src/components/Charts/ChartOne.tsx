@@ -32,10 +32,8 @@ const ChartOne: React.FC = () => {
   const [range, setRange] = useState<DateRangeState[]>([
     { startDate: undefined, endDate: undefined, key: "selection" },
   ]);
-  console.log(range, "this is the range ")
   const [start_date, setStart_date] = useState<string>("");
   const [end_date, setEnd_date] = useState<string>("");
-  console.log(start_date, end_date, "this is the start date and end date by default")
 
   useEffect(() => {
     if (range[0]?.startDate && range[0]?.endDate) {
@@ -52,8 +50,8 @@ const ChartOne: React.FC = () => {
   const handleSelect = (ranges: RangeKeyDict) => {
     setRange([
       {
-        startDate: ranges.selection.startDate || new Date(), // ✅ Default to current date
-        endDate: ranges.selection.endDate || new Date(), // ✅ Default to current date
+        startDate: ranges.selection.startDate || new Date(),
+        endDate: ranges.selection.endDate || new Date(), 
         key: "selection",
       },
     ]);
@@ -82,12 +80,12 @@ const ChartOne: React.FC = () => {
       setMonths(user_monthly_data.data.label || []);
     }
   }, [user_monthly_data]);
+
   const series = [
     {
       name: "users",
       data: count,
     },
-
   ];
 
   const options: ApexOptions = {
@@ -105,10 +103,10 @@ const ChartOne: React.FC = () => {
         show: false,
       },
       zoom: {
-        enabled: false, // Disable zoom
+        enabled: false, 
       },
       animations: {
-        enabled: false, // Disable animations for mouse interaction
+        enabled: false, 
       },
     },
     fill: {

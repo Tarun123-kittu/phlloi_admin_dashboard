@@ -37,6 +37,7 @@ const ChartThree: React.FC = () => {
       setUserDetails_name(user_details?.[1] || []); 
     }
   }, [user_details_success, user_details]);
+
   const options: ApexOptions = {
     chart: {
       fontFamily: "Poppins, sans-serif",
@@ -56,8 +57,8 @@ const ChartThree: React.FC = () => {
           labels: {
             show: true,
             total: {
-              show: true,
-              showAlways: true,
+              show: false,
+              showAlways: false,
               label: "Users",
               fontSize: "16px",
               fontWeight: "900",
@@ -103,9 +104,6 @@ const ChartThree: React.FC = () => {
           <h4 className="text-body-2xlg font-medium text-white dark:text-white">
            Active/Inactive Users
           </h4>
-        </div>
-        <div>
-          <DefaultSelectOption options={["Monthly", "Yearly"]} />
         </div>
       </div>
 

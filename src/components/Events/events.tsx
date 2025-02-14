@@ -5,16 +5,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux';
 import { get_all_events } from '@/redux/slices/eventsSlice/getAllEvents';
 import Loader from "../loader/Loader";
+import Pagination from '../pagination/pagination';
 
 const Events = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [eventsList, setEventsList] = useState<any>([])
-    console.log(eventsList, "this is the events list")
+    const [page, setPage] = useState<number>(1);
     const all_rooms_state = useSelector((state: RootState) => state.GET_ALL_EVENTS)
+    console.log(all_rooms_state, "this is the events list")
 
     useEffect(() => {
-        dispatch(get_all_events())
-    }, [])
+        dispatch(get_all_events({page}))
+    }, [page])
 
     useEffect(() => {
         if (all_rooms_state?.isSuccess) {
@@ -42,82 +44,54 @@ const Events = () => {
         return `${hours}:${minutes.toString().padStart(2, "0")} ${period}`;
     }
 
-
     return (
-        <div>
-            <div className="rounded-[10px] bg-[#0E0E0E]">
-                {/* Table Header */}
-                <div className="p-4 md:px-6 xl:px-9 border-b border-white">
-                    <h4 className="text-body-2xlg font-bold text-white dark:text-white">
-                        Events List
-                    </h4>
-                </div>
-                <div className="grid grid-cols-7 sm:grid-cols-9 border-b border-white p-4 md:px-6 2xl:px-7.5">
-                    <div className="col-span-2 flex items-center">
-                        <p className="font-medium text-white">Event Name</p>
-                    </div>
-                    <div className="col-span-2 hidden sm:flex items-center">
-                        <p className="font-medium text-white">Establishment Name</p>
-                    </div>
-                    <div className="col-span-2 hidden sm:flex items-center">
-                        <p className="font-medium text-white">Description</p>
-                    </div>
-                    <div className="col-span-1 flex items-center">
-                        <p className="font-medium text-white">Start At</p>
-                    </div>
-                    <div className="col-span-1 flex items-center">
-                        <p className="font-medium text-white">End At</p>
-                    </div>
-                </div>
-
-                {/* Table Rows */}
-                {all_rooms_state?.isLoading ? <td colSpan={7} className='h-80 text-center'><Loader /></td> : eventsList?.length === 0 ? <td className="h-60 flex items-center justify-center" colSpan={7}>
-                    <h1 className="text-center text-white">No Data Found</h1>
-                </td> : Array.isArray(eventsList) &&
-                eventsList.map((event) => (
-                    <div
-                        key={event?._id}
-                        className="grid grid-cols-7 sm:grid-cols-9 border-t border-stroke p-4 md:px-6 2xl:px-7.5"
-                    >
-                        {/* Event Name */}
-                        <div className="col-span-2 flex items-center">
-                            <p className="text-body-sm font-medium text-white dark:text-dark-6">
-                                {event?.eventTitle}
-                            </p>
-                        </div>
-
-                        {/* Establishment Name */}
-                        <div className="col-span-2 hidden sm:flex items-center">
-                            <p className="text-body-sm font-medium text-white dark:text-dark-6">
-                                {event?.establishmentName}
-                            </p>
-                        </div>
-
-                        {/* Description */}
-                        <div className="col-span-2 hidden sm:flex items-center">
-                            <p title={event?.eventDescription} className="text-body-sm font-medium text-white dark:text-dark-6">
-                                {event?.eventDescription?.length > 20 ? event?.eventDescription?.slice(0, 20) + "..." : event?.eventDescription}
-                            </p>
-                        </div>
-
-                        {/* Start At */}
-                        <div className="col-span-1 flex items-center">
-                            <p className="text-body-sm font-medium text-white dark:text-dark-6">
-                                {formatDate(event?.eventStart?.date)} at {convertTo12HourFormat(event?.eventStart?.time)}
-                            </p>
-                        </div>
-
-                        {/* End At */}
-                        <div className="col-span-1 flex items-center">
-                            <p className="text-body-sm font-medium text-white dark:text-dark-6">
-                                {formatDate(event?.eventEnd?.date)} at {convertTo12HourFormat(event?.eventEnd?.time)}
-                            </p>
-                        </div>
-                    </div>
-                ))}
+        <div className="rounded-[10px] bg-[#0E0E0E] p-4">
+            <h4 className="text-body-2xlg font-bold text-white mb-4">Events List</h4>
+            <div className="overflow-x-auto">
+                <table className="w-full table-auto">
+                    <thead>
+                        <tr className="text-left">
+                            <th className="min-w-[220px] border-b border-[#fdfdfd3d] px-4 py-4 text-sm font-medium text-white dark:text-white xl:pl-7.5">Event Name</th>
+                            <th className="min-w-[220px] border-b border-[#fdfdfd3d] px-4 py-4 text-sm font-medium text-white dark:text-white xl:pl-7.5">Establishment Name</th>
+                            <th className="min-w-[220px] border-b border-[#fdfdfd3d] px-4 py-4 text-sm font-medium text-white dark:text-white xl:pl-7.5">Description</th>
+                            <th className="min-w-[220px] border-b border-[#fdfdfd3d] px-4 py-4 text-sm font-medium text-white dark:text-white xl:pl-7.5">Start At</th>
+                            <th className="min-w-[220px] border-b border-[#fdfdfd3d] px-4 py-4 text-sm font-medium text-white dark:text-white xl:pl-7.5">End At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {all_rooms_state?.isLoading ? (
+                            <tr>
+                                <td colSpan={5} className='h-80 text-center'><Loader /></td>
+                            </tr>
+                        ) : eventsList?.length === 0 ? (
+                            <tr>
+                                <td colSpan={5} className="h-60 text-center">No Data Found</td>
+                            </tr>
+                        ) : (
+                            Array.isArray(eventsList) && eventsList.map((event) => (
+                                <tr key={event?._id} className="">
+                                    <td className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white">{event?.eventTitle}</td>
+                                    <td className=" border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white">{event?.establishmentName}</td>
+                                    <td className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white" title={event?.eventDescription}>
+                                        {event?.eventDescription?.length > 20 ? event?.eventDescription?.slice(0, 20) + "..." : event?.eventDescription}
+                                    </td>
+                                    <td className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white">{formatDate(event?.eventStart?.date)} at {convertTo12HourFormat(event?.eventStart?.time)}</td>
+                                    <td className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white">{formatDate(event?.eventEnd?.date)} at {convertTo12HourFormat(event?.eventEnd?.time)}</td>
+                                </tr>
+                            ))
+                        )}
+                    </tbody>
+                </table>
+                {all_rooms_state && !all_rooms_state?.isError &&
+                    all_rooms_state?.events?.totalEvents > 1 && (
+                        <Pagination
+                            totalPages={all_rooms_state?.events?.totalPages || 0}
+                            currentPage={all_rooms_state?.events?.currentPage}
+                            setPage={setPage}
+                        />
+                    )}
             </div>
         </div>
-
     )
 }
 

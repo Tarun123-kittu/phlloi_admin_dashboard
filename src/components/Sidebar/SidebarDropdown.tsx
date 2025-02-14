@@ -1,10 +1,9 @@
-import React from "react";
+'use client'
+
+import React,{useEffect} from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
-const SidebarDropdown = ({ item }: any) => {
-  const pathname = usePathname();
-
+const SidebarDropdown = ({ item,pathname }: any) => {
   return (
     <>
       <ul className="my-2 flex flex-col gap-1.5 pl-9">

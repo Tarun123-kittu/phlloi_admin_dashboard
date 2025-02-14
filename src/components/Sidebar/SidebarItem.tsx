@@ -1,8 +1,12 @@
+'use client'
+
 import React from "react";
 import Link from "next/link";
 import SidebarDropdown from "@/components/Sidebar/SidebarDropdown";
+import { usePathname } from "next/navigation";
 
 const SidebarItem = ({ item, pageName, setPageName }: any) => {
+  const pathname = usePathname()
   const handleClick = () => {
     if (pageName !== item.label.toLowerCase()) {
       setPageName(item.label.toLowerCase());
@@ -16,7 +20,7 @@ const SidebarItem = ({ item, pageName, setPageName }: any) => {
           href={item.route}
           onClick={handleClick}
           className={`${
-            pageName === item.label.toLowerCase()
+            pathname === item.route
               ? "bg-hBgColor text-hColor dark:text-white"
               : "text-menuColor dark:text-gray-5 dark:hover:bg-white/10 dark:hover:text-white"
           } group relative flex items-center gap-3 rounded-[7px] px-2 py-2 text-sm duration-300 ease-in-out`}
@@ -60,7 +64,7 @@ const SidebarItem = ({ item, pageName, setPageName }: any) => {
               pageName === item.label.toLowerCase() ? "" : "hidden"
             }`}
           >
-            <SidebarDropdown item={item.children} />
+            {/* <SidebarDropdown item={item.children} pathname={pathname}/> */}
           </div>
         )}
       </li>

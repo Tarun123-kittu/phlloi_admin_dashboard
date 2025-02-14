@@ -13,8 +13,8 @@ import 'react-date-range/dist/theme/default.css';
 import { format } from 'date-fns';
 
 interface DateRangeState {
-  startDate: Date;
-  endDate: Date;
+  startDate: Date | undefined;
+  endDate: Date | undefined;
   key: string;
 }
 
@@ -24,29 +24,39 @@ const ChartOne: React.FC = () => {
   const today = format(new Date(), "yyyy-MM-dd");
   const dispatch = useDispatch<AppDispatch>();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const datePickerRef = useRef<HTMLDivElement>(null);
   const currentYear = new Date().getFullYear()
   const [count, setCounts] = useState<number[]>([]);
   const [label, setMonths] = useState<string[]>([]);
   const [weekly, setWeekly] = useState<boolean>(true);
-  const [start_date, setStart_date] = useState<string>("")
-  const [end_date, setEnd_date] = useState<string>("")
   const [range, setRange] = useState<DateRangeState[]>([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: 'selection',
-    },
+    { startDate: undefined, endDate: undefined, key: "selection" },
   ]);
+  console.log(range, "this is the range ")
+  const [start_date, setStart_date] = useState<string>("");
+  const [end_date, setEnd_date] = useState<string>("");
+  console.log(start_date, end_date, "this is the start date and end date by default")
+
   useEffect(() => {
-    setStart_date(format(range[0].startDate, 'yyyy-MM-dd'));
-    setEnd_date(format(range[0].endDate, 'yyyy-MM-dd'));
+    if (range[0]?.startDate && range[0]?.endDate) {
+      setStart_date(format(range[0].startDate, "yyyy-MM-dd"));
+      if (range[0].endDate !== range[0].startDate) {
+        setEnd_date(format(range[0].endDate, "yyyy-MM-dd"));
+      }
+    }
   }, [range]);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenDropdown, setIsOpenDropdown] = useState<boolean>(false);
 
   const handleSelect = (ranges: RangeKeyDict) => {
-    setRange([ranges.selection as DateRangeState]);
+    setRange([
+      {
+        startDate: ranges.selection.startDate || new Date(), // ✅ Default to current date
+        endDate: ranges.selection.endDate || new Date(), // ✅ Default to current date
+        key: "selection",
+      },
+    ]);
   };
 
   const user_monthly_data = useSelector(
@@ -181,17 +191,42 @@ const ChartOne: React.FC = () => {
   const total = count?.reduce((sum, item) => sum + item, 0);
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+    console.log("🟡 Click detected!", event.target);
+
+    if (!dropdownRef.current) {
+      console.log("❌ dropdownRef is NULL");
+      return;
+    }
+
+    console.log("✅ dropdownRef is:", dropdownRef.current);
+
+    if (!dropdownRef.current.contains(event.target as Node)) {
+      console.log("🟥 Clicked outside dropdown, closing menu.");
       setIsOpen(false);
+      setIsOpenDropdown(false);
+    } else {
+      console.log("🟢 Clicked inside dropdown.");
     }
   };
 
+
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+    console.log("Event listener added"); // Check if the listener is being added
+    document.addEventListener("click", handleClickOutside);
+
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      console.log("Event listener removed"); // Check if cleanup is happening
+      document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
+
+  useEffect(() => {
+    if (start_date && end_date) {
+      setIsOpen(false)
+      setIsOpenDropdown(false)
+    }
+  }, [start_date, end_date])
 
   return user_monthly_data?.isError ? <h1>Something Went Wrong</h1> : (
     <div className="col-span-12 rounded-[10px] bg-cardBg px-7.5 pb-6 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-7">
@@ -212,10 +247,12 @@ const ChartOne: React.FC = () => {
               onClick={toggleDropdown}
               className="bg-gray-800 inline-flex w-40 items-center placeholder:text-gray-5 rounded-lg px-5 py-2.5 text-center text-sm font-medium text-gray-5 hover:bg-gray-800 dark:bg-gray-700 dark:text-white"
               type="button"
-              
-            >
 
-              Filter
+            >
+              {!start_date && !end_date && weekly && "This Week"}
+              {!start_date && !end_date && !weekly && "Monthly"}
+              {start_date && end_date && start_date + "-" + end_date}
+
               <svg
                 className="ml-auto h-2.5 w-2.5"
                 aria-hidden="true"
@@ -232,7 +269,6 @@ const ChartOne: React.FC = () => {
                 />
               </svg>
             </button>
-
             <div
               id="dropdown"
               className={`z-50 ${isOpenDropdown ? "block" : "hidden"} mt-2 absolute w-full divide-y divide-gray-100 rounded-lg border border-[#fdfdfd3d] bg-cardBg shadow dark:bg-gray-700`}
@@ -242,66 +278,72 @@ const ChartOne: React.FC = () => {
                 className="text-sm text-gray-700 dark:text-gray-200"
                 aria-labelledby="dropdownDefaultButton"
               >
+                <li>
 
-                <li className="border-b border-[#fdfdfd3d] text-left">
-                  <a
-                    href="#"
+                  <button
                     onClick={() => {
-                      setWeekly(!weekly); setStart_date(""); setIsOpenDropdown(false); setEnd_date(""); setRange([
+                      setWeekly(true);
+                      setStart_date("");
+                      setEnd_date("");
+                      setIsOpenDropdown(false);
+                      setRange([
                         {
-                          startDate: new Date(),
-                          endDate: new Date(),
-                          key: 'selection',
+                          startDate: undefined, // ✅ Keep it as undefined initially
+                          endDate: undefined, // ✅ Keep it as undefined initially
+                          key: "selection",
                         },
-                      ])
+                      ]);
                     }}
                     className="block px-4 py-2 text-gray-5  dark:hover:bg-gray-600 dark:hover:text-white"
                   >
-                    Monthly Data
+                    This Week
+                  </button>
+                </li>
+                <li className=" text-left">
+                  <a
+                    href="#"
+                    onClick={() => {
+                      setWeekly(false);
+                      setStart_date("");
+                      setEnd_date("");
+                      setIsOpenDropdown(false);
+                      setRange([
+                        {
+                          startDate: undefined, // ✅ Keep it as undefined initially
+                          endDate: undefined, // ✅ Keep it as undefined initially
+                          key: "selection",
+                        },
+                      ]);
+                    }}
+                    className="block px-4 py-2 text-gray-5  dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    Monthly
                   </a>
                 </li>
-                <li className="border-b border-[#fdfdfd3d] text-left">
+                <li className="relative border-b border-[#fdfdfd3d] text-left">
                   <a
                     href="#"
                     onClick={() => setIsOpen(!isOpen)}
-                    className="block px-4 py-2 text-gray-5  dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="block px-4 py-2 text-gray-500 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
-                    {`${format(range[0].startDate, 'MM/dd/yyyy')} - ${format(range[0].endDate, 'MM/dd/yyyy')}`}
+                    {start_date && end_date ? `${start_date} - ${end_date}` : "Select date range"}
                   </a>
                   {isOpen && (
-                    <div className="absolute z-50 bg-gray-700 shadow-lg border rounded-lg">
+                    <div ref={datePickerRef} className="absolute z-50 bg-gray-700 shadow-lg border rounded-lg">
                       <DateRange
-                        ranges={range}
+                        ranges={
+                          range[0].startDate && range[0].endDate
+                            ? range
+                            : [{ startDate: new Date(), endDate: new Date(), key: "selection" }] // ✅ Default to current date if undefined
+                        }
                         onChange={handleSelect}
                         moveRangeOnFirstSelection={false}
-                        rangeColors={["#FBC42E"]} // Tailwind Indigo-600
+                        rangeColors={["#FBC42E"]}
                       />
                     </div>
                   )}
                 </li>
-                <li className="text-right ">
-                  {(!weekly || (start_date !== today && end_date !== today)) && (
-                    <button
-                      onClick={() => {
-                        setWeekly(true);
-                        setStart_date("");
-                        setEnd_date("");
-                        setIsOpen(false)
-                        setIsOpenDropdown(false)
-                        setRange([
-                          {
-                            startDate: new Date(),
-                            endDate: new Date(),
-                            key: "selection",
-                          },
-                        ]);
-                      }}
-                      className="p-2 px-3 mt-2 mb-2 mr-2 bg-[#FBC42E] text-black rounded cursor-pointer"
-                    >
-                      Clear
-                    </button>
-                  )}
-                </li>
+
               </ul>
             </div>
           </div>

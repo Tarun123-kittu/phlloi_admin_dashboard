@@ -19,12 +19,12 @@ const initialState: HotelState = {
 
 export const get_all_events = createAsyncThunk(
     "get_all_events",
-    async (_, { rejectWithValue }) => {  
+    async ({page}: { page: number }, { rejectWithValue }) => {
         try {
             const myHeaders = new Headers();
             myHeaders.append("Authorization", "Bearer " + localStorage.getItem("phloii_token"));
 
-            const response = await fetch(`${API_CONFIG.BASE_URL}getEventsList`, {
+            const response = await fetch(`${API_CONFIG.BASE_URL}getEventsList?page=${page}`, {
                 method: "GET",
                 headers: myHeaders,
                 redirect: "follow",
@@ -51,7 +51,7 @@ const GetAllEvents = createSlice({
     name: "GetAllEvents",
     initialState,
     reducers: {
-        clear_hotel_verification_details_state: () => initialState, 
+        clear_hotel_verification_details_state: () => initialState,
     },
     extraReducers: (builder) => {
         builder
@@ -66,7 +66,7 @@ const GetAllEvents = createSlice({
             .addCase(get_all_events.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
-                state.error = action.payload as string || "An error occurred"; 
+                state.error = action.payload as string || "An error occurred";
             });
     },
 });

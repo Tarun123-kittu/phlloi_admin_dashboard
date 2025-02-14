@@ -61,7 +61,7 @@ const DataStatsOne: React.FC<dataStats> = () => {
       title: "Total Events",
       value: events_count?.toString() ?? "0",
       growthRate: 4.35,
-      path: ""
+      path: "/events"
     },
     {
       icon: (

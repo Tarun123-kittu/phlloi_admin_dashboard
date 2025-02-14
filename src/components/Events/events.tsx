@@ -58,6 +58,7 @@ const Events = () => {
                             <th className="min-w-[220px] border-b border-[#fdfdfd3d] px-4 py-4 text-sm font-medium text-white dark:text-white xl:pl-7.5">Description</th>
                             <th className="min-w-[220px] border-b border-[#fdfdfd3d] px-4 py-4 text-sm font-medium text-white dark:text-white xl:pl-7.5">Start At</th>
                             <th className="min-w-[220px] border-b border-[#fdfdfd3d] px-4 py-4 text-sm font-medium text-white dark:text-white xl:pl-7.5">End At</th>
+                            <th className='border-b border-[#fdfdfd3d]'></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -79,7 +80,7 @@ const Events = () => {
                                     </td>
                                     <td className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white text-xs">{formatDate(event?.eventStart?.date)} at {convertTo12HourFormat(event?.eventStart?.time)}</td>
                                     <td className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white text-xs">{formatDate(event?.eventEnd?.date)} at {convertTo12HourFormat(event?.eventEnd?.time)}</td>
-                                    <td onClick={() => {setOpenAddRoom(true) ; setSelectedEvent(event)}} className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white text-xs">view</td>
+                                    <td onClick={() => {setOpenAddRoom(true) ; setSelectedEvent(event)}} className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white text-xs cursor-pointer">view</td>
                                 </tr>
                             ))
                         )}

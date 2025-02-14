@@ -70,13 +70,13 @@ const Events = () => {
                         ) : (
                             Array.isArray(eventsList) && eventsList.map((event) => (
                                 <tr key={event?._id} className="">
-                                    <td className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white">{event?.eventTitle}</td>
-                                    <td className=" border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white">{event?.establishmentName}</td>
-                                    <td className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white" title={event?.eventDescription}>
+                                    <td className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white text-xs">{event?.eventTitle}</td>
+                                    <td className=" border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white text-xs">{event?.establishmentName}</td>
+                                    <td className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white text-xs" title={event?.eventDescription}>
                                         {event?.eventDescription?.length > 20 ? event?.eventDescription?.slice(0, 20) + "..." : event?.eventDescription}
                                     </td>
-                                    <td className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white">{formatDate(event?.eventStart?.date)} at {convertTo12HourFormat(event?.eventStart?.time)}</td>
-                                    <td className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white">{formatDate(event?.eventEnd?.date)} at {convertTo12HourFormat(event?.eventEnd?.time)}</td>
+                                    <td className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white text-xs">{formatDate(event?.eventStart?.date)} at {convertTo12HourFormat(event?.eventStart?.time)}</td>
+                                    <td className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white text-xs">{formatDate(event?.eventEnd?.date)} at {convertTo12HourFormat(event?.eventEnd?.time)}</td>
                                 </tr>
                             ))
                         )}

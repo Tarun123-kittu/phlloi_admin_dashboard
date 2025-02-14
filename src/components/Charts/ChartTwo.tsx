@@ -90,7 +90,7 @@ const ChartTwo: React.FC = () => {
     },
   
     grid: {
-      strokeDashArray: 5,
+      strokeDashArray: 2,
       xaxis: {
         lines: {
           show: false,

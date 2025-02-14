@@ -7,6 +7,7 @@ import { AppDispatch, RootState } from '@/redux';
 import { get_all_rooms,clearRoomState } from '@/redux/slices/settinsSlice/roomSlice/getAllRoomsSlice';
 import CreateRoomModal from '@/modals/roomsModal/CreateRoomModal';
 import { useRouter } from 'next/navigation';
+import Loader from '../loader/Loader';
 const AllRooms = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [openAddRoom,setOpenAddRoom] = useState(false)
@@ -15,7 +16,7 @@ const AllRooms = () => {
     useEffect(() => {
         dispatch(get_all_rooms())
       },[])
-  return (
+  return all_rooms_state?.isLoading ? <Loader /> : (
     <div>
     <div className='flex items-center'>
         <button onClick={() => setOpenAddRoom(true)} type="button" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-black  bg-gradient-to-r from-[#fbb90d] to-[#22ebff] rounded-lg cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add New Room</button>

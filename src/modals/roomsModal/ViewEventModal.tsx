@@ -20,7 +20,7 @@ const ViewEventModal: React.FC<CreateRoomProps> = ({ setIsOpen, isOpen,value }) 
     return isOpen && (
         <div className="fixed inset-0 z-10 flex items-center justify-center shadow-lg" style={{ backgroundColor: 'rgba(152, 152, 152, 0.6)' }}
         >
-            <div className="bg-black p-6 rounded-lg shadow-xl w-full max-w-lg dark:bg-gray-dark">
+            <div className="bg-black p-6 rounded-lg shadow-xl w-full max-w-3xl dark:bg-gray-dark">
                 {/* Modal Content */}
                 <div className="">
                     {/* Image Preview */}

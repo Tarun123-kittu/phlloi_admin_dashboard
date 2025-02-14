@@ -79,7 +79,7 @@ const ViewEventModal: React.FC<CreateRoomProps> = ({ setIsOpen, isOpen, value })
                                         fill="white"
                                     />
                                 </svg>
-                                <h5 className="p-2 text-white">{value?.establishmentName}</h5>
+                                <h5 className="p-2 text-white text-xs">{value?.establishmentName}</h5>
                             </div>
                             <div className="flex items-center">
                                 <svg
@@ -99,11 +99,11 @@ const ViewEventModal: React.FC<CreateRoomProps> = ({ setIsOpen, isOpen, value })
                                         d="M13.8901 12.89C13.6301 12.89 13.3201 12.82 12.9501 12.6L12.0001 12.03L11.0501 12.59C10.1801 13.11 9.61014 12.81 9.40014 12.66C9.19014 12.51 8.74014 12.06 8.97014 11.07L9.21014 10.04L8.41014 9.29999C7.97014 8.85999 7.81014 8.33001 7.96014 7.85001C8.11014 7.37001 8.55014 7.02999 9.17014 6.92999L10.2401 6.75L10.7501 5.63C11.0401 5.06 11.4901 4.73999 12.0001 4.73999C12.5101 4.73999 12.9701 5.07001 13.2501 5.64001L13.8401 6.82001L14.8301 6.94C15.4401 7.04 15.8801 7.37999 16.0401 7.85999C16.1901 8.33999 16.0301 8.87 15.5901 9.31L14.7601 10.14L15.0201 11.07C15.2501 12.06 14.8001 12.51 14.5901 12.66C14.4801 12.75 14.2401 12.89 13.8901 12.89ZM9.61014 8.39001L10.3001 9.07999C10.6201 9.39999 10.7801 9.94 10.6801 10.38L10.4901 11.18L11.2901 10.71C11.7201 10.46 12.3001 10.46 12.7201 10.71L13.5201 11.18L13.3401 10.38C13.2401 9.93 13.3901 9.39999 13.7101 9.07999L14.4001 8.39001L13.5301 8.23999C13.1101 8.16999 12.6901 7.86001 12.5001 7.48001L12.0001 6.5L11.5001 7.5C11.3201 7.87 10.9001 8.19001 10.4801 8.26001L9.61014 8.39001Z"
                                         fill="white" />
                                 </svg>
-                                <h5 className="p-2 text-white">{value?.eventTitle}</h5>
+                                <h5 className="p-2 text-white text-xs">{value?.eventTitle}</h5>
                             </div>
                             <div className="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="white" width="24" height="24" viewBox="0 0 24 24"><path d="M21,2H3A1,1,0,0,0,2,3V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V3A1,1,0,0,0,21,2ZM4,4H20V6H4ZM20,20H4V8H20ZM6,12a1,1,0,0,1,1-1H17a1,1,0,0,1,0,2H7A1,1,0,0,1,6,12Zm0,4a1,1,0,0,1,1-1h5a1,1,0,0,1,0,2H7A1,1,0,0,1,6,16Z" /></svg>
-                                <h5 className="p-2 text-white">{value?.eventDescription}</h5>
+                                <h5 className="p-2 text-white text-xs">{value?.eventDescription}</h5>
                             </div>
 
                         </div>
@@ -118,7 +118,7 @@ const ViewEventModal: React.FC<CreateRoomProps> = ({ setIsOpen, isOpen, value })
                                         <line id="Line_28" data-name="Line 28" y2="19.6" transform="translate(879.4 243.5)" fill="white" stroke="#2b4ea2" stroke-linecap="round" stroke-miterlimit="10" stroke-width="4" />
                                     </g>
                                 </svg>
-                                <h5 className="p-2 text-white">{formatDate(value?.eventStart?.date)} at {convertTo12HourFormat(value?.eventStart?.time)}</h5>
+                                <h5 className="p-2 text-white text-xs">{formatDate(value?.eventStart?.date)} at {convertTo12HourFormat(value?.eventStart?.time)}</h5>
                             </div>
                             <div className="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-5.4 0 98.4 98.4">
@@ -130,7 +130,7 @@ const ViewEventModal: React.FC<CreateRoomProps> = ({ setIsOpen, isOpen, value })
                                         <line id="Line_28" data-name="Line 28" y2="19.6" transform="translate(879.4 243.5)" fill="white" stroke="#2b4ea2" stroke-linecap="round" stroke-miterlimit="10" stroke-width="4" />
                                     </g>
                                 </svg>
-                                <h5 className="p-2 text-white">{formatDate(value?.eventEnd?.date)} at {convertTo12HourFormat(value?.eventEnd?.time)}</h5>
+                                <h5 className="p-2 text-white text-xs">{formatDate(value?.eventEnd?.date)} at {convertTo12HourFormat(value?.eventEnd?.time)}</h5>
                             </div>
                         </div>
                     </div>

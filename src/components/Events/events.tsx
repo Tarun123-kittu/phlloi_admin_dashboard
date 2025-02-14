@@ -80,12 +80,17 @@ const Events = () => {
                                     </td>
                                     <td className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white text-xs">{formatDate(event?.eventStart?.date)} at {convertTo12HourFormat(event?.eventStart?.time)}</td>
                                     <td className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white text-xs">{formatDate(event?.eventEnd?.date)} at {convertTo12HourFormat(event?.eventEnd?.time)}</td>
-                                    <td onClick={() => {setOpenAddRoom(true) ; setSelectedEvent(event)}} className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white text-xs cursor-pointer">view</td>
+                                    <td className="border-b border-[#fdfdfd3d] px-4 py-4 dark:border-dark-3 xl:pl-7.5 text-white text-xs cursor-pointer">
+                                        <button onClick={() => {setOpenAddRoom(true) ; setSelectedEvent(event)}} className='text-center text-sm font-medium text-black rounded  bg-gradient-to-r from-[#fbb90d] to-[#22ebff] ml-auto  h-8 px-3'>
+                                        View
+                                        </button>
+                                        </td>
                                 </tr>
                             ))
                         )}
                     </tbody>
                 </table>
+            </div>
                 {all_rooms_state && !all_rooms_state?.isError &&
                     all_rooms_state?.events?.totalEvents > 1 && (
                         <Pagination
@@ -94,7 +99,6 @@ const Events = () => {
                             setPage={setPage}
                         />
                     )}
-            </div>
             {openAddRoom && <ViewEventModal isOpen={openAddRoom} setIsOpen={setOpenAddRoom} value={selectedEvent}/>}
         </div>
     )

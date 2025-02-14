@@ -31,8 +31,8 @@ const Events = () => {
 
     function formatDate(isoDate: string) {
         const date = new Date(isoDate);
-        const day = String(date.getUTCDate()).padStart(2, '0'); // Ensure 2 digits
-        const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Months are 0-based
+        const day = String(date.getUTCDate()).padStart(2, '0'); 
+        const month = String(date.getUTCMonth() + 1).padStart(2, '0'); 
         const year = date.getUTCFullYear();
 
         return `${day}/${month}/${year}`;
@@ -42,7 +42,7 @@ const Events = () => {
         let [hours, minutes] = time.split(":").map(Number);
         let period = hours >= 12 ? "PM" : "AM";
 
-        hours = hours % 12 || 12; // Convert 0 to 12 for midnight
+        hours = hours % 12 || 12;
         return `${hours}:${minutes.toString().padStart(2, "0")} ${period}`;
     }
 

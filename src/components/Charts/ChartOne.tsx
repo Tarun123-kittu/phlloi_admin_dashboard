@@ -239,17 +239,17 @@ const ChartOne: React.FC = () => {
         </div> */}
         <div>
 
-          <div className="relative w-55 text-right" ref={dropdownRef}>
+          <div className="relative w-60 text-right" ref={dropdownRef}>
             <button
               id="dropdownDefaultButton"
               onClick={toggleDropdown}
-              className="bg-gray-800 inline-flex w-40 items-center placeholder:text-gray-5 rounded-lg px-5 py-2.5 text-center text-sm font-medium text-gray-5 hover:bg-gray-800 dark:bg-gray-700 dark:text-white"
+              className="bg-gray-800 w-60 inline-flex items-center placeholder:text-gray-5 rounded-lg px-5 py-2.5 text-center text-sm font-medium text-gray-5 hover:bg-gray-800 dark:bg-gray-700 dark:text-white"
               type="button"
 
             >
               {!start_date && !end_date && weekly && "This Week"}
               {!start_date && !end_date && !weekly && "Monthly"}
-              {start_date && end_date && start_date + "-" + end_date}
+              {start_date && end_date && start_date + " to " + end_date}
 
               <svg
                 className="ml-auto h-2.5 w-2.5"
@@ -322,7 +322,7 @@ const ChartOne: React.FC = () => {
                   <a
                     href="#"
                     onClick={() => setIsOpen(!isOpen)}
-                    className="block px-4 py-2 text-gray-500 dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="block px-4 py-2 text-gray-5 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     {start_date && end_date ? `${start_date} - ${end_date}` : "Select date range"}
                   </a>

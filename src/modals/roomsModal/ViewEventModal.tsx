@@ -25,7 +25,7 @@ const ViewEventModal: React.FC<CreateRoomProps> = ({ setIsOpen, isOpen,value }) 
                 <div className="">
                     {/* Image Preview */}
                     <div className='justify-between flex'>
-                        <h1 className='font-medium text-2xl text-white mb-3'>Create Room</h1>
+                        <h1 className='font-medium text-2xl text-white mb-3'>Event Details</h1>
                         <button
                             onClick={() => setIsOpen(false)}
                             type="button"
@@ -52,7 +52,7 @@ const ViewEventModal: React.FC<CreateRoomProps> = ({ setIsOpen, isOpen,value }) 
                 </div>
 
                 {/* Submit and Cancel Buttons */}
-                <div className=" sm:flex sm:flex-row-reverse sm:gap-4 ">
+                {/* <div className=" sm:flex sm:flex-row-reverse sm:gap-4 ">
 
                     <button
                         onClick={() => setIsOpen(false)}
@@ -74,7 +74,7 @@ const ViewEventModal: React.FC<CreateRoomProps> = ({ setIsOpen, isOpen,value }) 
                     >
                         Submit
                     </button>
-                </div>
+                </div> */}
             </div>
         </div>
     );

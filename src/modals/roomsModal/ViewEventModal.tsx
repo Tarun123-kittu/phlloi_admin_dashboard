@@ -58,7 +58,7 @@ const ViewEventModal: React.FC<CreateRoomProps> = ({ setIsOpen, isOpen, value })
                     </div>
                 </div>
                 <div className="flex flex-col gap-4">
-                    <div className="w-full flex text-center  m-auto">
+                    <div className="w-full flex text-center min-h-16  m-auto">
                         <img src={value?.image} alt="event" width={"100%"} height={270} className="rounded"/>
                     </div>
                     <div className="">                               

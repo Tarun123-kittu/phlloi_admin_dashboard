@@ -69,7 +69,7 @@ const ChartTwo: React.FC = () => {
         options: {
           plotOptions: {
             bar: {
-              borderRadius: 3,
+              borderRadius: 2,
               columnWidth: "25%",
             },
           },

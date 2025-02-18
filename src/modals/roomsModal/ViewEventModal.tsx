@@ -14,21 +14,18 @@ const ViewEventModal: React.FC<CreateRoomProps> = ({ setIsOpen, isOpen, value })
         const day = String(date.getUTCDate()).padStart(2, '0');
         const month = String(date.getUTCMonth() + 1).padStart(2, '0');
         const year = date.getUTCFullYear();
-
         return `${day}/${month}/${year}`;
     }
 
     function convertTo12HourFormat(time: string) {
         let [hours, minutes] = time.split(":").map(Number);
         let period = hours >= 12 ? "PM" : "AM";
-
         hours = hours % 12 || 12;
         return `${hours}:${minutes.toString().padStart(2, "0")} ${period}`;
     }
 
     return isOpen && (
-        <div className="fixed inset-0 z-10 flex items-center justify-center shadow-lg" style={{ backgroundColor: 'rgba(152, 152, 152, 0.6)' }}
-        >
+        <div className="fixed inset-0 z-10 flex items-center justify-center shadow-lg" style={{ backgroundColor: 'rgba(152, 152, 152, 0.6)' }}>
             <div className="bg-black p-6 rounded-lg shadow-xl w-full max-w-lg dark:bg-gray-dark">
                 <div className="">
                     <div className='justify-between flex'>
@@ -59,15 +56,15 @@ const ViewEventModal: React.FC<CreateRoomProps> = ({ setIsOpen, isOpen, value })
                 </div>
                 <div className="flex flex-col gap-4">
                     <div className="w-full flex text-center min-h-16  m-auto">
-                        <img src={value?.image} alt="event" width={"100%"} height={270} className="rounded"/>
+                        <img src={value?.image} alt="event" width={"100%"} height={270} className="rounded" />
                     </div>
-                    <div className="">                               
+                    <div className="">
                         <h3 className="pb-3 text-white text-2xl">{value?.establishmentName}</h3>
                         <h5 className="text-white text-md pb-3">{value?.eventDescription}</h5>
-                      
-                               
-                                <h5 className="text-white text-sm">From {formatDate(value?.eventStart?.date)} at {convertTo12HourFormat(value?.eventStart?.time)} to {formatDate(value?.eventEnd?.date)} at {convertTo12HourFormat(value?.eventEnd?.time)}</h5>
-                         
+
+
+                        <h5 className="text-white text-sm">From {formatDate(value?.eventStart?.date)} at {convertTo12HourFormat(value?.eventStart?.time)} to {formatDate(value?.eventEnd?.date)} at {convertTo12HourFormat(value?.eventEnd?.time)}</h5>
+
                     </div>
                 </div>
 

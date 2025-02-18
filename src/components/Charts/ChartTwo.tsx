@@ -18,8 +18,8 @@ const ChartTwo: React.FC = () => {
 
 
   const secret_dating_data = useSelector(
-      (state: RootState) => state.SECRET_DATING_USER
-    );
+    (state: RootState) => state.SECRET_DATING_USER
+  );
 
   useEffect(() => {
     dispatch(secret_dating_monthly_joined({ year: currentYear }));
@@ -53,7 +53,7 @@ const ChartTwo: React.FC = () => {
     chart: {
       fontFamily: "Poppins, sans-serif",
       type: "bar",
-      height: 335,
+      height: 310,
       stacked: true,
       toolbar: {
         show: false,
@@ -62,7 +62,7 @@ const ChartTwo: React.FC = () => {
         enabled: false,
       },
     },
-  
+
     responsive: [
       {
         breakpoint: 1536,
@@ -88,7 +88,7 @@ const ChartTwo: React.FC = () => {
     dataLabels: {
       enabled: false,
     },
-  
+
     grid: {
       strokeDashArray: 2,
       xaxis: {
@@ -102,14 +102,15 @@ const ChartTwo: React.FC = () => {
         },
       },
     },
-  
+
     xaxis: {
       categories: months,
     },
     yaxis: {
+      tickAmount: 1, // Ensures only 0, 1, and max value are shown
       labels: {
         formatter: function (value: number) {
-          return Math.round(value).toString(); // Convert to string to match expected type
+          return Math.round(value).toString();
         },
       },
     },
@@ -131,7 +132,7 @@ const ChartTwo: React.FC = () => {
       opacity: 1,
     },
   };
-  
+
 
   return secret_dating_data?.isError ? <h1>Something Went Wrong</h1> : (
     <div className="col-span-12 rounded-[10px] bg-cardBg px-7.5 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card xl:col-span-5">
@@ -152,7 +153,7 @@ const ChartTwo: React.FC = () => {
             options={options}
             series={series}
             type="bar"
-            height={370}
+            height={320}
           />
         </div>
       </div>

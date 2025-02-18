@@ -5,12 +5,16 @@ import { usePathname } from 'next/navigation'
 
 interface ChangePasswordModalProps {
     setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setReason?: React.Dispatch<React.SetStateAction<string>> | undefined;
     isModalOpen: boolean;
-    handleDelete: () => void
-    loading?: boolean
+    handleDelete: () => void;
+    loading?: boolean;
+    isInputShow?: boolean;
+    reason?: string;
 }
 
-const DeleteModal: React.FC<ChangePasswordModalProps> = ({ isModalOpen, setIsModalOpen, handleDelete, loading }) => {
+
+const DeleteModal: React.FC<ChangePasswordModalProps> = ({ isModalOpen, setIsModalOpen, handleDelete, loading, setReason, isInputShow, reason }) => {
     const pathname = usePathname()
     const openModal = () => {
         setIsModalOpen(true);
@@ -37,12 +41,30 @@ const DeleteModal: React.FC<ChangePasswordModalProps> = ({ isModalOpen, setIsMod
                                 <div className=" px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                                     <div className="sm:flex sm:items-start">
                                         <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                                            <h2 className="text-white text-center" id="modal-title">{pathname === "/users" ? "Delete User" : pathname === "/establishment-verification" ? "Delete Establishment" : pathname === "/pages" ? "Delete section" : "Delete Page"}</h2>
+                                            {!isInputShow && <h2 className="text-white text-center" id="modal-title">{pathname === "/users" ? "Delete User" : pathname === "/establishment-verification" ? "Delete Establishment" : pathname === "/pages" ? "Delete section" : "Delete Page"}</h2>}
+                                            {isInputShow && <h2 className="text-white text-center" id="modal-title">Reject Establishment</h2>}
                                             <div className="mt-2">
-                                                <p className="text-sm text-white">Are you sure you want to Delete</p>
+                                                {!isInputShow ? <p className="text-sm text-white">Are you sure you want to Delete</p> : <p className="text-sm text-white">Are you sure you want to Reject this establishment</p>}
                                             </div>
                                         </div>
                                     </div>
+                                    {isInputShow && <div className='mt-4'>
+                                        <label
+                                            htmlFor="email"
+                                            className="block mb-2 text-sm font-medium text-white dark:text-white"
+                                        >
+                                            Reason (Optional)
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="bg-cardBg mb-3 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                            placeholder="Pleas provide the rejecton reason"
+                                            value={reason}
+                                            onChange={(e) => setReason?.(e.target.value)}
+
+
+                                        />
+                                    </div>}
                                 </div>
                                 <div className="px-4 py-3 flex gap-4 sm:px-6">
                                     <button
@@ -52,7 +74,7 @@ const DeleteModal: React.FC<ChangePasswordModalProps> = ({ isModalOpen, setIsMod
                                     >
                                         Cancel
                                     </button>
-                                    <button
+                                    {!isInputShow ? <button
                                         onClick={() => handleDelete()}
                                         type="button"
                                         className="py-3  text-center text-sm font-medium text-black rounded  bg-gradient-to-r from-[#fbb90d] to-[#22ebff] w-full"
@@ -60,6 +82,15 @@ const DeleteModal: React.FC<ChangePasswordModalProps> = ({ isModalOpen, setIsMod
                                     >
                                         {loading ? "Deleting..." : "Delete"}
                                     </button>
+                                        :
+                                        <button
+                                            onClick={() => handleDelete()}
+                                            type="button"
+                                            className="py-3  text-center text-sm font-medium text-black rounded  bg-gradient-to-r from-[#fbb90d] to-[#22ebff] w-full"
+                                            disabled={loading}
+                                        >
+                                            {loading ? "Rejecting..." : "Reject"}
+                                        </button>}
 
                                 </div>
                             </div>

@@ -8,6 +8,7 @@ import ImageGallery from "../../components/imageGallery/ImageGallery"
 import { verify_hotel, clearVerifyHotelState } from "@/redux/slices/hotelSlice/verifyHotel";
 import toast from "react-hot-toast";
 import { useRouter } from 'next/navigation';
+import DeleteModal from "@/modals/deleteModal/deleteModal";
 
 const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
     const dispatch = useDispatch<AppDispatch>();
@@ -16,6 +17,8 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
     const [index, setIndex] = useState<Number>(1)
     const [show_image_preview, setShow_image_preview] = useState(false)
     const [isDropdownVisible, setDropdownVisible] = useState(false);
+    const [isOpenDeleteSelectionModal, setIsOpenDeleteSelectionModal] = useState<boolean>(false)
+    const [reason, setReason] = useState<any>("")
     const dropdownRef = useRef<HTMLDivElement>(null);
     const router = useRouter()
 
@@ -59,6 +62,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
             toggleDropdown()
             dispatch(clearVerifyHotelState())
             dispatch(get_selected_hotel_details(hotelId));
+            setIsOpenDeleteSelectionModal(false)
         }
         if (is_hotel_verified?.isError) {
             toggleDropdown()
@@ -87,7 +91,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
         if (time) {
             const [hours, minutes] = time?.split(':')?.map(Number);
             const isPM = hours >= 12;
-            const formattedHours = hours % 12 || 12; 
+            const formattedHours = hours % 12 || 12;
             const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
             const period = isPM ? 'PM' : 'AM';
 
@@ -95,6 +99,14 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
         }
     };
 
+    const handleRejectEvent = (id: string, value: boolean) => {
+        console.log(id, value, "this is the id and verification status")
+        setIsOpenDeleteSelectionModal(true)
+    }
+
+    const rejectEstablishment = () => {
+        dispatch(verify_hotel({ hotelId: data?._id, verificationStatus: false, rejectionReason: reason }))
+    }
 
     return (
         <div className="mx-auto  w-full">
@@ -134,6 +146,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                                 {data?.address?.streetAddress}
                             </span>
                         </div>
+                        {/* onClick={() => dispatch(verify_hotel({ hotelId: data?._id, verificationStatus: false }))} */}
                         <div className="relative inline-block flex gap-2 items-center">
                             {(data?.adminVerified === null || !data?.adminVerified) ? <button onClick={() => dispatch(verify_hotel({ hotelId: data?._id, verificationStatus: true }))} className="bg-green-300 text-sm min-w-20 text-white py-2 px-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400">
                                 Approve
@@ -141,7 +154,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                                 Approved
                             </button>}
 
-                            {(data?.adminVerified === null || data?.adminVerified) ? <button onClick={() => dispatch(verify_hotel({ hotelId: data?._id, verificationStatus: false }))} className="bg-red-400 text-sm min-w-20 text-white py-2 px-2 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400">
+                            {(data?.adminVerified === null || data?.adminVerified) ? <button onClick={() => handleRejectEvent(data?._id, false)} className="bg-red-400 text-sm min-w-20 text-white py-2 px-2 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400">
                                 Reject
                             </button> : <button className="bg-red-700 text-sm min-w-20 text-white py-2 px-2 rounded focus:outline-none cursor-not-allowed">
                                 Rejected
@@ -296,6 +309,7 @@ const EstablishmentView = ({ hotelId }: { hotelId: string }) => {
                 </div>
             </div>
             {show_image_preview && index !== null && <ImageGallery images={images} setShow_image_preview={setShow_image_preview} show_image_preview={show_image_preview} index={index} />}
+            {isOpenDeleteSelectionModal && <DeleteModal isModalOpen={isOpenDeleteSelectionModal} setIsModalOpen={setIsOpenDeleteSelectionModal} handleDelete={rejectEstablishment} setReason={setReason} isInputShow={true} reason={reason} loading={is_hotel_verified?.isLoading}/>}
         </div>
     );
 };

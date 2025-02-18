@@ -138,14 +138,6 @@ const UserFilter: React.FC<Props> = ({
                 <li className="border-b border-[#fdfdfd3d]">
                   <a
                     href="#"
-                    className="block px-4 py-2 text-gray-5"
-                  >
-                    Select Status
-                  </a>
-                </li>
-                <li className="border-b border-[#fdfdfd3d]">
-                  <a
-                    href="#"
                     onClick={(e) => { handleVerifiedChange(e, true); setVerified(true) }}
                     className="block px-4 py-2 text-gray-5  dark:hover:bg-gray-600 dark:hover:text-white"
                   >
@@ -158,7 +150,7 @@ const UserFilter: React.FC<Props> = ({
                     onClick={(e) => { handleVerifiedChange(e, false); setVerified(false) }}
                     className="block px-4 py-2 text-gray-5  dark:hover:bg-gray-600 dark:hover:text-white"
                   >
-                    Not varified
+                    Not verified
                   </a>
                 </li>
               </ul>

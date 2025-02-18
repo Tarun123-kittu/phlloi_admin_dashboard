@@ -20,13 +20,14 @@ const initialState: VerifyUserState = {
 interface VerifyHotelPayload {
     hotelId: string;
     verificationStatus: boolean;
+    rejectionReason? : string
 }
 
 export const verify_hotel = createAsyncThunk<
     string, // Success payload type
     VerifyHotelPayload, // Argument type
     { rejectValue: string } // Rejected value type
->("hotel/verify_hotel", async ({ hotelId, verificationStatus }, thunkAPI) => {
+>("hotel/verify_hotel", async ({ hotelId, verificationStatus, rejectionReason }, thunkAPI) => {
     try {
         const myHeaders = new Headers();
         const token = localStorage.getItem("phloii_token");
@@ -39,6 +40,7 @@ export const verify_hotel = createAsyncThunk<
         const raw = JSON.stringify({
             hotelId,
             requestResponse: verificationStatus,
+            rejectionReason : rejectionReason
         });
 
         const apiUrl = API_CONFIG.BASE_URL;

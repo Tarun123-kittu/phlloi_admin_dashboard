@@ -6,7 +6,10 @@ import SidebarDropdown from "@/components/Sidebar/SidebarDropdown";
 import { usePathname } from "next/navigation";
 
 const SidebarItem = ({ item, pageName, setPageName }: any) => {
+  const newString = item?.route.replace("/", ""); 
+console.log(newString,"this is the new string")
   const pathname = usePathname()
+  console.log(pathname.split("/")[1],'this is the path value')
   const handleClick = () => {
     if (pageName !== item.label.toLowerCase()) {
       setPageName(item.label.toLowerCase());
@@ -19,11 +22,10 @@ const SidebarItem = ({ item, pageName, setPageName }: any) => {
         <Link
           href={item.route}
           onClick={handleClick}
-          className={`${
-            pathname === item.route
-              ? "bg-hBgColor text-hColor dark:text-white"
-              : "text-menuColor dark:text-gray-5 dark:hover:bg-white/10 dark:hover:text-white"
-          } group relative flex items-center gap-3 rounded-[7px] px-2 py-2 text-sm duration-300 ease-in-out`}
+          className={`${pathname?.split("/")[1] === newString
+            ? "bg-hBgColor text-hColor dark:text-white"
+            : "text-menuColor dark:text-gray-5 dark:hover:bg-white/10 dark:hover:text-white"
+            } group relative flex items-center gap-3 rounded-[7px] px-2 py-2 text-sm duration-300 ease-in-out`}
         >
           {item.icon}
           {item.label}
@@ -39,9 +41,8 @@ const SidebarItem = ({ item, pageName, setPageName }: any) => {
           )}
           {item.children && (
             <svg
-              className={`absolute right-3.5 top-1/2 -translate-y-1/2 fill-current ${
-                pageName === item.label.toLowerCase() ? "" : "rotate-180"
-              }`}
+              className={`absolute right-3.5 top-1/2 -translate-y-1/2 fill-current ${pageName === item.label.toLowerCase() ? "" : "rotate-180"
+                }`}
               width="22"
               height="22"
               viewBox="0 0 22 22"
@@ -60,9 +61,8 @@ const SidebarItem = ({ item, pageName, setPageName }: any) => {
 
         {item.children && (
           <div
-            className={`translate transform overflow-hidden ${
-              pageName === item.label.toLowerCase() ? "" : "hidden"
-            }`}
+            className={`translate transform overflow-hidden ${pageName === item.label.toLowerCase() ? "" : "hidden"
+              }`}
           >
             {/* <SidebarDropdown item={item.children} pathname={pathname}/> */}
           </div>
